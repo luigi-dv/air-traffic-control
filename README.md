@@ -1,2 +1,2 @@
 # ProjectG6
-Primer Prototipo
+Primer Prototipo del grupo G6
