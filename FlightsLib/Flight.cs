@@ -26,7 +26,7 @@ namespace FlightsLib
                                  );
         }
 
-        //Simula los vuelos de la lista con el tiempo que recibe por parametro
+        //Simula cada vuelo con el tiempo que recibe por parametro
         //Informa al usuario cuando un avion ya llego a su destino.
         public void Simulator(int inputUserCicle)
         {
@@ -36,26 +36,33 @@ namespace FlightsLib
             double cos;
             double sin;
 
-
-                    distance = inputUserCicle * this.velocity;
-
-                //Cambiar this 
-                    hipotenusa = Math.Sqrt(
-                                            ((this.destinationX - this.positionX) * (this.destinationX - this.positionX)) +
-                                            ((this.destinationY - this.positionY) * (this.destinationY - this.positionY))
-                                            );
-
-                    cos = ((this.destinationX - this.positionX) / hipotenusa);
-                    sin = ((this.destinationY - this.positionY) / hipotenusa);
+            if((this.positionX < this.destinationX) || (this.positionY < this.destinationY))
+            {
+                distance = inputUserCicle * this.velocity;
 
 
-                    this.positionX = (double)Math.Round((this.positionX + distance * cos), MidpointRounding.ToEven);
+                hipotenusa = Math.Sqrt(
+                                        ((this.destinationX - this.positionX) * (this.destinationX - this.positionX)) +
+                                        ((this.destinationY - this.positionY) * (this.destinationY - this.positionY))
+                                        );
+
+                cos = ((this.destinationX - this.positionX) / hipotenusa);
+                sin = ((this.destinationY - this.positionY) / hipotenusa);
+
+
+                this.positionX = Math.Round((this.positionX + distance * cos), MidpointRounding.ToEven);
 
 
 
-                    this.positionY = (double)Math.Round((this.positionY + distance * sin), MidpointRounding.ToEven);
+                this.positionY = Math.Round((this.positionY + distance * sin), MidpointRounding.ToEven);
 
-                   
+                ShowConsoleFlight();
+            }
+            else
+            {
+                    Console.WriteLine("El vuelo {0} ha llegado a su destino X={1} Y={2}", this.flightID, this.destinationX, this.destinationY);
+            }
+           
         }
     }
 }

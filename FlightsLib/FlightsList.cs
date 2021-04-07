@@ -11,9 +11,8 @@ namespace FlightsLib
     {
         public Flight[] Flights = new Flight[10];
       
-
         //Se atribuye el numero de vuelos para poder efectuar la busqueda correctamente
-        public int number = 0;
+        public int number;
 
         //Se muestra en consola una lista con todos los vuelos
         public void ShowConsoleFlights()
@@ -23,6 +22,17 @@ namespace FlightsLib
                 Flight Flight = this.Flights[i];
 
                 Flight.ShowConsoleFlight();
+            }
+        }
+
+        //Se simula cada vuelo de la lista
+        public void FlightsSimulation(int inputCicle)
+        {
+            for (int i = 0; i < number; i++)
+            {
+                Flight Flight = this.Flights[i];
+
+                Flight.Simulator(inputCicle);
             }
         }
 

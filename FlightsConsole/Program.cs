@@ -7,12 +7,14 @@ namespace FlightsConsole
     class Program
     {
         //Constantes con los nombres de los ficheros
-        const string fileUserFlights = "vuelos.txt";
-        const string fileUserSector  = "sectores.txt";
-        const string fileNameExport  = "vuelos2.txt";
+        private const string fileUserFlights = "vuelos.txt";
+        private const string fileUserSector  = "sectores.txt";
+        private const string fileNameExport  = "vuelos2.txt";
+
+        
 
         //Mensaje con las instrucciones para el usuario
-        static void Welcome()
+        public static void Welcome()
         {
 
             Console.Write(
@@ -25,8 +27,12 @@ namespace FlightsConsole
         }
 
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+           
+            FlightsList myFlightList = new FlightsList();
+            Sector mySector = new Sector();
+
             //Project title
             Console.WriteLine("SIMULADOR DE TRAFICO AEREO - GRUPO 6");
 
@@ -34,12 +40,9 @@ namespace FlightsConsole
             bool flightLoaded = false;
             bool sectorsLoaded = false;
 
-            FlightsList.MyFlights myListFlights = new FlightsList.MyFlights();
-            Sector.MySectors myListSectors = new Sector.MySectors();
-
             //Loading the lists for work w/it 
-            int resultFlights = FlightsList.LoadFlightsFile(myListFlights, fileUserFlights);
-            int resultSector  = Sector.LoadSectorFile(myListSectors, fileUserSector);
+            int resultFlights = myFlightList.LoadFlightsFile(fileUserFlights);
+            int resultSector  = mySector.LoadSectorFile(fileUserSector);
 
             //Check if Flight File is correctly loaded
             if (resultFlights == -1)
@@ -96,6 +99,7 @@ namespace FlightsConsole
                 }
             }
 
+            //If both have been loaded
             if((flightLoaded == true) && (sectorsLoaded == true))
             {
                 //Se muestran las opciones al usuario
@@ -110,13 +114,13 @@ namespace FlightsConsole
                         case "1":
                             {
                                 //Muestra la lista de vuelos 
-                                FlightsList.ShowConsoleFlights(myListFlights);
+                                myFlightList.ShowConsoleFlights();
                             }
                             break;
                         case "2":
                             {
                                 //Shows the sector's traffic
-                                Sector.ShowConsoleTraffic(myListSectors,myListFlights);
+                                mySector.ShowConsoleTraffic(myFlightList);
                             }
                             break;
                         case "3":
@@ -125,7 +129,7 @@ namespace FlightsConsole
                                 try
                                 {
                                     int inputUserCicle = Convert.ToInt32(Console.ReadLine());
-                                    Flight.Simulator(myListFlights, inputUserCicle);
+                                    myFlightList.FlightsSimulation(inputUserCicle);
                                 }
                                 catch (FormatException)
                                 {
@@ -138,7 +142,7 @@ namespace FlightsConsole
                             break;
                         case "4":
                             {
-                                FlightsList.SaveList(fileNameExport, myListFlights);
+                                myFlightList.SaveList(fileNameExport);
                                 exit = true;
                             }
                             break;
