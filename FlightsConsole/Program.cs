@@ -163,7 +163,7 @@ namespace FlightsConsole
                         Console.WriteLine("\nError inesperado");
                 }
                 Console.Write("Presione una tecla para cerrar el programa.....");
-                Console.ReadKey();
+               
             }
             
         }
