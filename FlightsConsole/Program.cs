@@ -11,7 +11,6 @@ namespace FlightsConsole
         private const string fileUserSector  = "sectores.txt";
         private const string fileNameExport  = "vuelos2.txt";
 
-        
 
         //Mensaje con las instrucciones para el usuario
         public static void Welcome()
