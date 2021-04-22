@@ -25,7 +25,6 @@ namespace FlightsConsole
 
         }
 
-
         private static void Main(string[] args)
         {
            
