@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsLib", "ProjectG6\FlightsLib\FlightsLib.csproj", "{EE44C1DC-3D9C-4947-A64C-AB2020442B22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsLib", "FlightsLib\FlightsLib.csproj", "{EE44C1DC-3D9C-4947-A64C-AB2020442B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsConsole", "FlightsConsole\FlightsConsole.csproj", "{4C4CD3ED-B6FA-43DC-B1AA-216D4FBF00B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormPrincipal", "FormPrincipal\FormPrincipal.csproj", "{E45DE08A-3007-4157-8D5C-6DD2B6C4AD6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{EE44C1DC-3D9C-4947-A64C-AB2020442B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE44C1DC-3D9C-4947-A64C-AB2020442B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE44C1DC-3D9C-4947-A64C-AB2020442B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C4CD3ED-B6FA-43DC-B1AA-216D4FBF00B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C4CD3ED-B6FA-43DC-B1AA-216D4FBF00B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C4CD3ED-B6FA-43DC-B1AA-216D4FBF00B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C4CD3ED-B6FA-43DC-B1AA-216D4FBF00B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45DE08A-3007-4157-8D5C-6DD2B6C4AD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45DE08A-3007-4157-8D5C-6DD2B6C4AD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45DE08A-3007-4157-8D5C-6DD2B6C4AD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45DE08A-3007-4157-8D5C-6DD2B6C4AD6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

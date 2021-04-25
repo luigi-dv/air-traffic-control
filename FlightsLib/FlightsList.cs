@@ -41,9 +41,8 @@ namespace FlightsLib
         {
             try
             {
-                string file = "../../../../Files/" + fileUserRecived;
-
-                
+                string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Files/");
+                string file = path + fileUserRecived;
                 StreamReader F = new StreamReader(file);
 
                 string row = F.ReadLine();

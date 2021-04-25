@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{23DEF50C-7B4A-4FBC-B0D6-3CE0FF11978D}</ProjectGuid>
+    <ProjectGuid>{4C4CD3ED-B6FA-43DC-B1AA-216D4FBF00B9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>FlightsConsole</RootNamespace>
     <AssemblyName>FlightsConsole</AssemblyName>
@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FlightsLib\FlightsLib.csproj">
+      <Project>{ee44c1dc-3d9c-4947-a64c-ab2020442b22}</Project>
+      <Name>FlightsLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
