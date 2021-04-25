@@ -29,10 +29,18 @@ namespace FormPrincipal
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ShowFlight
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "ShowFlight";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.ShowFlight_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

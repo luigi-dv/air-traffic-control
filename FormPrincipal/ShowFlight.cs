@@ -14,5 +14,10 @@ namespace FormPrincipal
         {
             InitializeComponent();
         }
+
+        private void ShowFlight_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
