@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsLib", "ProjectG6\FlightsLib\FlightsLib.csproj", "{EE44C1DC-3D9C-4947-A64C-AB2020442B22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE44C1DC-3D9C-4947-A64C-AB2020442B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE44C1DC-3D9C-4947-A64C-AB2020442B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE44C1DC-3D9C-4947-A64C-AB2020442B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE44C1DC-3D9C-4947-A64C-AB2020442B22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6476E556-51DA-4948-93D0-D3ED07375492}
+	EndGlobalSection
+EndGlobal
