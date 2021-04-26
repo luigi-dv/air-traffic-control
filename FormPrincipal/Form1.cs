@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,8 +15,8 @@ namespace FormPrincipal
 {
     public partial class Form1 : Form
     {
-        const string IMG = "\\Resources\\Graphics\\plane.png";
-        const string IMGBG = "\\Resources\\Backgrounds\\spainBg.png";
+        const string IMG = "Resources\\Graphics\\plane.png";
+        const string IMGBG = "Resources\\Backgrounds\\spainBg.png";
         const int MAX = 100;
 
         private FlightsList myFlightList = new FlightsList();
@@ -68,9 +69,13 @@ namespace FormPrincipal
                 }
                 else
                 {
-                    string path = System.IO.Directory.GetCurrentDirectory();
+                    
+                   /* Debug route (bin/debung..)
+                    * string path = System.IO.Directory.GetCurrentDirectory();
                     string imageFile = path + IMG;
+                   */
 
+                    string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
                     for (int i = 0; i < myFlightList.number; i++)
                     {
                         aircraftVector[i] = new PictureBox();
