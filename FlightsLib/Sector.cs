@@ -9,9 +9,9 @@ namespace FlightsLib
 {
     public class Sector
     {
-        string sectorID;
-        int capacity;
-        float positionX, positionY, width, height;
+        public string sectorID;
+        public int capacity;
+        public float positionX, positionY, width, height;
 
         //Se atribuye el numero de sectores para poder efectuar la busqueda correctamente
         const int n = 1;

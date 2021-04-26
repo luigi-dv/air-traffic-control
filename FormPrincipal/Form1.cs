@@ -90,13 +90,55 @@ namespace FormPrincipal
                         }
                         catch
                         {
-
                             MessageBox.Show("El fichero " + '"' + imageFile + '"' + " no se ha encontrado", '"' + imageFile + '"',
                                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                     }
 
+                }
+
+            }
+        }
+        private void cargarSectorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog2.Title = "Selecciona el fichero con la lista de vuelos";
+            openFileDialog2.InitialDirectory = @"C:\";
+            openFileDialog2.FileName = "";
+            openFileDialog2.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog2.FilterIndex = 2;
+            openFileDialog2.Multiselect = false;
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                string filename = openFileDialog2.FileName;
+
+                int result = mySector.LoadSectorFile(filename);
+                if (result != 0)
+                {
+                    if (result == -1)
+                    {
+                        MessageBox.Show("Windows no puede encontrar el archivo " + '"' + openFileDialog2.FileName + '"' + ". Asegúrese que el nombre esté bien escrito correctamente e inténtelo de nuevo.",
+                                        openFileDialog2.FileName,
+                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        if (result == -2)
+                        {
+
+                            MessageBox.Show("El fichero " + '"' + openFileDialog2.FileName + '"' + " no tiene el formato deseado, por favor seleccione un fichero con el formato adecuado", '"' + openFileDialog2.FileName + '"',
+                                       MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ha habido un problema por favor reinicie el programa.", "Error",
+                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    panel1.Invalidate();
                 }
 
             }
@@ -145,8 +187,23 @@ namespace FormPrincipal
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
+            Point x0y0 = new Point(Convert.ToInt32(mySector.positionX), Convert.ToInt32(mySector.positionY));
+            Point x0yF = new Point(Convert.ToInt32(mySector.positionX), Convert.ToInt32(mySector.positionY + mySector.height));
+            Point xFyF = new Point(Convert.ToInt32(mySector.positionX + mySector.width), Convert.ToInt32(mySector.positionY + mySector.height));
+            Point xFy0 = new Point(Convert.ToInt32(mySector.positionX + mySector.width), Convert.ToInt32(mySector.positionY));
 
-
+            System.Drawing.Graphics graphics = e.Graphics;
+            //Colour to draw the rectangle
+            Pen myPen = new Pen(Color.Red);
+            // Points that define the rectangle
+            Point[] polygonPoints = new Point[4];
+            polygonPoints[0] = x0y0;
+            polygonPoints[1] = x0yF;
+            polygonPoints[2] = xFyF;
+            polygonPoints[3] = xFy0;
+            //Draw the rectangle
+            graphics.DrawPolygon(myPen, polygonPoints);
+            myPen.Dispose();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -154,6 +211,6 @@ namespace FormPrincipal
 
         }
 
-       
+        
     }
 }
