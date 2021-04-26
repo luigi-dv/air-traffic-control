@@ -10,7 +10,6 @@ namespace FlightsLib
     public class FlightsList
     {
         public Flight[] Flights = new Flight[10];
-      
         //Se atribuye el numero de vuelos para poder efectuar la busqueda correctamente
         public int number;
 
