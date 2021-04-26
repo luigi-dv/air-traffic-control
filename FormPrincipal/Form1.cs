@@ -19,7 +19,7 @@ namespace FormPrincipal
         const string IMGBG = "Resources\\Backgrounds\\spainBg.png";
         const int MAX = 100;
 
-        private FlightsList myFlightList = new FlightsList();
+        public FlightsList myFlightList = new FlightsList();
         private Sector mySector = new Sector();
 
         private PictureBox[] aircraftVector = new PictureBox[MAX];
@@ -211,6 +211,19 @@ namespace FormPrincipal
 
         }
 
-        
+        private void aircraft_Click(object sender, EventArgs e)
+        {
+            PictureBox p = (PictureBox)sender;
+            int i = (int)p.Tag;
+        }
+
+        private void listaDeVuelosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Opens form2(list)
+            
+            Form2 f2 = new Form2();
+            f2.LoadFlightsDataForm2(openFileDialog1.FileName);
+            f2.ShowDialog();
+        }
     }
 }
