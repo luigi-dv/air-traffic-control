@@ -41,36 +41,41 @@ namespace FlightsLib
         {
             try
             {
-                string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Files/");
-                string file = path + fileUserRecived;
-                StreamReader F = new StreamReader(file);
+                /*string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Files/");
+                string file = path + fileUserRecived;*/
+                StreamReader F = new StreamReader(fileUserRecived);
 
                 string row = F.ReadLine();
 
-                while (row!=null)
+                int result = -2;
+                while (row != null)
                 {
-                    Flight u = new Flight();
-
                     string[] splits = row.Split(' ');
 
-                    u.flightID = splits[0];
-                    u.company = splits[1];
-                    u.positionX = float.Parse(splits[2]);
-                    u.positionY = float.Parse(splits[3]);
-                    u.originX = float.Parse(splits[4]);
-                    u.originY = float.Parse(splits[5]);
-                    u.destinationX = float.Parse(splits[6]);
-                    u.destinationY = float.Parse(splits[7]);
-                    u.velocity = float.Parse(splits[8]);
-
-                    this.Flights[number] = u;
+                    //Check para compatibilidad del archivo con otros fichero de texto con split tipo espacio ej:Dram files 
+                    if (splits.Length == 9)
+                    {
+                        Flight u = new Flight
+                        {
+                            flightID = splits[0],
+                            company = splits[1],
+                            positionX = float.Parse(splits[2]),
+                            positionY = float.Parse(splits[3]),
+                            originX = float.Parse(splits[4]),
+                            originY = float.Parse(splits[5]),
+                            destinationX = float.Parse(splits[6]),
+                            destinationY = float.Parse(splits[7]),
+                            velocity = float.Parse(splits[8])
+                        };
+                        this.Flights[number] = u;
+                        result = 0;
+                    }
                     row = F.ReadLine();
-
                     number++;
                 }
-
                 F.Close();
-                return 0;
+                //Retorna la variable result que es -2 por defecto y solo cambia si el fichero tiene los 9 splits
+                return result;
 
             }
             catch (FileNotFoundException)
@@ -87,8 +92,7 @@ namespace FlightsLib
         //Guarda la lista en un archivo con el nombre que recibe como parametro 
         public void SaveList(string fileName)
         {
-            string file = "../../../../Files/" + fileName;
-            StreamWriter f = new StreamWriter(file);
+            StreamWriter f = new StreamWriter(fileName);
 
             for (int i=0 ; i < number; i++)
             {

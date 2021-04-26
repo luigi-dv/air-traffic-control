@@ -22,10 +22,10 @@ namespace FlightsLib
         { 
             try
             {
-                string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Files/");
-                string file = path + fileUserRecived;
-                Console.WriteLine(file);
-                StreamReader F = new StreamReader(file);
+                /*string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Files/");
+                string file = path + fileUserRecived;*/
+
+                StreamReader F = new StreamReader(fileUserRecived);
 
                 string row = F.ReadLine();
                 string[] splits = row.Split(' ');
