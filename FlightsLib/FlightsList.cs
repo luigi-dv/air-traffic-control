@@ -49,7 +49,7 @@ namespace FlightsLib
                 int result = -2;
                 while (row != null)
                 {
-                    string[] splits = row.Split(' ');
+                    string[] splits = row.Split(';');
 
                     //Check para compatibilidad del archivo con otros fichero de texto con split tipo espacio ej:Dram files 
                     if (splits.Length == 9)

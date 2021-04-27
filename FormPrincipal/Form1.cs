@@ -17,21 +17,29 @@ namespace FormPrincipal
     {
         const string IMG = "Resources\\Graphics\\plane.png";
         const string IMGBG = "Resources\\Backgrounds\\spainBg.png";
-        const int MAX = 100;
 
-        public FlightsList myFlightList = new FlightsList();
+        //300 flights inside the picture box array
+        const int MAX = 300;
+
+        //The flight list
+        private FlightsList myFlightList = new FlightsList();
+
+        //The sector
         private Sector mySector = new Sector();
 
+        //A single flight
+        private Flight myFlight = new Flight();
+        
         private PictureBox[] aircraftVector = new PictureBox[MAX];
        
-        //for(int i = 0; i<myFlightList.number;i++)MessageBox.Show(myFlightList.Flights[i].flightID);
+       
         public Form1()
         {
             InitializeComponent();
-
         }
 
-        private void loadFlightsToolStripMenuItem_Click(object sender, EventArgs e)
+        //Strip Menu CARGAR VUELOS
+        private void LoadFlightsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.Title = "Selecciona el fichero con la lista de vuelos";
             openFileDialog1.InitialDirectory = @"C:\";
@@ -70,9 +78,9 @@ namespace FormPrincipal
                 else
                 {
                     
-                   /* Debug route (bin/debung..)
-                    * string path = System.IO.Directory.GetCurrentDirectory();
-                    string imageFile = path + IMG;
+                   /*   This code for Debug route (bin/debug..)
+                        string path = System.IO.Directory.GetCurrentDirectory();
+                        string imageFile = path + IMG;
                    */
 
                     string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
@@ -82,6 +90,8 @@ namespace FormPrincipal
                         aircraftVector[i].ClientSize = new Size(20, 20);
                         aircraftVector[i].Location = new Point((int)myFlightList.Flights[i].positionX, (int)myFlightList.Flights[i].positionY);
                         aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                        aircraftVector[i].Tag = myFlightList.Flights[i];
+                        aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
                         try
                         {
                             Bitmap image = new Bitmap(imageFile);
@@ -90,8 +100,8 @@ namespace FormPrincipal
                         }
                         catch
                         {
-                            MessageBox.Show("El fichero " + '"' + imageFile + '"' + " no se ha encontrado", '"' + imageFile + '"',
-                                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("El fichero " + '"' + imageFile + '"' + " no se ha encontrado, posiblemente la carpeta Resources esté comprometida",
+                                             '"' + imageFile + '"', MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                     }
@@ -100,7 +110,28 @@ namespace FormPrincipal
 
             }
         }
-        private void cargarSectorToolStripMenuItem_Click(object sender, EventArgs e)
+
+        //Flight click
+        private void AircraftVector_Click(object sender, EventArgs e)
+        {
+            //Receiving the PictureBox
+            PictureBox flightBox = (PictureBox)sender;
+            //Declaring the new form
+            Form3 f3 = new Form3();
+            //On click plane icon background will be green
+            flightBox.BackColor = Color.Green;
+            //Getting the info from the tag, myFlight declared in line 31
+            myFlight = (Flight)flightBox.Tag;
+            //Pass Flight info to the f3 form
+            f3.SetInfo(myFlight);
+            //Show the f3 form
+            f3.ShowDialog();
+            //When f3 is closed the color returns to transparent
+            flightBox.BackColor = Color.Transparent;
+        }
+
+        //Strip Menu Cargar Sector
+        private void CargarSectorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog2.Title = "Selecciona el fichero con la lista de vuelos";
             openFileDialog2.InitialDirectory = @"C:\";
@@ -144,7 +175,8 @@ namespace FormPrincipal
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        //Strip Menu to save our list
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             //Check if the first list vector is empty and ask the user ab this
@@ -185,11 +217,15 @@ namespace FormPrincipal
            
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void Panel1_Paint(object sender, PaintEventArgs e)
         {
+            //Xo,Yo (Left top corner)
             Point x0y0 = new Point(Convert.ToInt32(mySector.positionX), Convert.ToInt32(mySector.positionY));
+            //Xo,Yf (Left bottom corner)
             Point x0yF = new Point(Convert.ToInt32(mySector.positionX), Convert.ToInt32(mySector.positionY + mySector.height));
+            //Xf,Yf (Right bottom corner)
             Point xFyF = new Point(Convert.ToInt32(mySector.positionX + mySector.width), Convert.ToInt32(mySector.positionY + mySector.height));
+            //Xo,Yo (Right top corner)
             Point xFy0 = new Point(Convert.ToInt32(mySector.positionX + mySector.width), Convert.ToInt32(mySector.positionY));
 
             System.Drawing.Graphics graphics = e.Graphics;
@@ -211,19 +247,11 @@ namespace FormPrincipal
 
         }
 
-        private void aircraft_Click(object sender, EventArgs e)
-        {
-            PictureBox p = (PictureBox)sender;
-            int i = (int)p.Tag;
-        }
+        
 
         private void listaDeVuelosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Opens form2(list)
-            
-            Form2 f2 = new Form2();
-            f2.LoadFlightsDataForm2(openFileDialog1.FileName);
-            f2.ShowDialog();
+           
         }
     }
 }
