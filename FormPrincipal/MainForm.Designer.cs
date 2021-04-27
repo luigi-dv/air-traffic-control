@@ -29,6 +29,7 @@ namespace FormPrincipal
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,11 +73,12 @@ namespace FormPrincipal
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cycleTime = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -411,13 +413,14 @@ namespace FormPrincipal
             this.button1.TabIndex = 8;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.StartSimulation_Click);
             // 
-            // textBox1
+            // cycleTime
             // 
-            this.textBox1.Location = new System.Drawing.Point(1048, 399);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 9;
+            this.cycleTime.Location = new System.Drawing.Point(1048, 399);
+            this.cycleTime.Name = "cycleTime";
+            this.cycleTime.Size = new System.Drawing.Size(100, 20);
+            this.cycleTime.TabIndex = 9;
             // 
             // textBox2
             // 
@@ -443,6 +446,7 @@ namespace FormPrincipal
             this.button4.TabIndex = 13;
             this.button4.Text = "Reset";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Reset_Click);
             // 
             // button3
             // 
@@ -454,6 +458,10 @@ namespace FormPrincipal
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.AvanzarSimulacion_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer_tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,7 +471,7 @@ namespace FormPrincipal
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cycleTime);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -528,10 +536,11 @@ namespace FormPrincipal
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox cycleTime;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Timer timer1;
     }
 }
