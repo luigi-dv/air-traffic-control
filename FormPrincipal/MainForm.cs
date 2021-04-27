@@ -24,6 +24,9 @@ namespace FormPrincipal
         //The flight list
         private FlightsList myFlightsList = new FlightsList();
 
+        //Original Flightlist without refreshing
+        private FlightsList FlightList0 = new FlightsList();
+
         //The sector
         private Sector mySector = new Sector();
 
@@ -31,8 +34,10 @@ namespace FormPrincipal
         private Flight myFlight = new Flight();
         
         private PictureBox[] aircraftVector = new PictureBox[MAX];
-       
-       
+        int cycle;
+        int j = 0;
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -47,11 +52,13 @@ namespace FormPrincipal
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.Multiselect = false;
+            
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string filename = openFileDialog1.FileName;
-
+                FlightList0.LoadFlightsFile(filename);
                 int result = myFlightsList.LoadFlightsFile(filename);
+               
                 if (result != 0)
                 {
                     if (result == -1)
@@ -96,6 +103,7 @@ namespace FormPrincipal
                             aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
                             aircraftVector[i].Tag = myFlightsList.Flights[i];
                             aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
+
                         
                             Bitmap image = new Bitmap(imageFile);
                             aircraftVector[i].Image = (Image)image;
@@ -250,7 +258,8 @@ namespace FormPrincipal
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            timer1.Interval = 1000; // Set time interval to 1 second
+            timer1.Enabled = true; // Start launching tick events every 1 second
         }
 
         
@@ -265,12 +274,62 @@ namespace FormPrincipal
 
         private void AvanzarSimulacion_Click(object sender, EventArgs e)
         {
-            //Simulates 1 Cycle and updates position in Picturebox
-            myFlightsList.FlightsSimulation(1);
-            for (int i = 0; i < myFlightsList.number; i++)
+            // j es el contador para los ciclos de la simulacion, si j=numciclos deja de simular hasta reset o otro ciclo
+            if(j<cycle)
+            {
+                //Simulates 1 Cycle and updates position in Picturebox
+                myFlightsList.FlightsSimulation(1);
+                for (int i = 0; i < myFlightsList.number; i++)
             {
                 aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
             }
+                j++;
+            }
+            
+
+        }
+
+        private void StartSimulation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //reset simulation and asks for cycle input by text
+                j = 0;
+                cycle = 0;
+                cycle = Convert.ToInt32(cycleTime.Text);
+               
+            }
+            catch (FormatException)
+            {
+               
+                MessageBox.Show("Error, debe escribir un número");
+                cycleTime.Text = "";
+                return;
+                
+            }
+
+
+
+           
+           
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            
+            for (int i = 0; i < myFlightsList.number; i++)
+            {
+
+                myFlightsList.Flights[i].positionX = FlightList0.Flights[i].positionX;
+                myFlightsList.Flights[i].positionY = FlightList0.Flights[i].positionY;
+
+                aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
+                
+            }
+        }
+
+        private void timer_tick(object sender, EventArgs e)
+        {
 
         }
     }
