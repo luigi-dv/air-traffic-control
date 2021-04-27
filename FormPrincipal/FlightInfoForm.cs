@@ -12,7 +12,7 @@ using FlightsLib;
 
 namespace FormPrincipal
 {
-    public partial class Form3 : Form
+    public partial class FlightInfoForm : Form
     {
         Flight flightInfo = new Flight();
         const string FLIGHTIMAGEIB = "Resources\\Images\\flightPictureIberia.png";
@@ -20,7 +20,7 @@ namespace FormPrincipal
         const string FLIGHTIMAGESWA = "Resources\\Images\\flightPictureSwiss.png";
         const string FLIGHTIMAGEDEFAULT = "Resources\\Images\\flightPicture.png";
 
-        public Form3()
+        public FlightInfoForm()
         {
             InitializeComponent();
         }

@@ -11,11 +11,11 @@ using FlightsLib;
 
 namespace FormPrincipal
 {
-    public partial class Form2 : Form
+    public partial class FlightsListInfoForm : Form
     {
         FlightsList flights = new FlightsList();
         string filename;
-        public Form2()
+        public FlightsListInfoForm()
         {
             InitializeComponent();
         }
@@ -49,6 +49,22 @@ namespace FormPrincipal
             
         }
 
-       
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FlightsListInfoForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "FlightsListInfoForm";
+            this.Load += new System.EventHandler(this.FlightsListInfoForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void FlightsListInfoForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

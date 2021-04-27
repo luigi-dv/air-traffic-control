@@ -1,7 +1,7 @@
 ﻿
 namespace FormPrincipal
 {
-    partial class Form3
+    partial class FlightInfoForm
     {
         /// <summary>
         /// Required designer variable.
