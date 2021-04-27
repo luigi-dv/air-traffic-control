@@ -265,6 +265,7 @@ namespace FormPrincipal
 
         private void AvanzarSimulacion_Click(object sender, EventArgs e)
         {
+            //Simulates 1 Cycle and updates position in Picturebox
             myFlightsList.FlightsSimulation(1);
             for (int i = 0; i < myFlightsList.number; i++)
             {
