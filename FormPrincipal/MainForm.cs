@@ -262,5 +262,15 @@ namespace FormPrincipal
             flightsListInfo.SetInfo(myFlightsList);
             flightsListInfo.ShowDialog();
         }
+
+        private void AvanzarSimulacion_Click(object sender, EventArgs e)
+        {
+            myFlightsList.FlightsSimulation(1);
+            for (int i = 0; i < myFlightsList.number; i++)
+            {
+                aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
+            }
+
+        }
     }
 }
