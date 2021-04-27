@@ -30,48 +30,50 @@
         {
             this.components = new System.ComponentModel.Container();
             this.sectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.FlightListGrid = new System.Windows.Forms.DataGridView();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.form1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.FlightListGrid = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.sectorBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FlightListGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FlightListGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // sectorBindingSource
             // 
             this.sectorBindingSource.DataSource = typeof(FlightsLib.Sector);
             // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(FormPrincipal.Form1);
-            // 
-            // form1BindingSource1
-            // 
-            this.form1BindingSource1.DataSource = typeof(FormPrincipal.Form1);
-            // 
             // FlightListGrid
             // 
+            this.FlightListGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.FlightListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FlightListGrid.Location = new System.Drawing.Point(12, 12);
             this.FlightListGrid.Name = "FlightListGrid";
-            this.FlightListGrid.Size = new System.Drawing.Size(413, 247);
+            this.FlightListGrid.Size = new System.Drawing.Size(603, 406);
             this.FlightListGrid.TabIndex = 0;
             // 
-            // Form2
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(FormPrincipal.MainForm);
+            // 
+            // form1BindingSource1
+            // 
+            this.form1BindingSource1.DataSource = typeof(FormPrincipal.MainForm);
+            // 
+            // FlightsListInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 271);
+            this.ClientSize = new System.Drawing.Size(627, 430);
             this.Controls.Add(this.FlightListGrid);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Name = "FlightsListInfoForm";
+            this.Text = "Listado de Vuelos Activos";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sectorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FlightListGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FlightListGrid)).EndInit();
             this.ResumeLayout(false);
 
         }

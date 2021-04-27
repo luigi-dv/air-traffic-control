@@ -86,6 +86,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\FlightInfoForm.datasource" />
     <None Include="Properties\DataSources\FlightsLib.Flight.datasource" />
     <None Include="Properties\DataSources\FlightsLib.FlightsList.datasource" />
     <None Include="Properties\DataSources\FlightsLib.Sector.datasource" />
@@ -93,6 +94,7 @@
     <None Include="Properties\DataSources\Form2.datasource" />
     <None Include="Properties\DataSources\FormPrincipal.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\FormPrincipal.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\MainForm.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

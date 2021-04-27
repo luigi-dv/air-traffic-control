@@ -88,21 +88,22 @@ namespace FormPrincipal
                     string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
                     for (int i = 0; i < myFlightsList.number; i++)
                     {
-                        aircraftVector[i] = new PictureBox();
-                        aircraftVector[i].ClientSize = new Size(20, 20);
-                        aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
-                        aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                        aircraftVector[i].Tag = myFlightsList.Flights[i];
-                        aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
                         try
                         {
+                            aircraftVector[i] = new PictureBox();
+                            aircraftVector[i].ClientSize = new Size(20, 20);
+                            aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
+                            aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                            aircraftVector[i].Tag = myFlightsList.Flights[i];
+                            aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
+                        
                             Bitmap image = new Bitmap(imageFile);
                             aircraftVector[i].Image = (Image)image;
                             panel1.Controls.Add(aircraftVector[i]);
                         }
                         catch
                         {
-                            MessageBox.Show("El fichero " + '"' + imageFile + '"' + " no se ha encontrado, posiblemente la carpeta Resources esté comprometida",
+                            MessageBox.Show("Error de carga puede que el fichero " + '"' + imageFile + '"' + " no se haya encontrado, posiblemente la carpeta Resources esté comprometida",
                                              '"' + imageFile + '"', MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
