@@ -191,19 +191,33 @@ namespace FormPrincipal
             Point xFy0 = new Point(Convert.ToInt32(mySector.positionX + mySector.width), Convert.ToInt32(mySector.positionY));
 
             System.Drawing.Graphics graphics = e.Graphics;
-            //Colour to draw the rectangle
-            Pen myPen = new Pen(Color.Red);
             // Points that define the rectangle
             Point[] polygonPoints = new Point[4];
             polygonPoints[0] = x0y0;
             polygonPoints[1] = x0yF;
             polygonPoints[2] = xFyF;
             polygonPoints[3] = xFy0;
+
+           
             //Draw the rectangle
-            graphics.DrawPolygon(myPen, polygonPoints);
-            myPen.Dispose();
+            graphics.DrawPolygon(painting("Green"), polygonPoints);
+            painting("Green").Dispose();
+            
+               
         }
 
+
+         private Pen painting(string color)
+        {
+
+            Pen myPen = new Pen(Color.Green);
+            //Colour to draw the rectangle
+            if (color == "Red")
+                 myPen = new Pen(Color.Red);
+ 
+            return myPen;
+           
+        }
         //Strip Menu to save our list
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
