@@ -28,7 +28,7 @@ namespace FlightsLib
                 StreamReader F = new StreamReader(fileUserRecived);
 
                 string row = F.ReadLine();
-                string[] splits = row.Split(' ');
+                string[] splits = row.Split('-');
 
                 this.sectorID = splits[0];
                 this.capacity = Convert.ToInt32(splits[1]);
@@ -50,10 +50,14 @@ namespace FlightsLib
             {
                 return -2;
             }
+            catch
+            {
+                return -2;
+            }
         }
 
         //Muestra el trafico aereo que hay en el sector
-        public void ShowConsoleTraffic(FlightsList flightsList)
+        public int GetTraffic(FlightsList flightsList)
         {
 
             bool insideX = false; 
@@ -89,14 +93,13 @@ namespace FlightsLib
                 {
                     insideSectorCount++;
                 }
-              
-               
-            }
  
-                double insideSectorPercent = (insideSectorCount / (double)this.capacity) * 100;
+            }
+            return insideSectorCount;
+               /* double insideSectorPercent = (insideSectorCount / (double)this.capacity) * 100;
 
                 Console.WriteLine("Hay {0} vuelos en el sector. La ocupación es del {1}%.", insideSectorCount, insideSectorPercent);
-            
+            */
 
         }
     }

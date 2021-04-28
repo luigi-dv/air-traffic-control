@@ -27,7 +27,7 @@ namespace FormPrincipal
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            this.Text = "Información del vuelo - " + flightInfo.flightID;
+            this.Text = flightInfo.flightID + "- Información del vuelo";
             //Big Label Flight ID
             this.flightIDLabel.Text = flightInfo.flightID;
             //Load images
@@ -102,21 +102,28 @@ namespace FormPrincipal
 
         private void SetProgress()
         {
-            double maximum = Math.Sqrt(((flightInfo.destinationX) * (flightInfo.destinationX)) +
-                                       ((flightInfo.destinationY) * (flightInfo.destinationY))
-                                       );
-            double minimum = Math.Sqrt(((flightInfo.originX) * (flightInfo.originX)) +
-                                        ((flightInfo.originY) * (flightInfo.originY))
-                                        );
 
-            double position = Math.Sqrt(((flightInfo.positionX) * (flightInfo.positionX)) +
-                                        ((flightInfo.positionY) * (flightInfo.positionY))
-                                        );
+            Point minimum = new Point((int)flightInfo.originX, (int)flightInfo.originY);
+
+            int position;
+            double percentX = (flightInfo.positionX - flightInfo.originX) / (flightInfo.destinationX - flightInfo.originX) * 100;
+            double percentY = (flightInfo.positionY - flightInfo.originY) / (flightInfo.destinationY - flightInfo.originY) * 100;
+
+            if (percentX <= 100 && percentY <= 100)
+                position = Convert.ToInt32(percentX);
+            else
+                if (percentX < percentY)
+                position = Convert.ToInt32(percentX);
+                else
+                position = Convert.ToInt32(percentY);
+
             //Progress Bar
-            flightProgress.Maximum = Convert.ToInt32(maximum);
-            flightProgress.Minimum = Convert.ToInt32(minimum);
+            flightProgress.Maximum = 100;
+            flightProgress.Minimum = 0;
             flightProgress.Step = 1;
-            flightProgress.Value = Convert.ToInt32(position);
+            flightProgress.Value = position;
         }
+       
+
     }
 }

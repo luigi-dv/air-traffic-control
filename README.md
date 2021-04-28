@@ -30,6 +30,24 @@ Descargando manualmente el fichero comprimido .zip
 Build started...
 ========== Build: 0 succeeded, 0 failed, X up-to-date, 0 skipped ==========
 ```
+
+##Load Resources From Debug
+  En caso de querer cargar los recursos desde la carpeta bin/debug de cada programa es necesario 
+  realizar los siguientes pasos:
+  
+  Formato inicial
+  ```bash
+  C:\Users\user\Directory\ProjectG6\Resources 
+  ```
+   
+   
+   Formato final
+```bash
+C:\Users\user\Directory\ProjectG6\Program_Folder\bin\debug\Resources
+```
+
+   Copiamos la carpeta dentro del *program_folder* el cual es el directorio del programa que hagamos el debug.
+  
 ## Errors
  En caso de presentar errores en el programa asegurese de que la carpeta "Resources" existe. 
  En caso contrario proceda a descargar el repositiorio e insertela en el origen manualmente.  

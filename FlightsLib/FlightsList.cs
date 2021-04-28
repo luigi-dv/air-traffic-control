@@ -27,12 +27,14 @@ namespace FlightsLib
         //Se simula cada vuelo de la lista
         public void FlightsSimulation(int inputCicle)
         {
+            
             for (int i = 0; i < number; i++)
             {
                 Flight Flight = this.Flights[i];
 
-                Flight.Simulator(inputCicle);
+                Flight.Simulator(inputCicle); 
             }
+            
         }
 
         //Carga el archivo que contiene los datos de los vuelos
@@ -97,7 +99,7 @@ namespace FlightsLib
             {
                 Flight Flight = this.Flights[i];
 
-                f.WriteLine("{0} {1} {2} {3} {4} {5} {6} {7} {8}",
+                f.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8}",
                             Flight.flightID, Flight.company, Flight.positionX, Flight.positionY,
                             Flight.originX, Flight.originY, Flight.destinationX, Flight.destinationY,Flight.velocity);
 

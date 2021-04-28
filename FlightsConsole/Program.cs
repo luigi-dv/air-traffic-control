@@ -118,7 +118,7 @@ namespace FlightsConsole
                         case "2":
                             {
                                 //Shows the sector's traffic
-                                mySector.ShowConsoleTraffic(myFlightList);
+                                mySector.GetTraffic(myFlightList);
                             }
                             break;
                         case "3":

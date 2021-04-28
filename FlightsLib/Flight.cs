@@ -28,7 +28,7 @@ namespace FlightsLib
 
         //Simula cada vuelo con el tiempo que recibe por parametro
         //Informa al usuario cuando un avion ya llego a su destino.
-        public void Simulator(int inputUserCicle)
+        public int Simulator(int inputUserCicle)
         {
  
             double distance;
@@ -56,11 +56,11 @@ namespace FlightsLib
 
                 this.positionY = Math.Round((this.positionY + distance * sin), MidpointRounding.ToEven);
 
-                ShowConsoleFlight();
+                return 0;
             }
             else
             {
-                    Console.WriteLine("El vuelo {0} ha llegado a su destino X={1} Y={2}", this.flightID, this.destinationX, this.destinationY);
+                return -1;
             }
            
         }
