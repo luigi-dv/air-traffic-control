@@ -47,7 +47,6 @@ namespace FormPrincipal
         {
             //Welcome message to username 
             this.userNameLabel.Text = GetUserNameFunction();
-
             timer1.Interval = 1000; // Set time interval to 1 second
             timer1.Enabled = true; // Start launching tick events every 1 second
         }
@@ -112,7 +111,8 @@ namespace FormPrincipal
 
                         //Display Flights Total Number into the Right side panel
                         this.totalFlightsLabel.Text = Convert.ToString(myFlightsList.number);
-
+                        //Call 0.5.Helper: Function to print the sector occupation
+                        PrintOcuppation();
                         //Define the path and the name of the image into the string imageFile
                         string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
                         for (int i = 0; i < myFlightsList.number; i++)
@@ -211,6 +211,8 @@ namespace FormPrincipal
                 else
                 {
                     this.sectorIDLabel.Text = Convert.ToString(mySector.sectorID);
+                    //0.5.Helper: Function to print the sector occupation
+                    PrintOcuppation();
                     panel1.Invalidate();
                 }
 
@@ -306,6 +308,8 @@ namespace FormPrincipal
             {
                 //Simulates a Cycle and updates position in Picturebox
                 myFlightsList.FlightsSimulation(time);
+                //0.5.Helper: Function to print the sector occupation
+                PrintOcuppation();
                 panel1.Invalidate();
                 for (int i = 0; i < myFlightsList.number; i++)
                 {
@@ -332,6 +336,7 @@ namespace FormPrincipal
 
         private void Reset_Click(object sender, EventArgs e)
         {
+            //Change Sector Color
             panel1.Invalidate();
             for (int i = 0; i < myFlightsList.number; i++)
             {
@@ -341,6 +346,8 @@ namespace FormPrincipal
                 aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
 
             }
+            //0.5.Helper: Function to print the sector occupation
+            PrintOcuppation();
         }
 
         private void StartSimulation_Click(object sender, EventArgs e)
@@ -348,6 +355,7 @@ namespace FormPrincipal
 
             string cycleTime = cycleTimeInput.Text;
             string cycleNum = cycleNumInput.Text;
+            //int time = Convert.ToInt32(cycleTime);
             int flightsInDestination = 0;
             int i = 0;
 
@@ -357,6 +365,9 @@ namespace FormPrincipal
                 if (!string.IsNullOrWhiteSpace(cycleNum) && // Not empty
                 int.TryParse(cycleNum, out int num))
                 {
+                    //0.5.Helper: Function to print the sector occupation
+                    PrintOcuppation();
+                    //Change Sector Color
                     panel1.Invalidate();
                     MessageBox.Show("Simulación ejecutada con éxito", "Simulación");
                     // i es el contador para los ciclos de la simulacion, si j=numciclos deja de simular hasta reset o otro ciclo
@@ -449,6 +460,12 @@ namespace FormPrincipal
             //Call the Process.Start method to open the default browser
             //with a URL:
             System.Diagnostics.Process.Start(url);
+        }
+
+        //0.5.Helper: Function to print the sector occupation
+        private void PrintOcuppation()
+        {
+            this.occupationNumLabel.Text = Convert.ToString(mySector.GetTraffic(myFlightsList));
         }
 
         /*************************************** Extras Section ***************************************************

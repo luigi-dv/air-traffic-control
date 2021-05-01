@@ -67,6 +67,8 @@ namespace FormPrincipal
             this.userNameLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.occupationTitleLabel = new System.Windows.Forms.Label();
+            this.occupationNumLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -374,12 +376,35 @@ namespace FormPrincipal
             this.label5.Size = new System.Drawing.Size(230, 2);
             this.label5.TabIndex = 18;
             // 
+            // occupationTitleLabel
+            // 
+            this.occupationTitleLabel.AutoSize = true;
+            this.occupationTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.occupationTitleLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.occupationTitleLabel.Location = new System.Drawing.Point(976, 249);
+            this.occupationTitleLabel.Name = "occupationTitleLabel";
+            this.occupationTitleLabel.Size = new System.Drawing.Size(76, 16);
+            this.occupationTitleLabel.TabIndex = 19;
+            this.occupationTitleLabel.Text = "Ocupación:";
+            // 
+            // occupationNumLabel
+            // 
+            this.occupationNumLabel.AutoSize = true;
+            this.occupationNumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.occupationNumLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.occupationNumLabel.Location = new System.Drawing.Point(1061, 250);
+            this.occupationNumLabel.Name = "occupationNumLabel";
+            this.occupationNumLabel.Size = new System.Drawing.Size(0, 15);
+            this.occupationNumLabel.TabIndex = 20;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
             this.ClientSize = new System.Drawing.Size(1190, 666);
+            this.Controls.Add(this.occupationNumLabel);
+            this.Controls.Add(this.occupationTitleLabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.userNameLabel);
@@ -397,6 +422,7 @@ namespace FormPrincipal
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Simulador de vuelo - G6";
@@ -446,5 +472,7 @@ namespace FormPrincipal
         private System.Windows.Forms.Label userNameLabel;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label occupationTitleLabel;
+        private System.Windows.Forms.Label occupationNumLabel;
     }
 }
