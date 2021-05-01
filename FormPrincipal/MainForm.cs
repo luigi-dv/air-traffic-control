@@ -211,7 +211,7 @@ namespace FormPrincipal
                 else
                 {
                     this.sectorIDLabel.Text = Convert.ToString(mySector.sectorID);
-                    panel1.Refresh();
+                    panel1.Invalidate();
                 }
 
             }
@@ -237,12 +237,13 @@ namespace FormPrincipal
             polygonPoints[2] = xFyF;
             polygonPoints[3] = xFy0;
 
-           
-            if (mySector.capacity <= mySector.GetTraffic(myFlightsList))
+            int ocupacion = mySector.GetTraffic(myFlightsList);
+            if (mySector.capacity <= ocupacion)
             {  
                 //Call to 0.3.Helper
                 graphics.DrawPolygon(Painting("Red"), polygonPoints);
                 Painting("Red").Dispose();
+   
             }
             else
             { 
@@ -305,6 +306,7 @@ namespace FormPrincipal
             {
                 //Simulates a Cycle and updates position in Picturebox
                 myFlightsList.FlightsSimulation(time);
+                panel1.Invalidate();
                 for (int i = 0; i < myFlightsList.number; i++)
                 {
                     aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
@@ -314,7 +316,7 @@ namespace FormPrincipal
                         flightsInDestination++;
                     }
                 }
-                panel1.Invalidate();
+                
                 //Shows a message if at least one flight has arrived
                 if (flightsInDestination > 0)
                 MessageBox.Show(flightsInDestination + " vuelos han llegado con éxito a su destino, para más información consulte la tabla de información de vuelos.", 
@@ -330,13 +332,11 @@ namespace FormPrincipal
 
         private void Reset_Click(object sender, EventArgs e)
         {
-
             for (int i = 0; i < myFlightsList.number; i++)
             {
 
                 myFlightsList.Flights[i].positionX = FlightListOriginal.Flights[i].positionX;
                 myFlightsList.Flights[i].positionY = FlightListOriginal.Flights[i].positionY;
-
                 aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
 
             }
@@ -356,6 +356,7 @@ namespace FormPrincipal
                 if (!string.IsNullOrWhiteSpace(cycleNum) && // Not empty
                 int.TryParse(cycleNum, out int num))
                 {
+                    panel1.Invalidate();
                     MessageBox.Show("Simulación ejecutada con éxito", "Simulación");
                     // i es el contador para los ciclos de la simulacion, si j=numciclos deja de simular hasta reset o otro ciclo
                     while (i < num)
@@ -374,7 +375,6 @@ namespace FormPrincipal
                         }
                         i++;
                     }
-                    panel1.Invalidate();
                     //Shows a message if at least one flight has arrived
                     if (flightsInDestination > 0)
                         MessageBox.Show(flightsInDestination + " vuelos han llegado con éxito a su destino, para más información consulte la tabla de información de vuelos.",

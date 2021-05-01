@@ -60,9 +60,7 @@ namespace FlightsLib
         public int GetTraffic(FlightsList flightsList)
         {
 
-            bool insideX = false; 
-            bool insideY = false;
-
+         
             int insideSectorCount = 0;
 
             float positionMarginSectorX = 0;
@@ -70,36 +68,18 @@ namespace FlightsLib
 
             positionMarginSectorX = (float)this.positionX + this.width;
             positionMarginSectorY = (float)this.positionY + this.height;
-            
 
             for (int i = 0; i < flightsList.number; i++)
             {
                 Flight Flight = flightsList.Flights[i];
-                
-                if ((this.positionX <= Flight.positionX) && (Flight.positionX <= positionMarginSectorX))
-                {
-                    insideX = true;
-                }
 
-                else
-                {
-                    if ((this.positionY <= Flight.positionY) && (Flight.positionY <= positionMarginSectorY))
-                    {
-                        insideY = true;
-                    }  
-                }
-
-                if(insideX && insideY)
+                if ((this.positionX <= Flight.positionX) && (Flight.positionX <= positionMarginSectorX) && (this.positionY <= Flight.positionY) && (Flight.positionY <= positionMarginSectorY))
                 {
                     insideSectorCount++;
                 }
- 
             }
             return insideSectorCount;
-               /* double insideSectorPercent = (insideSectorCount / (double)this.capacity) * 100;
-
-                Console.WriteLine("Hay {0} vuelos en el sector. La ocupación es del {1}%.", insideSectorCount, insideSectorPercent);
-            */
+            
 
         }
     }
