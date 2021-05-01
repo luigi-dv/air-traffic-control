@@ -332,6 +332,7 @@ namespace FormPrincipal
 
         private void Reset_Click(object sender, EventArgs e)
         {
+            panel1.Invalidate();
             for (int i = 0; i < myFlightsList.number; i++)
             {
 
