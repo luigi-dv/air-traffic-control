@@ -174,7 +174,7 @@ namespace FormPrincipal
         //2.1.Cargar el sector: Receive the click event from the CargarSector ToolStripMenu and show the user the openFileDialog2
         private void CargarSectorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog2.Title = "Selecciona el fichero con la lista de vuelos";
+            openFileDialog2.Title = "Selecciona el fichero con la lista de sectores";
             openFileDialog2.InitialDirectory = @"C:\";
             openFileDialog2.FileName = "";
             openFileDialog2.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
