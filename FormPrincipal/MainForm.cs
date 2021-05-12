@@ -301,11 +301,12 @@ namespace FormPrincipal
 
         private void AvanzarSimulacion_Click(object sender, EventArgs e)
         {
-            string cycleTime = cycleTimeInput.Text;
-            int time = Convert.ToInt32(cycleTime);
-            int flightsInDestination = 0;
+            
             try
             {
+                string cycleTime = cycleTimeInput.Text;
+                int time = Convert.ToInt32(cycleTime);
+                int flightsInDestination = 0;
                 //Simulates a Cycle and updates position in Picturebox
                 myFlightsList.FlightsSimulation(time);
                 //0.5.Helper: Function to print the sector occupation
