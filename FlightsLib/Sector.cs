@@ -73,7 +73,7 @@ namespace FlightsLib
             {
                 Flight Flight = flightsList.Flights[i];
 
-                if ((this.positionX <= Flight.positionX) && (Flight.positionX <= positionMarginSectorX) && (this.positionY <= Flight.positionY) && (Flight.positionY <= positionMarginSectorY))
+                if ((this.positionX <= Flight.PositionX) && (Flight.PositionX <= positionMarginSectorX) && (this.positionY <= Flight.PositionY) && (Flight.PositionY <= positionMarginSectorY))
                 {
                     insideSectorCount++;
                 }
