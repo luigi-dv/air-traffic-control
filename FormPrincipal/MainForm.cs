@@ -122,7 +122,7 @@ namespace FormPrincipal
                             {
                                 aircraftVector[i] = new PictureBox();
                                 aircraftVector[i].ClientSize = new Size(20, 20);
-                                aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
+                                aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
                                 aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
                                 aircraftVector[i].Tag = myFlightsList.Flights[i];
                                 aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
@@ -314,7 +314,7 @@ namespace FormPrincipal
                 panel1.Invalidate();
                 for (int i = 0; i < myFlightsList.number; i++)
                 {
-                    aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
+                    aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
                     
                     if (myFlightsList.Flights[i].Simulator(time) == -1)
                     {
@@ -342,9 +342,9 @@ namespace FormPrincipal
             for (int i = 0; i < myFlightsList.number; i++)
             {
 
-                myFlightsList.Flights[i].positionX = FlightListOriginal.Flights[i].positionX;
-                myFlightsList.Flights[i].positionY = FlightListOriginal.Flights[i].positionY;
-                aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].positionX, (int)myFlightsList.Flights[i].positionY);
+                myFlightsList.Flights[i].PositionX = FlightListOriginal.Flights[i].PositionX;
+                myFlightsList.Flights[i].PositionY = FlightListOriginal.Flights[i].PositionY;
+                aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
 
             }
             //0.5.Helper: Function to print the sector occupation
@@ -379,7 +379,7 @@ namespace FormPrincipal
                         myFlightsList.FlightsSimulation(time);
                         for (int j = 0; j < myFlightsList.number; j++)
                         {
-                            aircraftVector[j].Location = new Point((int)myFlightsList.Flights[j].positionX, (int)myFlightsList.Flights[j].positionY);
+                            aircraftVector[j].Location = new Point((int)myFlightsList.Flights[j].PositionX, (int)myFlightsList.Flights[j].PositionY);
                            
                             if (myFlightsList.Flights[j].Simulator(time) == -1)
                             {

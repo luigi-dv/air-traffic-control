@@ -27,9 +27,9 @@ namespace FormPrincipal
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            this.Text = flightInfo.flightID + "- Información del vuelo";
+            this.Text = flightInfo.FlightID + "- Información del vuelo";
             //Big Label Flight ID
-            this.flightIDLabel.Text = flightInfo.flightID;
+            this.flightIDLabel.Text = flightInfo.FlightID;
             //Load images
             string imageFileIB = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, FLIGHTIMAGEIB);
             string imageFileFR = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, FLIGHTIMAGEFR);
@@ -38,14 +38,14 @@ namespace FormPrincipal
 
             try
             {
-                if (flightInfo.flightID.Contains("IB"))
+                if (flightInfo.FlightID.Contains("IB"))
                     this.flightPictureBox.Image = Image.FromFile(imageFileIB);
                 else
                 {
-                    if(flightInfo.flightID.Contains("FR"))
+                    if(flightInfo.FlightID.Contains("FR"))
                         this.flightPictureBox.Image = Image.FromFile(imageFileFR);
                     else
-                        if (flightInfo.flightID.Contains("LX"))
+                        if (flightInfo.FlightID.Contains("LX"))
                             this.flightPictureBox.Image = Image.FromFile(imageFileLX);
                         else
                             this.flightPictureBox.Image = Image.FromFile(imageFile);
@@ -57,16 +57,16 @@ namespace FormPrincipal
                                      MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             //Flight ID Label
-            this.flightID2Label.Text = flightInfo.flightID;
+            this.flightID2Label.Text = flightInfo.FlightID;
             //Flight Company label
-            this.flightCompanyLabel.Text = flightInfo.company; 
+            this.flightCompanyLabel.Text = flightInfo.Company; 
             //Flight Position label
-            this.flightPositionLabel.Text = "("+flightInfo.positionX + "," +flightInfo.positionY+")"; 
+            this.flightPositionLabel.Text = "("+flightInfo.PositionX + "," +flightInfo.PositionY+")"; 
 
             //Flight Origin label
-            this.flightOriginLabel.Text = "(" + flightInfo.originX + "," + flightInfo.originY + ")";
+            this.flightOriginLabel.Text = "(" + flightInfo.OriginX + "," + flightInfo.OriginY + ")";
              //Flight Destination label
-            this.flightDestinationLabel.Text = "(" + flightInfo.destinationX + "," + flightInfo.destinationY + ")";
+            this.flightDestinationLabel.Text = "(" + flightInfo.DestinationX + "," + flightInfo.DestinationY + ")";
 
             try
             {
@@ -75,7 +75,7 @@ namespace FormPrincipal
             catch
             {
 
-                DialogResult result = MessageBox.Show("La información de origen/posición/destino no son lógicas por favor corrija este vuelo y vuelva a intentarlo. Puede ignorar este mensaje si presiona cancelar.", "Error en el vuelo" + '"' + flightInfo.flightID + '"',
+                DialogResult result = MessageBox.Show("La información de origen/posición/destino no son lógicas por favor corrija este vuelo y vuelva a intentarlo. Puede ignorar este mensaje si presiona cancelar.", "Error en el vuelo" + '"' + flightInfo.FlightID + '"',
                                   MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
                 while (result != DialogResult.Cancel)
                 {
@@ -85,7 +85,7 @@ namespace FormPrincipal
                         }
                         catch
                         {
-                             result = MessageBox.Show("La información de origen/posición/destino no son lógicas por favor corrija este vuelo y vuelva a intentarlo. Puede ignorar este mensaje si presiona cancelar.", "Error en el vuelo" + '"' + flightInfo.flightID + '"',
+                             result = MessageBox.Show("La información de origen/posición/destino no son lógicas por favor corrija este vuelo y vuelva a intentarlo. Puede ignorar este mensaje si presiona cancelar.", "Error en el vuelo" + '"' + flightInfo.FlightID + '"',
                              MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
                         }
                     
@@ -103,11 +103,11 @@ namespace FormPrincipal
         private void SetProgress()
         {
 
-            Point minimum = new Point((int)flightInfo.originX, (int)flightInfo.originY);
+            Point minimum = new Point((int)flightInfo.OriginX, (int)flightInfo.OriginY);
 
             int position;
-            double percentX = (flightInfo.positionX - flightInfo.originX) / (flightInfo.destinationX - flightInfo.originX) * 100;
-            double percentY = (flightInfo.positionY - flightInfo.originY) / (flightInfo.destinationY - flightInfo.originY) * 100;
+            double percentX = (flightInfo.PositionX - flightInfo.OriginX) / (flightInfo.DestinationX - flightInfo.OriginX) * 100;
+            double percentY = (flightInfo.PositionY - flightInfo.OriginY) / (flightInfo.DestinationY - flightInfo.OriginY) * 100;
 
             if (percentX <= 100 && percentY <= 100)
                 position = Convert.ToInt32(percentX);

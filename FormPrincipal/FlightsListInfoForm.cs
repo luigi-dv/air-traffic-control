@@ -47,12 +47,12 @@ namespace FormPrincipal
             
                 for (int i = 0; i < flightsListInfo.number; i++)
                 {
-                    FlightListGrid.Rows[i].Cells[0].Value = flightsListInfo.Flights[i].flightID;
-                    FlightListGrid.Rows[i].Cells[1].Value = flightsListInfo.Flights[i].company;
-                    FlightListGrid.Rows[i].Cells[2].Value = "(" + flightsListInfo.Flights[i].originX + "," + flightsListInfo.Flights[i].originY + ")";
-                    FlightListGrid.Rows[i].Cells[3].Value = "(" + flightsListInfo.Flights[i].destinationX + "," + flightsListInfo.Flights[i].destinationY + ")";
-                    FlightListGrid.Rows[i].Cells[4].Value = "(" + flightsListInfo.Flights[i].positionX + "," + flightsListInfo.Flights[i].positionY + ")";
-                    FlightListGrid.Rows[i].Cells[5].Value = flightsListInfo.Flights[i].velocity;
+                    FlightListGrid.Rows[i].Cells[0].Value = flightsListInfo.Flights[i].FlightID;
+                    FlightListGrid.Rows[i].Cells[1].Value = flightsListInfo.Flights[i].Company;
+                    FlightListGrid.Rows[i].Cells[2].Value = "(" + flightsListInfo.Flights[i].OriginX + "," + flightsListInfo.Flights[i].OriginY + ")";
+                    FlightListGrid.Rows[i].Cells[3].Value = "(" + flightsListInfo.Flights[i].DestinationX + "," + flightsListInfo.Flights[i].DestinationY + ")";
+                    FlightListGrid.Rows[i].Cells[4].Value = "(" + flightsListInfo.Flights[i].PositionX + "," + flightsListInfo.Flights[i].PositionY + ")";
+                    FlightListGrid.Rows[i].Cells[5].Value = flightsListInfo.Flights[i].Velocity;
                 }
             }
             catch
