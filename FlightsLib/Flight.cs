@@ -9,9 +9,57 @@ namespace FlightsLib
 {
     public class Flight
     {
-        public string flightID, company;
-        public double positionX, positionY, originX, originY, destinationX, destinationY;
-        public double velocity;
+        private string flightID, company;
+        private double positionX, positionY, originX, originY, destinationX, destinationY;
+        private double velocity;
+
+        //Getters and Setters
+
+        public string FlightID
+        {
+            get{return flightID;}
+            set{flightID = value;}
+        }
+        public string Company
+        {
+            get { return company; }
+            set { company = value; }
+        }
+        public double PositionX
+        {
+            get { return positionX; }
+            set { positionX = value; }
+        }
+        public double PositionY
+        {
+            get { return positionY; }
+            set { positionY = value; }
+        }
+        public double OriginX
+        {
+            get { return originX; }
+            set { originX = value; }
+        }
+        public double OriginY
+        {
+            get { return originY; }
+            set { originY = value; }
+        }
+        public double DestinationX
+        {
+            get { return destinationX; }
+            set { destinationX = value; }
+        }
+        public double DestinationY
+        {
+            get { return destinationY; }
+            set { destinationY = value; }
+        }
+        public double Velocity
+        {
+            get { return velocity; }
+            set { velocity = value; }
+        }
 
         //Muestra un vuelo determinado que recibe como parametro
         public void ShowConsoleFlight()

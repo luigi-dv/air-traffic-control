@@ -58,15 +58,15 @@ namespace FlightsLib
                     {
                         Flight u = new Flight
                         {
-                            flightID = splits[0],
-                            company = splits[1],
-                            positionX = float.Parse(splits[2]),
-                            positionY = float.Parse(splits[3]),
-                            originX = float.Parse(splits[4]),
-                            originY = float.Parse(splits[5]),
-                            destinationX = float.Parse(splits[6]),
-                            destinationY = float.Parse(splits[7]),
-                            velocity = float.Parse(splits[8])
+                            FlightID = splits[0],
+                            Company = splits[1],
+                            PositionX = float.Parse(splits[2]),
+                            PositionY = float.Parse(splits[3]),
+                            OriginX = float.Parse(splits[4]),
+                            OriginY = float.Parse(splits[5]),
+                            DestinationX = float.Parse(splits[6]),
+                            DestinationY = float.Parse(splits[7]),
+                            Velocity = float.Parse(splits[8])
                         };
                         this.Flights[number] = u;
                         result = 0;
@@ -100,8 +100,8 @@ namespace FlightsLib
                 Flight Flight = this.Flights[i];
 
                 f.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8}",
-                            Flight.flightID, Flight.company, Flight.positionX, Flight.positionY,
-                            Flight.originX, Flight.originY, Flight.destinationX, Flight.destinationY,Flight.velocity);
+                            Flight.FlightID, Flight.Company, Flight.PositionX, Flight.PositionY,
+                            Flight.OriginX, Flight.OriginY, Flight.DestinationX, Flight.DestinationY,Flight.Velocity);
 
                 //Salto de linea
                 f.WriteLine();
