@@ -27,7 +27,7 @@ namespace FormPrincipal
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            this.Text = flightInfo.FlightID + "- Información del vuelo";
+            Text = flightInfo.FlightID + "- Información del vuelo";
             //Big Label Flight ID
             this.flightIDLabel.Text = flightInfo.FlightID;
             //Load images
