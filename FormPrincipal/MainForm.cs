@@ -210,7 +210,7 @@ namespace FormPrincipal
                 }
                 else
                 {
-                    this.sectorIDLabel.Text = Convert.ToString(mySector.sectorID);
+                    this.sectorIDLabel.Text = Convert.ToString(mySector.SectorID);
                     //0.5.Helper: Function to print the sector occupation
                     PrintOcuppation();
                     panel1.Invalidate();
@@ -223,13 +223,13 @@ namespace FormPrincipal
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
             //Xo,Yo (Left top corner)
-            Point x0y0 = new Point(Convert.ToInt32(mySector.positionX), Convert.ToInt32(mySector.positionY));
+            Point x0y0 = new Point(Convert.ToInt32(mySector.PositionX), Convert.ToInt32(mySector.PositionY));
             //Xo,Yf (Left bottom corner)
-            Point x0yF = new Point(Convert.ToInt32(mySector.positionX), Convert.ToInt32(mySector.positionY + mySector.height));
+            Point x0yF = new Point(Convert.ToInt32(mySector.PositionX), Convert.ToInt32(mySector.PositionY + mySector.Height));
             //Xf,Yf (Right bottom corner)
-            Point xFyF = new Point(Convert.ToInt32(mySector.positionX + mySector.width), Convert.ToInt32(mySector.positionY + mySector.height));
+            Point xFyF = new Point(Convert.ToInt32(mySector.PositionX + mySector.Width), Convert.ToInt32(mySector.PositionY + mySector.Height));
             //Xo,Yo (Right top corner)
-            Point xFy0 = new Point(Convert.ToInt32(mySector.positionX + mySector.width), Convert.ToInt32(mySector.positionY));
+            Point xFy0 = new Point(Convert.ToInt32(mySector.PositionX + mySector.Width), Convert.ToInt32(mySector.PositionY));
 
             System.Drawing.Graphics graphics = e.Graphics;
             // Points that define the rectangle
@@ -240,7 +240,7 @@ namespace FormPrincipal
             polygonPoints[3] = xFy0;
 
             int ocupacion = mySector.GetTraffic(myFlightsList);
-            if (mySector.capacity <= ocupacion)
+            if (mySector.Capacity <= ocupacion)
             {  
                 //Call to 0.3.Helper
                 graphics.DrawPolygon(Painting("Red"), polygonPoints);
