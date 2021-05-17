@@ -34,7 +34,7 @@ namespace FormPrincipal
         private Flight myFlight = new Flight();
 
         private PictureBox[] aircraftVector = new PictureBox[MAX];
-       
+
 
 
         public MainForm()
@@ -47,11 +47,13 @@ namespace FormPrincipal
         {
             //Welcome message to username 
             this.userNameLabel.Text = GetUserNameFunction();
-            timer1.Interval = 1000; // Set time interval to 1 second
-            timer1.Enabled = true; // Start launching tick events every 1 second
+            if (!timer1.Enabled)
+            {
+                StartSimulation.Text = "Start";
+                StartSimulation.BackColor = Color.Green;
+            }
+
         }
-
-
         /*************************************** Load, Show and Save ****************************************************
          *   1.Lista de vuelos  
          **      1.1.Cargar la lista de vuelos 
@@ -109,38 +111,38 @@ namespace FormPrincipal
 
                     //1.2.Visualizar automáticamente los vuelos
 
-                        //Display Flights Total Number into the Right side panel
-                        this.totalFlightsLabel.Text = Convert.ToString(myFlightsList.number);
-                        //Call 0.5.Helper: Function to print the sector occupation
-                        PrintOcuppation();
-                        //Define the path and the name of the image into the string imageFile
-                        string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
-                        for (int i = 0; i < myFlightsList.number; i++)
+                    //Display Flights Total Number into the Right side panel
+                    this.totalFlightsLabel.Text = Convert.ToString(myFlightsList.number);
+                    //Call 0.5.Helper: Function to print the sector occupation
+                    PrintOcuppation();
+                    //Define the path and the name of the image into the string imageFile
+                    string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
+                    for (int i = 0; i < myFlightsList.number; i++)
+                    {
+                        //Trying to generate a Picture Box with the image
+                        try
                         {
-                            //Trying to generate a Picture Box with the image
-                            try
-                            {
-                                aircraftVector[i] = new PictureBox();
-                                aircraftVector[i].ClientSize = new Size(20, 20);
-                                aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
-                                aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                                aircraftVector[i].Tag = myFlightsList.Flights[i];
-                                aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
-                                //Defining our imageFile as a Bitmap image
-                                Bitmap image = new Bitmap(imageFile);
-                                aircraftVector[i].Image = (Image)image;
-                                panel1.Refresh();
-                                panel1.Controls.Add(aircraftVector[i]);
-
-                            }
-                            //The imageFile path is not correct or the file don't exist
-                            catch(Exception)
-                            {
-                                MessageBox.Show("Error de carga puede que el fichero " + '"' + imageFile + '"' + " no se haya encontrado, posiblemente la carpeta Resources esté comprometida",
-                                                 '"' + imageFile + '"', MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            aircraftVector[i] = new PictureBox();
+                            aircraftVector[i].ClientSize = new Size(20, 20);
+                            aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
+                            aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                            aircraftVector[i].Tag = myFlightsList.Flights[i];
+                            aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
+                            //Defining our imageFile as a Bitmap image
+                            Bitmap image = new Bitmap(imageFile);
+                            aircraftVector[i].Image = (Image)image;
+                            panel1.Refresh();
+                            panel1.Controls.Add(aircraftVector[i]);
 
                         }
+                        //The imageFile path is not correct or the file don't exist
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Error de carga puede que el fichero " + '"' + imageFile + '"' + " no se haya encontrado, posiblemente la carpeta Resources esté comprometida",
+                                             '"' + imageFile + '"', MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                    }
 
                 }
 
@@ -169,7 +171,7 @@ namespace FormPrincipal
 
         }
 
-       
+
 
         //2.1.Cargar el sector: Receive the click event from the CargarSector ToolStripMenu and show the user the openFileDialog2
         private void CargarSectorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,14 +243,14 @@ namespace FormPrincipal
 
             int ocupacion = mySector.GetTraffic(myFlightsList);
             if (mySector.Capacity <= ocupacion)
-            {  
+            {
                 //Call to 0.3.Helper
                 graphics.DrawPolygon(Painting("Red"), polygonPoints);
                 Painting("Red").Dispose();
-   
+
             }
             else
-            { 
+            {
                 //Call to 0.3.Helper
                 graphics.DrawPolygon(Painting("Green"), polygonPoints);
                 Painting("Green").Dispose();
@@ -301,7 +303,7 @@ namespace FormPrincipal
 
         private void AvanzarSimulacion_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 string cycleTime = cycleTimeInput.Text;
@@ -315,20 +317,20 @@ namespace FormPrincipal
                 for (int i = 0; i < myFlightsList.number; i++)
                 {
                     aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
-                    
+
                     if (myFlightsList.Flights[i].Simulator(time) == -1)
                     {
                         flightsInDestination++;
                     }
                 }
-                
+
                 //Shows a message if at least one flight has arrived
                 if (flightsInDestination > 0)
-                MessageBox.Show(flightsInDestination + " vuelos han llegado con éxito a su destino, para más información consulte la tabla de información de vuelos.", 
-                                 "Hay vuelos que han llegado a su destino.",
-                                          MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(flightsInDestination + " vuelos han llegado con éxito a su destino, para más información consulte la tabla de información de vuelos.",
+                                     "Hay vuelos que han llegado a su destino.",
+                                              MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 MessageBox.Show("Asegurece de insertar un tiempo de simulación y que este sea de valor entero.", "Tiempo de simulación nulo",
                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -347,71 +349,80 @@ namespace FormPrincipal
                 aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
 
             }
+            //0.6.Helper: Stop and change button color and text, show is stopped and can start(Green)
+            StopSimulation();
             //0.5.Helper: Function to print the sector occupation
             PrintOcuppation();
         }
 
+
         private void StartSimulation_Click(object sender, EventArgs e)
         {
-
-            string cycleTime = cycleTimeInput.Text;
-            string cycleNum = cycleNumInput.Text;
-            //int time = Convert.ToInt32(cycleTime);
-            int flightsInDestination = 0;
-            int i = 0;
-
-            if (!string.IsNullOrWhiteSpace(cycleTime) && // Not empty
-                    int.TryParse(cycleTime, out int time))
+          
+            if (timer1.Enabled)
             {
-                if (!string.IsNullOrWhiteSpace(cycleNum) && // Not empty
-                int.TryParse(cycleNum, out int num))
-                {
-                    //0.5.Helper: Function to print the sector occupation
-                    PrintOcuppation();
-                    //Change Sector Color
-                    panel1.Invalidate();
-                    MessageBox.Show("Simulación ejecutada con éxito", "Simulación");
-                    // i es el contador para los ciclos de la simulacion, si j=numciclos deja de simular hasta reset o otro ciclo
-                    while (i < num)
-                    {
-                        
-                        //Simulates a Cycle and updates position in Picturebox
-                        myFlightsList.FlightsSimulation(time);
-                        for (int j = 0; j < myFlightsList.number; j++)
-                        {
-                            aircraftVector[j].Location = new Point((int)myFlightsList.Flights[j].PositionX, (int)myFlightsList.Flights[j].PositionY);
-                           
-                            if (myFlightsList.Flights[j].Simulator(time) == -1)
-                            {
-                                flightsInDestination++;
-                            }
-                        }
-                        i++;
-                    }
-                    //Shows a message if at least one flight has arrived
-                    if (flightsInDestination > 0)
-                        MessageBox.Show(flightsInDestination + " vuelos han llegado con éxito a su destino, para más información consulte la tabla de información de vuelos.",
-                                "Hay vuelos que han llegado a su destino.",
-                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Asegurece de insertar un número de simulaciones y que este sea de valor entero.", "Número de simulaciones nulo",
-                                          MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                timer1.Stop();
+                //0.6.Helper: Stop and change button color and text, show is stopped and can start(Green)
+                StopSimulation();
             }
             else
             {
-                MessageBox.Show("Asegurece de insertar un tiempo de simulación y que este sea de valor entero.", "Tiempo de simulación nulo",
-                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                StartSimulation.Text = "Stop";
+                StartSimulation.BackColor = Color.Red;
+                string cycleTime = cycleTimeInput.Text;
+                string cycleNum = cycleNumInput.Text;
+
+                if (!string.IsNullOrWhiteSpace(cycleTime) && // Not empty
+                       int.TryParse(cycleTime, out int time))
+                {
+                    if (!string.IsNullOrWhiteSpace(cycleNum) && // Not empty
+                    int.TryParse(cycleNum, out int num))
+                    {
+                        timer1.Interval = 1000;
+                        timer1.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Asegurece de insertar un número de simulaciones y que este sea de valor entero.", "Número de simulaciones nulo",
+                                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Asegurece de insertar un tiempo de simulación y que este sea de valor entero.", "Tiempo de simulación nulo",
+                                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }  
             }
         }
 
-       
 
         private void timer_tick(object sender, EventArgs e)
         {
+    
+            string cycleTime = cycleTimeInput.Text;
+            int.TryParse(cycleTime, out int time);
 
+            //int time = Convert.ToInt32(cycleTime);
+            int flightsInDestination = 0;
+
+            //Simulates a Cycle and updates position in Picturebox
+            myFlightsList.FlightsSimulation(time);
+
+            // i es el contador para los ciclos de la simulacion
+            for (int j = 0; j < myFlightsList.number; j++)
+            {
+                aircraftVector[j].Location = new Point((int)myFlightsList.Flights[j].PositionX, (int)myFlightsList.Flights[j].PositionY);
+                //0.5.Helper: Function to print the sector occupation
+                PrintOcuppation();
+                //Change Sector Color
+                panel1.Invalidate();
+
+                if (myFlightsList.Flights[j].Simulator(time) == -1)
+                {
+                    flightsInDestination++;
+                }
+            }
+  
         }
 
         /*************************************** Helpers Section ****************************************************
@@ -469,6 +480,14 @@ namespace FormPrincipal
             this.occupationNumLabel.Text = Convert.ToString(mySector.GetTraffic(myFlightsList));
         }
 
+        //0.6.Helper: Stop and change button color and text
+        private void StopSimulation()
+        {
+            timer1.Stop();
+            StartSimulation.BackColor = Color.Green;
+            StartSimulation.Text = "Start";
+        }
+
         /*************************************** Extras Section ***************************************************
         * Extra code for increase the user experiencie.
        ************************************************************************************************************/
@@ -497,7 +516,7 @@ namespace FormPrincipal
             {
                 userName = "Username_default";
             }
-            
+
             return userName;
         }
 
