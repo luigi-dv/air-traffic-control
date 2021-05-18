@@ -24,8 +24,8 @@ namespace FormPrincipal
         //The flight list
         private FlightsList myFlightsList = new FlightsList();
 
-        //Original Flightlist without refreshing
-        private FlightsList FlightListOriginal = new FlightsList();
+        //Stack with all the previous cycles
+        Stack<FlightsList> FlightStack = new Stack<FlightsList>();
 
         //The sector
         private Sector mySector = new Sector();
@@ -75,9 +75,8 @@ namespace FormPrincipal
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string filename = openFileDialog1.FileName;
-                FlightListOriginal.LoadFlightsFile(filename);
                 int result = myFlightsList.LoadFlightsFile(filename);
-
+                FlightStack.Push(myFlightsList);
                 if (result != 0)
                 {
                     if (result == -1)
@@ -312,6 +311,9 @@ namespace FormPrincipal
                 //Simulates a Cycle and updates position in Picturebox
                 myFlightsList.FlightsSimulation(time);
                 //0.5.Helper: Function to print the sector occupation
+
+                //Saves simulation to the stack
+                FlightStack.Push(myFlightsList);
                 PrintOcuppation();
                 panel1.Invalidate();
                 for (int i = 0; i < myFlightsList.number; i++)
@@ -337,18 +339,28 @@ namespace FormPrincipal
             }
         }
 
-        private void Reset_Click(object sender, EventArgs e)
+        private void Back_Click(object sender, EventArgs e)
         {
             //Change Sector Color
+            int StackNum = FlightStack.Count;
             panel1.Invalidate();
-            for (int i = 0; i < myFlightsList.number; i++)
+            //Checks if the stack is empty and shows a messagebox informing
+            if(StackNum < 1)
             {
-
-                myFlightsList.Flights[i].PositionX = FlightListOriginal.Flights[i].PositionX;
-                myFlightsList.Flights[i].PositionY = FlightListOriginal.Flights[i].PositionY;
-                aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
-
+                MessageBox.Show("No hay ciclos anteriores");
             }
+            else
+            {
+                myFlightsList = FlightStack.Pop();
+                for (int i = 0; i < myFlightsList.number; i++)
+                {
+
+
+                    aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
+
+                }
+            }
+           
             //0.6.Helper: Stop and change button color and text, show is stopped and can start(Green)
             StopSimulation();
             //0.5.Helper: Function to print the sector occupation
@@ -407,6 +419,9 @@ namespace FormPrincipal
 
             //Simulates a Cycle and updates position in Picturebox
             myFlightsList.FlightsSimulation(time);
+
+            //Saves flight to the stack
+            FlightStack.Push(myFlightsList);
 
             // i es el contador para los ciclos de la simulacion
             for (int j = 0; j < myFlightsList.number; j++)

@@ -318,9 +318,9 @@ namespace FormPrincipal
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(90, 30);
             this.button4.TabIndex = 13;
-            this.button4.Text = "Reset";
+            this.button4.Text = "Back";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.Reset_Click);
+            this.button4.Click += new System.EventHandler(this.Back_Click);
             // 
             // button3
             // 
