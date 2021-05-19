@@ -30,7 +30,7 @@ namespace FormPrincipal
                 FlightListGrid.Columns[3].HeaderText = "Destino";
                 FlightListGrid.Columns[4].HeaderText = "Posición";
                 FlightListGrid.Columns[5].HeaderText = "Velocidad";
-                FlightListGrid.RowCount = flightsListInfo.number;
+                FlightListGrid.RowCount = flightsListInfo.Number;
                 FlightListGrid.ColumnHeadersVisible = true;
                 FlightListGrid.RowHeadersVisible = false;
                 FlightListGrid.RowsDefaultCellStyle.BackColor = Color.Bisque;
@@ -45,7 +45,7 @@ namespace FormPrincipal
                 FlightListGrid.ReadOnly = true;
                 FlightListGrid.DataSource = flightsListInfo.Flights;
             
-                for (int i = 0; i < flightsListInfo.number; i++)
+                for (int i = 0; i < flightsListInfo.Number; i++)
                 {
                     FlightListGrid.Rows[i].Cells[0].Value = flightsListInfo.Flights[i].FlightID;
                     FlightListGrid.Rows[i].Cells[1].Value = flightsListInfo.Flights[i].Company;

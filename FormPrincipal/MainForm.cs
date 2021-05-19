@@ -111,12 +111,12 @@ namespace FormPrincipal
                     //1.2.Visualizar automáticamente los vuelos
 
                     //Display Flights Total Number into the Right side panel
-                    this.totalFlightsLabel.Text = Convert.ToString(myFlightsList.number);
+                    this.totalFlightsLabel.Text = Convert.ToString(myFlightsList.Number);
                     //Call 0.5.Helper: Function to print the sector occupation
                     PrintOcuppation();
                     //Define the path and the name of the image into the string imageFile
                     string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
-                    for (int i = 0; i < myFlightsList.number; i++)
+                    for (int i = 0; i < myFlightsList.Number; i++)
                     {
                         //Trying to generate a Picture Box with the image
                         try
@@ -316,7 +316,7 @@ namespace FormPrincipal
                 FlightStack.Push(myFlightsList);
                 PrintOcuppation();
                 panel1.Invalidate();
-                for (int i = 0; i < myFlightsList.number; i++)
+                for (int i = 0; i < myFlightsList.Number; i++)
                 {
                     aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
 
@@ -352,7 +352,7 @@ namespace FormPrincipal
             else
             {
                 myFlightsList = FlightStack.Pop();
-                for (int i = 0; i < myFlightsList.number; i++)
+                for (int i = 0; i < myFlightsList.Number; i++)
                 {
 
 
@@ -424,7 +424,7 @@ namespace FormPrincipal
             FlightStack.Push(myFlightsList);
 
             // i es el contador para los ciclos de la simulacion
-            for (int j = 0; j < myFlightsList.number; j++)
+            for (int j = 0; j < myFlightsList.Number; j++)
             {
                 aircraftVector[j].Location = new Point((int)myFlightsList.Flights[j].PositionX, (int)myFlightsList.Flights[j].PositionY);
                 //0.5.Helper: Function to print the sector occupation
@@ -541,7 +541,7 @@ namespace FormPrincipal
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             /* Determines whether the user wants to exit the application.
-            * If not, adds another number to the list box. */
+            * If not, adds another Number to the list box. */
             if (MessageBox.Show("¿Está seguro de que desea salir del simulador de vuelo?", "Saliendo", MessageBoxButtons.YesNo) ==
                DialogResult.Yes)
             {

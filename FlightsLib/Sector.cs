@@ -99,7 +99,7 @@ namespace FlightsLib
             float positionMarginSectorX = (float)this.PositionX + this.Width;
             float positionMarginSectorY = (float)this.PositionY + this.Height;
 
-            for (int i = 0; i < flightsList.number; i++)
+            for (int i = 0; i < flightsList.Number; i++)
             {
                 Flight Flight = flightsList.Flights[i];
 

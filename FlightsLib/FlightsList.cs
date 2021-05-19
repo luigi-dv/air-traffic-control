@@ -10,8 +10,14 @@ namespace FlightsLib
     public class FlightsList
     {
         public Flight[] Flights = new Flight[10];
-        //Se atribuye el numero de vuelos para poder efectuar la busqueda correctamente
-        public int number;
+        //Se atribuye recoge de vuelos para poder efectuar la busqueda correctamente
+        private int number;
+        public int Number
+        {
+            get { return number; }
+            set { number = value; }
+
+        }
 
         //Se muestra en consola una lista con todos los vuelos
         public void ShowConsoleFlights()
