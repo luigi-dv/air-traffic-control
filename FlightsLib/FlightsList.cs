@@ -59,7 +59,7 @@ namespace FlightsLib
                 {
                     string[] splits = row.Split(';');
 
-                    //Check para compatibilidad del archivo con otros fichero de texto con split tipo espacio ej:Dram files 
+                    //Check para compatibilidad del archivo con otros fichero de texto con split tipo espacio ej: DRAM files o otros ficheros similares 
                     if (splits.Length == 9)
                     {
                         Flight u = new Flight
