@@ -16,7 +16,6 @@ namespace FlightsLib
         {
             get { return number; }
             set { number = value; }
-
         }
 
         //Se muestra en consola una lista con todos los vuelos

@@ -21,8 +21,9 @@ namespace FormPrincipal
 
         private void Form_Load(object sender, EventArgs e)
         {
-           
-            try{
+
+            try
+            {
                 FlightListGrid.ColumnCount = 6;
                 FlightListGrid.Columns[0].HeaderText = "ID";
                 FlightListGrid.Columns[1].HeaderText = "Compañía";
@@ -35,7 +36,7 @@ namespace FormPrincipal
                 FlightListGrid.RowHeadersVisible = false;
                 FlightListGrid.RowsDefaultCellStyle.BackColor = Color.Bisque;
                 FlightListGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
-                FlightListGrid.CellBorderStyle = DataGridViewCellBorderStyle.None;
+                FlightListGrid.CellBorderStyle = DataGridViewCellBorderStyle.Single;
                 FlightListGrid.DefaultCellStyle.SelectionBackColor = Color.Red;
                 FlightListGrid.DefaultCellStyle.SelectionForeColor = Color.Yellow;
                 FlightListGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -43,8 +44,7 @@ namespace FormPrincipal
                 FlightListGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 FlightListGrid.AllowUserToResizeColumns = false;
                 FlightListGrid.ReadOnly = true;
-                FlightListGrid.DataSource = flightsListInfo.Flights;
-            
+
                 for (int i = 0; i < flightsListInfo.Number; i++)
                 {
                     FlightListGrid.Rows[i].Cells[0].Value = flightsListInfo.Flights[i].FlightID;
@@ -54,30 +54,21 @@ namespace FormPrincipal
                     FlightListGrid.Rows[i].Cells[4].Value = "(" + flightsListInfo.Flights[i].PositionX + "," + flightsListInfo.Flights[i].PositionY + ")";
                     FlightListGrid.Rows[i].Cells[5].Value = flightsListInfo.Flights[i].Velocity;
                 }
+
             }
             catch
             {
-                 MessageBox.Show("El programa no puede mostrar la lista de vuelos porque no se ha cargado ninguna. " +
-                                                        "Por favor cargue la lista", "No se ha cargado ninguna lista de vuelo.",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
-               
+                MessageBox.Show("El programa no puede mostrar la lista de vuelos porque no se ha cargado ninguna. " +
+                                                       "Por favor cargue la lista", "No se ha cargado ninguna lista de vuelo.",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
         }
     
-       
-        private void FlightsListInfoForm_Load(object sender, EventArgs e)
-        {
-
-        }
 
         public void SetInfo(FlightsList flightsListObject)
         {
             this.flightsListInfo = flightsListObject;
-        }
-
-        public void LoadFlightsDataForm2(string route)
-        {
-            flightsListInfo.LoadFlightsFile(route);
         }
     }
 }

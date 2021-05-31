@@ -38,14 +38,12 @@ namespace FormPrincipal
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListaDeVuelosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.gitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -92,9 +90,8 @@ namespace FormPrincipal
             this.toolStripSeparator,
             this.saveToolStripMenuItem,
             this.toolStripSeparator1,
-            this.printToolStripMenuItem,
-            this.toolStripSeparator2,
             this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.fileToolStripMenuItem.Text = "&Archivo";
@@ -135,20 +132,6 @@ namespace FormPrincipal
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
             // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
-            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.printToolStripMenuItem.Text = "&Print";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
-            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -160,6 +143,7 @@ namespace FormPrincipal
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ListaDeVuelosToolStripMenuItem});
+            this.toolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.toolsToolStripMenuItem.Text = "&Herramientas";
@@ -177,27 +161,28 @@ namespace FormPrincipal
             this.gitHubToolStripMenuItem,
             this.toolStripSeparator5,
             this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.helpToolStripMenuItem.Text = "&Ayuda";
-            // 
-            // gitHubToolStripMenuItem
-            // 
-            this.gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
-            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.gitHubToolStripMenuItem.Text = "Repositorio Github";
-            this.gitHubToolStripMenuItem.Click += new System.EventHandler(this.GitHubToolStripMenuItem_Click);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
+            this.helpToolStripMenuItem.Text = "&Funcionalidades";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            // 
+            // gitHubToolStripMenuItem
+            // 
+            this.gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
+            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gitHubToolStripMenuItem.Text = "Repositorio Github";
+            this.gitHubToolStripMenuItem.Click += new System.EventHandler(this.GitHubToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Text = "&Acerca del grupo";
             // 
             // openFileDialog1
             // 
@@ -209,9 +194,9 @@ namespace FormPrincipal
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.CausesValidation = false;
-            this.panel1.Location = new System.Drawing.Point(12, 27);
+            this.panel1.Location = new System.Drawing.Point(12, 40);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(864, 627);
+            this.panel1.Size = new System.Drawing.Size(864, 591);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
@@ -442,7 +427,6 @@ namespace FormPrincipal
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ListaDeVuelosToolStripMenuItem;
@@ -454,7 +438,6 @@ namespace FormPrincipal
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem cargarSectorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label totalFlightsLabel;

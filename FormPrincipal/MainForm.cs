@@ -15,8 +15,8 @@ namespace FormPrincipal
 {
     public partial class MainForm : Form
     {
-        const string IMG = "Resources\\Graphics\\plane.png";
-        const string IMGBG = "Resources\\Backgrounds\\spainBg.png";
+        private const string IMG = "Resources\\Graphics\\plane.png";
+        private const string IMGBG = "Resources\\Backgrounds\\spainBg.png";
 
         //300 flights inside the picture box array
         const int MAX = 300;
@@ -45,14 +45,16 @@ namespace FormPrincipal
         /*************************************** Form Load ****************************************************/
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Welcome message to username 
-            this.userNameLabel.Text = GetUserNameFunction();
-            if (!timer1.Enabled)
-            {
-                StartSimulation.Text = "Start";
-                StartSimulation.BackColor = Color.Green;
-            }
-
+            //Check if user is logged
+                
+                //Welcome message to username 
+                this.userNameLabel.Text = "Guest - " + GetUserNameFunction();
+                if (!timer1.Enabled)
+                {
+                    StartSimulation.Text = "Start";
+                    StartSimulation.BackColor = Color.Green;
+                }
+            
         }
         /*************************************** Load, Show and Save ****************************************************
          *   1.Lista de vuelos  
@@ -555,5 +557,9 @@ namespace FormPrincipal
 
         }
 
+        private void toolStripLogin_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
