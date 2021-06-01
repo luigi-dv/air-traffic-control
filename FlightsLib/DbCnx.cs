@@ -11,27 +11,18 @@ namespace FlightsLib
     {
         private SQLiteConnection cnx;
 
-        public void Iniciar()
+        public void Start()
         {
-            string dataSource = "..\\..\\..\\database\\projectG6.db";
+            string dataSource = "Data Source=..\\..\\..\\Database\\projectG6.db";
             cnx = new SQLiteConnection(dataSource);
             cnx.Open();
         }
-        public void Cerrar()
+        public void End()
         {
             cnx.Close();
         }
 
-        public DataTable GetUsers()
-        {
-            DataTable users = new DataTable();
-            string sql = "SELECT * FROM users";
-            SQLiteDataAdapter adp = new SQLiteDataAdapter(sql, cnx);
-            adp.Fill(users);
-            return users;
-        }
-
-        public DataTable GetAirlines()
+        public DataTable GetAllAirlines()
         {
             DataTable airlanes = new DataTable();
             string sql = "SELECT * FROM airlanes";
@@ -39,5 +30,44 @@ namespace FlightsLib
             adp.Fill(airlanes);
             return airlanes;
         }
+        public DataTable GetAirlane(string id)
+        {
+            DataTable airlane = new DataTable();
+            string sql = "SELECT * FROM airlanes WHERE id=" + id;
+            SQLiteDataAdapter adp = new SQLiteDataAdapter(sql, cnx);
+            adp.Fill(airlane);
+            return airlane;
+        }
+
+        //Auth
+        public DataTable GetAllUsers()
+        {
+            DataTable users = new DataTable();
+            string sql = "SELECT * FROM users";
+            SQLiteDataAdapter adp = new SQLiteDataAdapter(sql, cnx);
+            adp.Fill(users);
+            return users;
+        }
+        public User GetUser(string usernameEmail)
+        {
+            DataTable tableUser = new DataTable();
+            string sql = "SELECT * FROM users WHERE username='" + usernameEmail + "' OR email='" + usernameEmail+ "'";
+            SQLiteDataAdapter adp = new SQLiteDataAdapter(sql, cnx);
+            adp.Fill(tableUser);
+            User user = new User();
+            foreach (DataRow row in tableUser.Rows)
+            {
+                user.IdUser = Convert.ToInt32(row["id"]);
+                user.Username = row["username"].ToString();
+                user.Email = row["email"].ToString();
+                user.Password = row["password"].ToString();
+                user.ConfirmationCode = Convert.ToInt32(row["confirmationCode"]);
+                user.Verified = Convert.ToBoolean(row["verified"]);
+                user.Token = row["token"].ToString();
+            }
+
+            return user;
+        }
+
     }
 }

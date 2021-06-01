@@ -95,7 +95,7 @@ namespace FormPrincipal
            
         }
         // Allows setting the value of color from Form1
-        public void SetInfo(Flight flight )
+        public void SetInfo(Flight flight)
         {
             this.flightInfo = flight;
         }

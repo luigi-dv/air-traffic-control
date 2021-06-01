@@ -15,6 +15,13 @@ namespace FormPrincipal
 {
     public partial class MainForm : Form
     {
+        private Auth userAuthenticated = new Auth();
+        public Auth UserAuthenticated
+        {
+            get { return userAuthenticated; }
+            set { userAuthenticated = value; }
+        }
+
         private const string IMG = "Resources\\Graphics\\plane.png";
         private const string IMGBG = "Resources\\Backgrounds\\spainBg.png";
 
@@ -35,7 +42,7 @@ namespace FormPrincipal
 
         private PictureBox[] aircraftVector = new PictureBox[MAX];
 
-
+        
 
         public MainForm()
         {
@@ -45,17 +52,96 @@ namespace FormPrincipal
         /*************************************** Form Load ****************************************************/
         private void Form1_Load(object sender, EventArgs e)
         {
+           
+          
             //Check if user is logged
-                
+            if (!userAuthenticated.Authenticated)
+            {
                 //Welcome message to username 
-                this.userNameLabel.Text = "Guest - " + GetUserNameFunction();
-                if (!timer1.Enabled)
-                {
-                    StartSimulation.Text = "Start";
-                    StartSimulation.BackColor = Color.Green;
-                }
+                this.userNameLabel.Text = "Guest";
+                this.logInMenu.Text = "Iniciar Sesión";
+
+                this.sesionBtn.Text = "Iniciar Sesión";
+                this.sesionBtn.BackColor = Color.Green;
+                
+                
+            }
+            else
+            {
+                this.userNameLabel.Text = userAuthenticated.GetUsername();
+                this.logInMenu.Text = "Cerrar Sesión";
+                this.sesionBtn.Text = "Cerrar Sesión";
+            }
+           
+            
             
         }
+
+        /*************************************** Auth  ****************************************************
+         *   1.Sistema Auth 
+         **      1.1.Iniciar Sesion Menu Strip
+         **      1.2.Visualizar automáticamente los vuelos 
+         **      1.3.Salvar lista de vuelos 
+         *   2.Sector
+         **      2.1.Cargar el sector
+         **      2.2.Visualizar el sector en el espacio aéreo.      
+         *   3. Mostrar en otro formulario los datos del vuelo sobre el que ha clicado el usuario.
+         **  4. Listar en otro formulario los datos de todos los vuelos que hay en el espacio aéreo.
+        ****************************************************************************************************************/
+        //1.1.Cargar la lista de vuelos: Receive the LoadFlight StripMenuevent and let answer to open a file with openFileDialog1
+        private void logInMenu_Click(object sender, EventArgs e)
+        {   
+            //Al hacer click en el menuStrip si se ha iniciado sesion se cierra la sesion
+            if (userAuthenticated.Authenticated)
+            {
+                userAuthenticated.Authenticated = false;
+                SesionClose();
+            }
+            else
+            {
+                SesionLogIn();
+            }
+            
+            
+        }
+        private void sesionBtn_Click(object sender, EventArgs e)
+        {
+            if (!userAuthenticated.Authenticated)
+            {
+                SesionLogIn();
+            }
+            else
+            {
+                SesionClose();
+            }
+        }
+
+        //0.1.Helper - SesionClose
+        private void SesionClose() 
+        {
+            if (MessageBox.Show("¿Está seguro de que desea cerrar sesión? Toda la información no guardada se perderá.", "Cerrar Sesión", MessageBoxButtons.YesNo) ==
+                DialogResult.Yes)
+            {
+                // The user wants to exit the application. Close everything down.
+                this.Close();
+                Login loginForm = new Login();
+                loginForm.ShowDialog();
+            }
+        }
+        //0.2.Helper - SesionClose
+        private void SesionLogIn()
+        {
+            if (MessageBox.Show("¿Está seguro de que desea iniciar sesión? Toda la información no guardada se perderá.", "Iniciar Sesión", MessageBoxButtons.YesNo) ==
+                DialogResult.Yes)
+            {
+                // The user wants to exit the application. Close everything down.
+                this.Close();
+                Login loginForm = new Login();
+                loginForm.ShowDialog();
+            }
+        }
+
+
         /*************************************** Load, Show and Save ****************************************************
          *   1.Lista de vuelos  
          **      1.1.Cargar la lista de vuelos 
@@ -561,5 +647,7 @@ namespace FormPrincipal
         {
            
         }
+
+        
     }
 }

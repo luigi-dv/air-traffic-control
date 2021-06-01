@@ -8,17 +8,17 @@ namespace FlightsLib
 {
     public class User
     {
+        private int idUser;
         private string username, email, password;
         private int confimationCode;
         private bool verified;
-        //Protected only get available 
-        private readonly string token;
+        private string token;
 
-        public User()
+        public int IdUser
         {
-            token = SetToken();
+            get { return idUser; }
+            set { idUser = value; }
         }
-
         public string Username
         {
             get { return username; }
@@ -45,21 +45,11 @@ namespace FlightsLib
             set { verified = value; }
         }
         //Protected only get available 
+        
         public string Token
         {
             get { return token; }
-        }
-
-
-        public string SetToken()
-        {
-            var allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            var resultToken = new string(
-               Enumerable.Repeat(allChar, 8)
-               .Select(token => token[random.Next(token.Length)]).ToArray());
-
-            return resultToken.ToString();
+            set { token = value;  }
         }
     }
 }

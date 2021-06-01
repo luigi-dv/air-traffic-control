@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,10 @@ namespace FormPrincipal
 {
     public partial class Register : Form
     {
+        User newUser = new User();
+        Email email = new Email();
+
+        private readonly Auth userAuthenticated = new Auth();
         public Register()
         {
             InitializeComponent();
@@ -52,30 +57,50 @@ namespace FormPrincipal
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
-           // Check in db if username or email are already taken 
-            User newUser = new User();
-
-            newUser.Email = this.emailRegisterInput.Text;
-            newUser.Username = this.userNameRegisterInput.Text;
-            newUser.Password = this.pswRegisterInput.Text;
-            string cPsw = this.pswConfirmRegisterInput.Text;
-            if(newUser.Password == cPsw)
+            // Check in db if username or email are already taken 
+            string email = this.emailRegisterInput.Text;
+            string username = this.userNameRegisterInput.Text;
+            int res = userAuthenticated.checkIfExist(username, email);
+            if (res == 1)
             {
-                //Generates a confirmation code to send via email
-                newUser.ConfirmationCode = GenerateConfirmationCode();
-
-                //Email values 
-                MailAddress from = new MailAddress("Someone@domain.topleveldomain", "Name and stuff");
-                MailAddress to = new MailAddress(newUser.Email, "About your registration " + newUser.Email);
-                SendEmail("Want to test this damn thing", from, to);
+                MessageBox.Show("El email introducido se encuentra actualmente vinculado a otra cuenta. Introduzca un email diferente o ingrese a su cuenta.",
+                                        "El email está en uso",
+                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                //Show password message
-            }
+                if(res == 2)
+                {
+                    MessageBox.Show("El nombre de usuario introducido se encuentra actualmente en uso. Introduzca un nombre de usuario diferente o ingrese a su cuenta.",
+                                       "El nombre de usuario está en uso",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                newUser.Email = this.emailRegisterInput.Text;
+                newUser.Username = this.userNameRegisterInput.Text;
+                newUser.Password = this.pswRegisterInput.Text;
+                string cPsw = this.pswConfirmRegisterInput.Text;
+                if (newUser.Password == cPsw)
+                {
+                    //Generates a confirmation code to send via email
+                    newUser.ConfirmationCode = GenerateConfirmationCode();
+                    //Email values 
+                    MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
+                    MailAddress to = new MailAddress(newUser.Email, newUser.Username);
+                    SendEmail("About your Registration", from, to);
 
-            //Username or email already exist
+                    //Open Form Confirmation
+                    Confirmation confirmationForm = new Confirmation();
+                    confirmationForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Las contraseña no coincide. Introduzca la constraseña correctamente en ambas entradas.",
+                                      "Las contraseñas no coinciden",
+                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
+
         }
 
         private void helpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -102,7 +127,6 @@ namespace FormPrincipal
         //0.2.Helper: Code Confirmation for send in email
         private int GenerateConfirmationCode()
         {
-           
             Random rnd = new Random();
             int code = rnd.Next(9999);
             return code;
@@ -110,26 +134,25 @@ namespace FormPrincipal
         //0.3.Helper: Send email via c#
         protected void SendEmail(string _subject, MailAddress _from, MailAddress _to, List<MailAddress> _bcc = null)
         {
-            string Text = "";
-            SmtpClient mailClient = new SmtpClient("Mailhost");
+            
+            SmtpClient mailClient = new SmtpClient("smtp.ionos.es", 587);
+           
+            NetworkCredential cred = new NetworkCredential("testing@ldvloper.com", "@4Testing2021");
             MailMessage msgMail;
-            Text = "Stuff";
+            
             msgMail = new MailMessage();
+            Text = email.GenerateTemplate(newUser);
+            msgMail.IsBodyHtml = true;
             msgMail.From = _from;
             msgMail.To.Add(_to);
            
-            if (_bcc != null)
-            {
-                foreach (MailAddress addr in _bcc)
-                {
-                    msgMail.Bcc.Add(addr);
-                }
-            }
-
+          
+            mailClient.Credentials = cred;
             //Email send
             msgMail.Subject = _subject;
             msgMail.Body = Text;
             msgMail.IsBodyHtml = true;
+            
             mailClient.Send(msgMail);
             msgMail.Dispose();
         }

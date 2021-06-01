@@ -29,6 +29,7 @@ namespace FormPrincipal
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlightInfoForm));
             this.flightPictureBox = new System.Windows.Forms.PictureBox();
             this.flightIDLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -206,7 +207,7 @@ namespace FormPrincipal
             this.flightDestinationLabel.TabIndex = 15;
             this.flightDestinationLabel.Text = "(x,y)";
             // 
-            // Form3
+            // FlightInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -227,7 +228,8 @@ namespace FormPrincipal
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.flightPictureBox);
-            this.Name = "Form3";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FlightInfoForm";
             this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.flightPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
