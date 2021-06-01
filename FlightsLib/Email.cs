@@ -9,8 +9,21 @@ namespace FlightsLib
 {
 	public class Email
 	{
-		private string emailTemplate;
+		readonly DbCnx db = new DbCnx();
 
+		private string emailTemplate;
+		private string username, psw;
+
+		public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+		public string Password
+		{
+			get { return psw; }
+			set { psw = value; }
+		}
 		public string GenerateTemplate(User newUser)
         {
 			string usernameCap = UppercaseFirst(newUser.Username);
@@ -26,6 +39,16 @@ namespace FlightsLib
 			}
 			// Return char and concat substring.
 			return char.ToUpper(s[0]) + s.Substring(1);
+		}
+
+		public Email GetEmailAuth(string userName)
+		{
+			db.Start();
+			//The user values are defined;
+			Email emailLog = db.GetEmailClient(userName);
+			db.End();
+			return emailLog;
+			
 		}
 
 

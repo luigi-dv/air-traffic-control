@@ -24,6 +24,7 @@ namespace FlightsLib
             db.Start();
             //The user values are defined;
             userAuth = db.GetUser(userName);
+            db.End();
             if (userAuth.Email == email)
                 //Email is already taken
                 return 1;
@@ -34,6 +35,7 @@ namespace FlightsLib
                     return 2;
             }
             return 0;
+            
         }
 
         public string GetUsername()

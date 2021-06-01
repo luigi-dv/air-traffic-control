@@ -83,13 +83,23 @@ namespace FormPrincipal
                 {
                     //Generates a confirmation code to send via email
                     newUser.ConfirmationCode = GenerateConfirmationCode();
-                    //Email values 
-                    MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
-                    MailAddress to = new MailAddress(newUser.Email, newUser.Username);
-                    SendEmail("About your Registration", from, to);
+                    try
+                    {
+                        //Email values 
+                        MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
+                        MailAddress to = new MailAddress(newUser.Email, newUser.Username);
+                        SendEmail("About your Registration", from, to);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No ha sido posible enviar el email de confirmación. Por favor intentelo de nuevo o continue como invitado si sigue experimentando el mismo problema.",
+                                      "Error al enviar el código de confirmación",
+                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }   
 
                     //Open Form Confirmation
                     Confirmation confirmationForm = new Confirmation();
+                    //Send the confirmation code to the confirmationForm;
                     confirmationForm.ShowDialog();
                 }
                 else
@@ -136,8 +146,9 @@ namespace FormPrincipal
         {
             
             SmtpClient mailClient = new SmtpClient("smtp.ionos.es", 587);
-           
-            NetworkCredential cred = new NetworkCredential("testing@ldvloper.com", "@4Testing2021");
+            //La Constaseña se encuentra segura en la tabla emailClients
+            email = email.GetEmailAuth("testing@ldvloper.com");
+            NetworkCredential cred = new NetworkCredential(email.Username, email.Password);
             MailMessage msgMail;
             
             msgMail = new MailMessage();

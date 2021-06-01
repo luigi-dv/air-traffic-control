@@ -69,5 +69,21 @@ namespace FlightsLib
             return user;
         }
 
+        //Email username to protect psw and username
+        public Email GetEmailClient(string username)
+        {
+            DataTable tableUser = new DataTable();
+            string sql = "SELECT * FROM emailClients WHERE username='" + username + "'";
+            SQLiteDataAdapter adp = new SQLiteDataAdapter(sql, cnx);
+            adp.Fill(tableUser);
+            Email client = new Email();
+            foreach (DataRow row in tableUser.Rows)
+            {
+                client.Username = row["username"].ToString();
+                client.Password = row["psw"].ToString();
+            }
+
+            return client;
+        }
     }
 }
