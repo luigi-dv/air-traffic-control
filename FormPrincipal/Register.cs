@@ -75,22 +75,42 @@ namespace FormPrincipal
                                        "El nombre de usuario está en uso",
                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                newUser.Email = this.emailRegisterInput.Text;
-                newUser.Username = this.userNameRegisterInput.Text;
+                //This adds the data into a new User class 
+                newUser.Email = email;
+                newUser.Username = username;
                 newUser.Password = this.pswRegisterInput.Text;
+                newUser.Token = newUser.SetToken();
                 string cPsw = this.pswConfirmRegisterInput.Text;
+                //Checking if the password and confirmation match 
                 if (newUser.Password == cPsw)
                 {
                     //Generates a confirmation code to send via email
                     newUser.ConfirmationCode = GenerateConfirmationCode();
-                    //Email values 
-                    MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
-                    MailAddress to = new MailAddress(newUser.Email, newUser.Username);
-                    SendEmail("About your Registration", from, to);
+                    try
+                    {
+                        //Email values to send the email using - 0.3.Helper: Send email via c#
+                        MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
+                        MailAddress to = new MailAddress(newUser.Email, newUser.Username);
+                        SendEmail("Confirme su Registro", from, to);
+                        //Open Form Confirmation
+                        Confirmation confirmationForm = new Confirmation();
+                        //Send the confirmation code to the confirmationForm;
+                        confirmationForm.UserToConfirm = newUser;
+                        confirmationForm.ShowDialog();
+                        //Dialog is closed the user value is imported and 
+                        newUser.Verified = confirmationForm.UserToConfirm.Verified;
+                        //Añadimos el usuario
+                        newUser.SetUser(newUser);
 
-                    //Open Form Confirmation
-                    Confirmation confirmationForm = new Confirmation();
-                    confirmationForm.ShowDialog();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No ha sido posible enviar el email de confirmación. Por favor intentelo de nuevo o continue como invitado si sigue experimentando el mismo problema.",
+                                      "Error al enviar el código de confirmación",
+                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }   
+
+                   
                 }
                 else
                 {
@@ -136,8 +156,9 @@ namespace FormPrincipal
         {
             
             SmtpClient mailClient = new SmtpClient("smtp.ionos.es", 587);
-           
-            NetworkCredential cred = new NetworkCredential("testing@ldvloper.com", "@4Testing2021");
+            //La Constaseña se encuentra segura en la tabla emailClients
+            email = email.GetEmailAuth("testing@ldvloper.com");
+            NetworkCredential cred = new NetworkCredential(email.Username, email.Password);
             MailMessage msgMail;
             
             msgMail = new MailMessage();

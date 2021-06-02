@@ -648,11 +648,11 @@ namespace FormPrincipal
 
         }
 
-        private void toolStripLogin_Click(object sender, EventArgs e)
+       
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            GroupInfo formGroup = new GroupInfo();
+            formGroup.ShowDialog();
         }
-
-        
     }
 }

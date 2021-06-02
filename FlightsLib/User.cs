@@ -14,6 +14,8 @@ namespace FlightsLib
         private bool verified;
         private string token;
 
+        readonly DbCnx db = new DbCnx();
+
         public int IdUser
         {
             get { return idUser; }
@@ -50,6 +52,23 @@ namespace FlightsLib
         {
             get { return token; }
             set { token = value;  }
+        }
+
+        public string SetToken()
+        {
+            var allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var resultToken = new string(
+               Enumerable.Repeat(allChar, 8)
+               .Select(token => token[random.Next(token.Length)]).ToArray());
+
+            return resultToken.ToString();
+        }
+        public void SetUser(User userToSet)
+        {
+            db.Start();
+            db.SetUser(userToSet);
+            db.End();
         }
     }
 }

@@ -36,6 +36,8 @@ namespace FormPrincipal
             this.btnSendCode = new System.Windows.Forms.Button();
             this.helpLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
+            this.emailConfirmationSend = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,6 +84,7 @@ namespace FormPrincipal
             this.btnSendCode.TabIndex = 7;
             this.btnSendCode.Text = "Confirmar Email";
             this.btnSendCode.UseVisualStyleBackColor = false;
+            this.btnSendCode.Click += new System.EventHandler(this.btnSendCode_Click);
             // 
             // helpLinkLabel
             // 
@@ -97,13 +100,32 @@ namespace FormPrincipal
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(39, 299);
+            this.label2.Location = new System.Drawing.Point(50, 298);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(187, 65);
+            this.label2.Size = new System.Drawing.Size(161, 26);
             this.label2.TabIndex = 22;
-            this.label2.Text = "* Le hemos enviado un mensaje \r\nde confirmación a su email.\r\n\r\nPor favor introduz" +
-    "ca el código que ha \r\nrecibido, en la casilla de arriba.";
+            this.label2.Text = "* Le hemos enviado un mensaje \r\nde confirmación a su email:\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // emailConfirmationSend
+            // 
+            this.emailConfirmationSend.AutoSize = true;
+            this.emailConfirmationSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailConfirmationSend.Location = new System.Drawing.Point(67, 338);
+            this.emailConfirmationSend.Name = "emailConfirmationSend";
+            this.emailConfirmationSend.Size = new System.Drawing.Size(39, 13);
+            this.emailConfirmationSend.TabIndex = 23;
+            this.emailConfirmationSend.Text = "EMAIL";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(37, 132);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(187, 26);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Por favor introduzca el código que ha \r\nrecibido, en la casilla de abajo.\r\n";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Confirmation
             // 
@@ -111,14 +133,18 @@ namespace FormPrincipal
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(256, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.emailConfirmationSend);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.helpLinkLabel);
             this.Controls.Add(this.btnSendCode);
             this.Controls.Add(this.confirmationCodeInput);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Confirmation";
-            this.Text = "Form1";
+            this.Text = "Registro";
+            this.Load += new System.EventHandler(this.Confirmation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -133,5 +159,7 @@ namespace FormPrincipal
         private System.Windows.Forms.Button btnSendCode;
         private System.Windows.Forms.LinkLabel helpLinkLabel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label emailConfirmationSend;
+        private System.Windows.Forms.Label label3;
     }
 }

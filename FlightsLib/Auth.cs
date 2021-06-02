@@ -24,6 +24,7 @@ namespace FlightsLib
             db.Start();
             //The user values are defined;
             userAuth = db.GetUser(userName);
+            db.End();
             if (userAuth.Email == email)
                 //Email is already taken
                 return 1;
@@ -34,6 +35,7 @@ namespace FlightsLib
                     return 2;
             }
             return 0;
+            
         }
 
         public string GetUsername()
@@ -67,17 +69,7 @@ namespace FlightsLib
             authenticated = true;
             return 0;
         }
+       
         
-
-        public string SetToken()
-        {
-            var allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            var resultToken = new string(
-               Enumerable.Repeat(allChar, 8)
-               .Select(token => token[random.Next(token.Length)]).ToArray());
-
-            return resultToken.ToString();
-        }
     }
 }
