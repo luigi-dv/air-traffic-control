@@ -72,6 +72,12 @@
     <Compile Include="Confirmation.Designer.cs">
       <DependentUpon>Confirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupInfo.Designer.cs">
+      <DependentUpon>GroupInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <EmbeddedResource Include="Confirmation.resx">
       <DependentUpon>Confirmation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GroupInfo.resx">
+      <DependentUpon>GroupInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.es-ES.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +139,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Register.es-ES.resx">
       <DependentUpon>Register.cs</DependentUpon>
@@ -168,6 +178,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <Content Include="Resources\ea.jpg" />
+    <Content Include="Resources\grid.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\ld.jpeg" />
+    <None Include="Resources\ac.jpg" />
+    <None Include="Resources\ea1.jpg" />
+    <None Include="Resources\grid1.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

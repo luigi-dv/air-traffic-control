@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlightsListInfoForm));
             this.sectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.FlightListGrid = new System.Windows.Forms.DataGridView();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -67,8 +68,9 @@
             this.ClientSize = new System.Drawing.Size(627, 430);
             this.Controls.Add(this.FlightListGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FlightsListInfoForm";
-            this.Text = "Listado de Vuelos Activos";
+            this.Text = "Listado de Vuelos ";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sectorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FlightListGrid)).EndInit();

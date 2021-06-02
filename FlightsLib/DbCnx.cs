@@ -68,6 +68,12 @@ namespace FlightsLib
 
             return user;
         }
+        public void SetUser(User userToSet)
+        {
+            string query = "INSERT INTO users VALUES('"+userToSet.Username+ "',"+userToSet.Email+ "',"+userToSet.Password+"',"+userToSet.ConfirmationCode+ "',"+userToSet.Verified+ "',"+userToSet.Token+"')";
+            SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
+            comm.ExecuteNonQuery();
+        }
 
         //Email username to protect psw and username
         public Email GetEmailClient(string username)

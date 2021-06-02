@@ -33,10 +33,11 @@ namespace FormPrincipal
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logInMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.loadFlightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarSectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@ namespace FormPrincipal
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,10 +67,10 @@ namespace FormPrincipal
             this.label5 = new System.Windows.Forms.Label();
             this.occupationTitleLabel = new System.Windows.Forms.Label();
             this.occupationNumLabel = new System.Windows.Forms.Label();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.logInMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.sesionBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +82,7 @@ namespace FormPrincipal
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1190, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(980, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -101,6 +101,18 @@ namespace FormPrincipal
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.fileToolStripMenuItem.Text = "&Archivo";
+            // 
+            // logInMenu
+            // 
+            this.logInMenu.Name = "logInMenu";
+            this.logInMenu.Size = new System.Drawing.Size(190, 22);
+            this.logInMenu.Text = "Iniciar Sesión";
+            this.logInMenu.Click += new System.EventHandler(this.logInMenu_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
             // 
             // loadFlightsToolStripMenuItem
             // 
@@ -122,16 +134,6 @@ namespace FormPrincipal
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(187, 6);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.saveToolStripMenuItem.Text = "&Guardar";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -169,8 +171,8 @@ namespace FormPrincipal
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
-            this.helpToolStripMenuItem.Text = "&Funcionalidades";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.helpToolStripMenuItem.Text = "&Más";
             // 
             // gitHubToolStripMenuItem
             // 
@@ -189,22 +191,11 @@ namespace FormPrincipal
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "&Acerca del grupo";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Silver;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.CausesValidation = false;
-            this.panel1.Location = new System.Drawing.Point(12, 40);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(864, 591);
-            this.panel1.TabIndex = 1;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
             // openFileDialog2
             // 
@@ -215,7 +206,7 @@ namespace FormPrincipal
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(917, 247);
+            this.label1.Location = new System.Drawing.Point(662, 245);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 20);
             this.label1.TabIndex = 2;
@@ -226,7 +217,7 @@ namespace FormPrincipal
             this.totalFlightsLabel.AutoSize = true;
             this.totalFlightsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalFlightsLabel.ForeColor = System.Drawing.Color.Black;
-            this.totalFlightsLabel.Location = new System.Drawing.Point(1046, 250);
+            this.totalFlightsLabel.Location = new System.Drawing.Point(791, 248);
             this.totalFlightsLabel.Name = "totalFlightsLabel";
             this.totalFlightsLabel.Size = new System.Drawing.Size(0, 16);
             this.totalFlightsLabel.TabIndex = 3;
@@ -236,7 +227,7 @@ namespace FormPrincipal
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(917, 297);
+            this.label3.Location = new System.Drawing.Point(662, 295);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(170, 20);
             this.label3.TabIndex = 4;
@@ -247,7 +238,7 @@ namespace FormPrincipal
             this.sectorIDLabel.AutoSize = true;
             this.sectorIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sectorIDLabel.ForeColor = System.Drawing.Color.Black;
-            this.sectorIDLabel.Location = new System.Drawing.Point(1093, 300);
+            this.sectorIDLabel.Location = new System.Drawing.Point(838, 298);
             this.sectorIDLabel.Name = "sectorIDLabel";
             this.sectorIDLabel.Size = new System.Drawing.Size(0, 16);
             this.sectorIDLabel.TabIndex = 5;
@@ -257,7 +248,7 @@ namespace FormPrincipal
             this.cycleTimeLabel.AutoSize = true;
             this.cycleTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cycleTimeLabel.ForeColor = System.Drawing.Color.Black;
-            this.cycleTimeLabel.Location = new System.Drawing.Point(895, 486);
+            this.cycleTimeLabel.Location = new System.Drawing.Point(648, 428);
             this.cycleTimeLabel.Name = "cycleTimeLabel";
             this.cycleTimeLabel.Size = new System.Drawing.Size(125, 20);
             this.cycleTimeLabel.TabIndex = 6;
@@ -268,7 +259,7 @@ namespace FormPrincipal
             this.cycleNumLabel.AutoSize = true;
             this.cycleNumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cycleNumLabel.ForeColor = System.Drawing.Color.Black;
-            this.cycleNumLabel.Location = new System.Drawing.Point(895, 517);
+            this.cycleNumLabel.Location = new System.Drawing.Point(648, 459);
             this.cycleNumLabel.Name = "cycleNumLabel";
             this.cycleNumLabel.Size = new System.Drawing.Size(137, 20);
             this.cycleNumLabel.TabIndex = 7;
@@ -277,7 +268,7 @@ namespace FormPrincipal
             // cycleTimeInput
             // 
             this.cycleTimeInput.ForeColor = System.Drawing.Color.Black;
-            this.cycleTimeInput.Location = new System.Drawing.Point(1061, 486);
+            this.cycleTimeInput.Location = new System.Drawing.Point(814, 428);
             this.cycleTimeInput.Name = "cycleTimeInput";
             this.cycleTimeInput.Size = new System.Drawing.Size(100, 20);
             this.cycleTimeInput.TabIndex = 9;
@@ -286,7 +277,7 @@ namespace FormPrincipal
             // cycleNumInput
             // 
             this.cycleNumInput.ForeColor = System.Drawing.Color.Black;
-            this.cycleNumInput.Location = new System.Drawing.Point(1061, 517);
+            this.cycleNumInput.Location = new System.Drawing.Point(814, 459);
             this.cycleNumInput.Name = "cycleNumInput";
             this.cycleNumInput.Size = new System.Drawing.Size(100, 20);
             this.cycleNumInput.TabIndex = 10;
@@ -295,7 +286,7 @@ namespace FormPrincipal
             // 
             this.StartSimulation.BackColor = System.Drawing.Color.Green;
             this.StartSimulation.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.StartSimulation.Location = new System.Drawing.Point(1071, 624);
+            this.StartSimulation.Location = new System.Drawing.Point(824, 566);
             this.StartSimulation.Name = "StartSimulation";
             this.StartSimulation.Size = new System.Drawing.Size(90, 30);
             this.StartSimulation.TabIndex = 11;
@@ -307,7 +298,7 @@ namespace FormPrincipal
             // 
             this.button4.BackColor = System.Drawing.SystemColors.WindowText;
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button4.Location = new System.Drawing.Point(899, 624);
+            this.button4.Location = new System.Drawing.Point(652, 566);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(90, 30);
             this.button4.TabIndex = 13;
@@ -319,7 +310,7 @@ namespace FormPrincipal
             // 
             this.button3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(954, 557);
+            this.button3.Location = new System.Drawing.Point(707, 499);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(166, 42);
             this.button3.TabIndex = 14;
@@ -336,7 +327,7 @@ namespace FormPrincipal
             this.welcomeLabel.AutoSize = true;
             this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.welcomeLabel.ForeColor = System.Drawing.Color.Black;
-            this.welcomeLabel.Location = new System.Drawing.Point(973, 40);
+            this.welcomeLabel.Location = new System.Drawing.Point(718, 38);
             this.welcomeLabel.Name = "welcomeLabel";
             this.welcomeLabel.Size = new System.Drawing.Size(104, 33);
             this.welcomeLabel.TabIndex = 15;
@@ -347,7 +338,7 @@ namespace FormPrincipal
             this.userNameLabel.AutoSize = true;
             this.userNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.userNameLabel.Location = new System.Drawing.Point(975, 104);
+            this.userNameLabel.Location = new System.Drawing.Point(720, 102);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(101, 20);
             this.userNameLabel.TabIndex = 16;
@@ -357,7 +348,7 @@ namespace FormPrincipal
             // 
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(911, 462);
+            this.label9.Location = new System.Drawing.Point(664, 404);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(230, 2);
             this.label9.TabIndex = 17;
@@ -366,7 +357,7 @@ namespace FormPrincipal
             // 
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(921, 198);
+            this.label5.Location = new System.Drawing.Point(666, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(230, 2);
             this.label5.TabIndex = 18;
@@ -376,7 +367,7 @@ namespace FormPrincipal
             this.occupationTitleLabel.AutoSize = true;
             this.occupationTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.occupationTitleLabel.ForeColor = System.Drawing.Color.Black;
-            this.occupationTitleLabel.Location = new System.Drawing.Point(1011, 330);
+            this.occupationTitleLabel.Location = new System.Drawing.Point(756, 328);
             this.occupationTitleLabel.Name = "occupationTitleLabel";
             this.occupationTitleLabel.Size = new System.Drawing.Size(76, 16);
             this.occupationTitleLabel.TabIndex = 19;
@@ -387,29 +378,17 @@ namespace FormPrincipal
             this.occupationNumLabel.AutoSize = true;
             this.occupationNumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.occupationNumLabel.ForeColor = System.Drawing.Color.Black;
-            this.occupationNumLabel.Location = new System.Drawing.Point(1096, 331);
+            this.occupationNumLabel.Location = new System.Drawing.Point(841, 329);
             this.occupationNumLabel.Name = "occupationNumLabel";
             this.occupationNumLabel.Size = new System.Drawing.Size(0, 15);
             this.occupationNumLabel.TabIndex = 20;
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
-            // 
-            // logInMenu
-            // 
-            this.logInMenu.Name = "logInMenu";
-            this.logInMenu.Size = new System.Drawing.Size(190, 22);
-            this.logInMenu.Text = "Iniciar Sesión";
-            this.logInMenu.Click += new System.EventHandler(this.logInMenu_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(907, 104);
+            this.label2.Location = new System.Drawing.Point(652, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 20);
             this.label2.TabIndex = 21;
@@ -419,7 +398,7 @@ namespace FormPrincipal
             // 
             this.sesionBtn.BackColor = System.Drawing.Color.DarkRed;
             this.sesionBtn.ForeColor = System.Drawing.Color.White;
-            this.sesionBtn.Location = new System.Drawing.Point(979, 150);
+            this.sesionBtn.Location = new System.Drawing.Point(724, 148);
             this.sesionBtn.Name = "sesionBtn";
             this.sesionBtn.Size = new System.Drawing.Size(110, 40);
             this.sesionBtn.TabIndex = 22;
@@ -427,12 +406,34 @@ namespace FormPrincipal
             this.sesionBtn.UseVisualStyleBackColor = false;
             this.sesionBtn.Click += new System.EventHandler(this.sesionBtn_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.BackgroundImage = global::FormPrincipal.Properties.Resources.grid1;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.CausesValidation = false;
+            this.panel1.Location = new System.Drawing.Point(27, 40);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(567, 565);
+            this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
+            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.saveToolStripMenuItem.Text = "&Guardar";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
-            this.ClientSize = new System.Drawing.Size(1190, 666);
+            this.ClientSize = new System.Drawing.Size(980, 666);
             this.Controls.Add(this.sesionBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.occupationNumLabel);

@@ -75,20 +75,33 @@ namespace FormPrincipal
                                        "El nombre de usuario está en uso",
                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                newUser.Email = this.emailRegisterInput.Text;
-                newUser.Username = this.userNameRegisterInput.Text;
+                //This adds the data into a new User class 
+                newUser.Email = email;
+                newUser.Username = username;
                 newUser.Password = this.pswRegisterInput.Text;
+                newUser.Token = newUser.SetToken();
                 string cPsw = this.pswConfirmRegisterInput.Text;
+                //Checking if the password and confirmation match 
                 if (newUser.Password == cPsw)
                 {
                     //Generates a confirmation code to send via email
                     newUser.ConfirmationCode = GenerateConfirmationCode();
                     try
                     {
-                        //Email values 
+                        //Email values to send the email using - 0.3.Helper: Send email via c#
                         MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
                         MailAddress to = new MailAddress(newUser.Email, newUser.Username);
-                        SendEmail("About your Registration", from, to);
+                        SendEmail("Confirme su Registro", from, to);
+                        //Open Form Confirmation
+                        Confirmation confirmationForm = new Confirmation();
+                        //Send the confirmation code to the confirmationForm;
+                        confirmationForm.UserToConfirm = newUser;
+                        confirmationForm.ShowDialog();
+                        //Dialog is closed the user value is imported and 
+                        newUser.Verified = confirmationForm.UserToConfirm.Verified;
+                        //Añadimos el usuario
+                        newUser.SetUser(newUser);
+
                     }
                     catch
                     {
@@ -97,10 +110,7 @@ namespace FormPrincipal
                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }   
 
-                    //Open Form Confirmation
-                    Confirmation confirmationForm = new Confirmation();
-                    //Send the confirmation code to the confirmationForm;
-                    confirmationForm.ShowDialog();
+                   
                 }
                 else
                 {
