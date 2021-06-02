@@ -36,7 +36,6 @@ namespace FormPrincipal
             try
             {
                 int inputUserCode = Convert.ToInt32(this.confirmationCodeInput.Text);
-                MessageBox.Show(userToConfirm.ConfirmationCode.ToString());
                 if (inputUserCode == userToConfirm.ConfirmationCode)
                 {
                     //Code Ok, set value verified

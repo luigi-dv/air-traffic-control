@@ -273,7 +273,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="registerLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -309,7 +309,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;registerLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="btnRegister.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -342,7 +342,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRegister.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="checkBoxShowPsw.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -369,7 +369,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;checkBoxShowPsw.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="pswRegisterInput.Location" type="System.Drawing.Point, System.Drawing">
     <value>308, 273</value>
@@ -390,7 +390,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pswRegisterInput.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="pswLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -420,7 +420,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pswLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="userNameLoginLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -450,7 +450,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;userNameLoginLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="userNameRegisterInput.Location" type="System.Drawing.Point, System.Drawing">
     <value>308, 222</value>
@@ -471,7 +471,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;userNameRegisterInput.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="pswConfirmRegisterInput.Location" type="System.Drawing.Point, System.Drawing">
     <value>308, 325</value>
@@ -492,7 +492,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pswConfirmRegisterInput.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="pswConfirmLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -522,7 +522,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pswConfirmLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="emailRegisterLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -552,7 +552,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;emailRegisterLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="emailRegisterInput.Location" type="System.Drawing.Point, System.Drawing">
     <value>308, 174</value>
@@ -573,7 +573,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;emailRegisterInput.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -600,7 +600,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;linkLabel1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="guestLink.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -627,7 +627,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;guestLink.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="helpLinkLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -657,6 +657,55 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;helpLinkLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="errorAlertLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="errorAlertLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 2</value>
+  </data>
+  <data name="errorAlertLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 26</value>
+  </data>
+  <data name="errorAlertLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="errorAlertLabel.Text" xml:space="preserve">
+    <value>*Error confirmando su cuenta. 
+Por favor haga click en registrarse y siga las instrucciones.</value>
+  </data>
+  <data name="&gt;&gt;errorAlertLabel.Name" xml:space="preserve">
+    <value>errorAlertLabel</value>
+  </data>
+  <data name="&gt;&gt;errorAlertLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;errorAlertLabel.Parent" xml:space="preserve">
+    <value>errorAlertPanel</value>
+  </data>
+  <data name="&gt;&gt;errorAlertLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="errorAlertPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>495, 357</value>
+  </data>
+  <data name="errorAlertPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 32</value>
+  </data>
+  <data name="errorAlertPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;errorAlertPanel.Name" xml:space="preserve">
+    <value>errorAlertPanel</value>
+  </data>
+  <data name="&gt;&gt;errorAlertPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;errorAlertPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;errorAlertPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

@@ -45,7 +45,10 @@ namespace FormPrincipal
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.guestLink = new System.Windows.Forms.LinkLabel();
             this.helpLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.errorAlertPanel = new System.Windows.Forms.Panel();
+            this.errorAlertLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.errorAlertPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -151,11 +154,26 @@ namespace FormPrincipal
             this.helpLinkLabel.TabStop = true;
             this.helpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.helpLinkLabel_LinkClicked);
             // 
+            // errorAlertPanel
+            // 
+            this.errorAlertPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
+            this.errorAlertPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.errorAlertPanel.Controls.Add(this.errorAlertLabel);
+            resources.ApplyResources(this.errorAlertPanel, "errorAlertPanel");
+            this.errorAlertPanel.Name = "errorAlertPanel";
+            // 
+            // errorAlertLabel
+            // 
+            resources.ApplyResources(this.errorAlertLabel, "errorAlertLabel");
+            this.errorAlertLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.errorAlertLabel.Name = "errorAlertLabel";
+            // 
             // Register
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.errorAlertPanel);
             this.Controls.Add(this.helpLinkLabel);
             this.Controls.Add(this.guestLink);
             this.Controls.Add(this.linkLabel1);
@@ -174,6 +192,8 @@ namespace FormPrincipal
             this.Name = "Register";
             this.Load += new System.EventHandler(this.Register_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.errorAlertPanel.ResumeLayout(false);
+            this.errorAlertPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +216,7 @@ namespace FormPrincipal
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel guestLink;
         private System.Windows.Forms.LinkLabel helpLinkLabel;
+        private System.Windows.Forms.Panel errorAlertPanel;
+        private System.Windows.Forms.Label errorAlertLabel;
     }
 }

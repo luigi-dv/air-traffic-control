@@ -26,7 +26,8 @@ namespace FormPrincipal
 
         private void Register_Load(object sender, EventArgs e)
         {
-
+            this.errorAlertLabel.Visible = false;
+            this.errorAlertPanel.Visible = false;
         }
 
         private void checkBoxShowPsw_CheckedChanged(object sender, EventArgs e)
@@ -93,14 +94,28 @@ namespace FormPrincipal
                         MailAddress to = new MailAddress(newUser.Email, newUser.Username);
                         SendEmail("Confirme su Registro", from, to);
                         //Open Form Confirmation
+                        this.Text = "Confirme su registro";
                         Confirmation confirmationForm = new Confirmation();
                         //Send the confirmation code to the confirmationForm;
                         confirmationForm.UserToConfirm = newUser;
                         confirmationForm.ShowDialog();
                         //Dialog is closed the user value is imported and 
                         newUser.Verified = confirmationForm.UserToConfirm.Verified;
-                        //Añadimos el usuario
-                        newUser.SetUser(newUser);
+                        //Hacemos un check de el usuario 
+                        if(newUser.Verified==true)
+                        {
+                            //Adding the user to de database
+                            newUser.SetUser(newUser);
+                            this.Close();
+                            MainForm mainForm = new MainForm();
+                            mainForm.Show();
+
+                        }
+                        else
+                        {
+                            this.errorAlertLabel.Visible = true;
+                            this.errorAlertPanel.Visible = true;
+                        }
 
                     }
                     catch
