@@ -34,6 +34,9 @@ namespace FormPrincipal
         //Stack with all the previous cycles
         Stack<FlightsList> FlightStack = new Stack<FlightsList>();
 
+        //Auxiliar flightlist for the stack
+        private FlightsList FlightAux = new FlightsList();
+
         //The sector
         private Sector mySector = new Sector();
 
@@ -439,10 +442,12 @@ namespace FormPrincipal
             }
             else
             {
-                myFlightsList = FlightStack.Pop();
+                FlightAux = FlightStack.Pop();
+                
                 for (int i = 0; i < myFlightsList.Number; i++)
                 {
-
+                    myFlightsList.Flights[i].PositionX = FlightAux.Flights[i].PositionX;
+                    myFlightsList.Flights[i].PositionY = FlightAux.Flights[i].PositionX;
 
                     aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
 
