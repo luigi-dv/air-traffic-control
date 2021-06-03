@@ -4,9 +4,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SQLite;
+
 
 namespace FlightsLib
 {
+
     public class Auth
     {
         readonly DbCnx db = new DbCnx();
@@ -37,11 +41,21 @@ namespace FlightsLib
             return 0;
             
         }
-
+        public int GetID()
+        {
+            int id = userAuth.IdUser;
+            return id;
+        }
         public string GetUsername()
         {
             string username = userAuth.Username;
             return username;
+        }
+        public Auth SetNewUserAuth(User newUser)
+        {
+            this.userAuth = newUser;
+            this.userAuth.Verified = true;
+            return this;
         }
 
         public int CheckLogin(string usernameEmail, string password)
@@ -68,6 +82,21 @@ namespace FlightsLib
             //User OK
             authenticated = true;
             return 0;
+        }
+
+        public void SetUserData(int userID, FlightsList flights) 
+        {
+            db.Start();
+            db.SaveUserFlightData(userID, flights);
+            db.End();
+        }
+
+        public DataTable ShowUserFlightData(int userID)
+        {          
+            db.Start();
+            DataTable dt = db.ShowUserDataFlight(userID);
+            db.End();
+            return dt;
         }
        
         

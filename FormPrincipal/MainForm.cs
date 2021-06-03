@@ -30,6 +30,7 @@ namespace FormPrincipal
 
         //The flight list
         private FlightsList myFlightsList = new FlightsList();
+        private FlightsList originalFlightList = new FlightsList();
 
         //Stack with all the previous cycles
         Stack<FlightsList> FlightStack = new Stack<FlightsList>();
@@ -53,17 +54,16 @@ namespace FormPrincipal
         }
 
         /*************************************** Form Load ****************************************************/
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-           
-          
+
             //Check if user is logged
             if (!userAuthenticated.Authenticated)
             {
                 //Welcome message to username 
                 this.userNameLabel.Text = "Guest";
                 this.logInMenu.Text = "Iniciar Sesión";
-
+                this.verMisDatosToolStripMenuItem.Visible = false;
                 this.sesionBtn.Text = "Iniciar Sesión";
                 this.sesionBtn.BackColor = Color.Green;
                 
@@ -122,11 +122,12 @@ namespace FormPrincipal
         //0.1.Helper - SesionClose
         private void SesionClose() 
         {
-            if (MessageBox.Show("¿Está seguro de que desea cerrar sesión? Toda la información no guardada se perderá.", "Cerrar Sesión", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show("¿Está seguro de que desea cerrar sesión? Se guardarán los datos de su sesión automaticamente", "Cerrar Sesión", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
-                // The user wants to exit the application. Close everything down.
-                this.Close();
+                // The user wants to close sesion the application save the data
+                userAuthenticated.SetUserData(userAuthenticated.GetID(), myFlightsList);
+                this.Hide();
                 Login loginForm = new Login();
                 loginForm.ShowDialog();
             }
@@ -137,8 +138,8 @@ namespace FormPrincipal
             if (MessageBox.Show("¿Está seguro de que desea iniciar sesión? Toda la información no guardada se perderá.", "Iniciar Sesión", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
-                // The user wants to exit the application. Close everything down.
-                this.Close();
+                // The user wants to exit the application.
+                this.Hide();
                 Login loginForm = new Login();
                 loginForm.ShowDialog();
             }
@@ -198,42 +199,14 @@ namespace FormPrincipal
                      ***    string path = System.IO.Directory.GetCurrentDirectory();
                      ***    string imageFile = path + IMG;
                     ************************************************************************************************/
-
-                    //1.2.Visualizar automáticamente los vuelos
+                    
 
                     //Display Flights Total Number into the Right side panel
                     this.totalFlightsLabel.Text = Convert.ToString(myFlightsList.Number);
                     //Call 0.5.Helper: Function to print the sector occupation
                     PrintOcuppation();
-                    //Define the path and the name of the image into the string imageFile
-                    string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
-                    for (int i = 0; i < myFlightsList.Number; i++)
-                    {
-                        //Trying to generate a Picture Box with the image
-                        try
-                        {
-                            aircraftVector[i] = new PictureBox();
-                            aircraftVector[i].ClientSize = new Size(20, 20);
-                            aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
-                            aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                            aircraftVector[i].Tag = myFlightsList.Flights[i];
-                            aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
-                            //Defining our imageFile as a Bitmap image
-                            Bitmap image = new Bitmap(imageFile);
-                            aircraftVector[i].Image = (Image)image;
-                            panel1.Refresh();
-                            panel1.Controls.Add(aircraftVector[i]);
-
-                        }
-                        //The imageFile path is not correct or the file don't exist
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Error de carga puede que el fichero " + '"' + imageFile + '"' + " no se haya encontrado, posiblemente la carpeta Resources esté comprometida",
-                                             '"' + imageFile + '"', MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                    }
-
+                    //Call 0.7.Helper: Print flights
+                    PrintFlights();
                 }
 
             }
@@ -256,6 +229,11 @@ namespace FormPrincipal
             //Passing here when the FlightsList is not empty 
             else
             {
+                if (userAuthenticated.Authenticated)
+                {
+                    //If user is authenticated save the Sectors data and the Flights into the data base
+                    userAuthenticated.SetUserData(userAuthenticated.GetID(), myFlightsList);
+                }
                 SaveFileDialog1Function();
             }
 
@@ -532,6 +510,21 @@ namespace FormPrincipal
             }
   
         }
+        
+        //Restart simulation
+        private void reiniciarSimulaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que desea reiniciar la simulación?", "Reiniciando Simulación", MessageBoxButtons.YesNo) ==
+                  DialogResult.Yes)
+            {
+                myFlightsList = originalFlightList;
+                //Clean Flights
+                panel1.Controls.Clear();
+                //0.5.Helper: Function to print the sector occupation
+                this.totalFlightsLabel.Text = myFlightsList.Number.ToString();
+                PrintOcuppation();
+            }
+        }
 
         /*************************************** Helpers Section ****************************************************
          * Specialized code that help us create, modify, or eliminate things externally to the fundamental processes.
@@ -595,6 +588,38 @@ namespace FormPrincipal
             StartSimulation.BackColor = Color.Green;
             StartSimulation.Text = "Start";
         }
+        //0.7.Helper: Print Flights
+        private void PrintFlights()
+        {
+            //Define the path and the name of the image into the string imageFile
+            string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, IMG);
+            for (int i = 0; i < myFlightsList.Number; i++)
+            {
+                //Trying to generate a Picture Box with the image
+                try
+                {
+                    aircraftVector[i] = new PictureBox();
+                    aircraftVector[i].ClientSize = new Size(20, 20);
+                    aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
+                    aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                    aircraftVector[i].Tag = myFlightsList.Flights[i];
+                    aircraftVector[i].Click += new System.EventHandler(this.AircraftVector_Click);
+                    //Defining our imageFile as a Bitmap image
+                    Bitmap image = new Bitmap(imageFile);
+                    aircraftVector[i].Image = (Image)image;
+                    panel1.Refresh();
+                    panel1.Controls.Add(aircraftVector[i]);
+
+                }
+                //The imageFile path is not correct or the file don't exist
+                catch (Exception)
+                {
+                    MessageBox.Show("Error de carga puede que el fichero " + '"' + imageFile + '"' + " no se haya encontrado, posiblemente la carpeta Resources esté comprometida",
+                                     '"' + imageFile + '"', MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
 
         /*************************************** Extras Section ***************************************************
         * Extra code for increase the user experiencie.
@@ -631,16 +656,100 @@ namespace FormPrincipal
         /*************************************** Exit Section ***************************************************
         * Code for handle the exit event and diferents situations.
        ************************************************************************************************************/
+
+        private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (!userAuthenticated.Authenticated)
+                {
+                    if (MessageBox.Show("¿Está seguro de que quiere salir del simulador de vuelo?. Recuerde guardar los datos antes de salir", "Saliendo", MessageBoxButtons.YesNo) ==
+                   DialogResult.Yes)
+                    {
+                        // The user wants to exit the application. Close everything down
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+
+                }
+                else
+                {
+                    if (MessageBox.Show("Usted está saliendo. ¿Desea guardar los datos de su sesión?", "Saliendo", MessageBoxButtons.YesNo) ==
+                   DialogResult.Yes)
+                    {
+                        userAuthenticated.SetUserData(userAuthenticated.GetID(), myFlightsList);
+                        // The user wants to exit the application. Close everything down.
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        Application.Exit();
+                    }
+
+                }
+            }
+                
+
+            if (e.CloseReason == CloseReason.WindowsShutDown)
+            {
+                // Autosave 
+                if (!userAuthenticated.Authenticated)
+                {
+                    if (MessageBox.Show("¿Está seguro de que desea salir del simulador de vuelo?. Recuerde guardar los datos antes de salir", "Saliendo", MessageBoxButtons.YesNo) ==
+                   DialogResult.Yes)
+                    {
+                        // The user wants to exit the application. Close everything down.
+                        Application.Exit();
+                    }
+
+                }
+                else
+                {
+                    if (MessageBox.Show("Usted está saliendo. ¿Desea guardar los datos de su sesión?", "Saliendo", MessageBoxButtons.YesNo) ==
+                   DialogResult.Yes)
+                    {
+                        userAuthenticated.SetUserData(userAuthenticated.GetID(), myFlightsList);
+                        // The user wants to exit the application. Close everything down.
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        Application.Exit();
+                    }
+
+                }
+            }
+                    
+
+            
+        }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             /* Determines whether the user wants to exit the application.
             * If not, adds another Number to the list box. */
-            if (MessageBox.Show("¿Está seguro de que desea salir del simulador de vuelo?", "Saliendo", MessageBoxButtons.YesNo) ==
-               DialogResult.Yes)
+            if (!userAuthenticated.Authenticated)
             {
-                // The user wants to exit the application. Close everything down.
-                Application.Exit();
+                if (MessageBox.Show("¿Está seguro de que desea salir del simulador de vuelo?. Recuerde guardar los datos antes de salir", "Saliendo", MessageBoxButtons.YesNo) ==
+               DialogResult.Yes)
+                {
+                    // The user wants to exit the application. Close everything down.
+                    Application.Exit();
+                }
             }
+            else
+            {
+                if (MessageBox.Show("¿Está seguro de que desea salir del simulador de vuelo?. Al salir se guardarán todos los datos de vuelo y sectores de esta sesión y se asociarán a su nombre de usuario", "Saliendo", MessageBoxButtons.YesNo) ==
+               DialogResult.Yes)
+                {
+                    userAuthenticated.SetUserData(userAuthenticated.GetID(), myFlightsList);
+                    // The user wants to exit the application. Close everything down.
+                    Application.Exit();
+                }
+            }
+            
         }
 
         private void cycleTimeInput_TextChanged(object sender, EventArgs e)
@@ -654,5 +763,19 @@ namespace FormPrincipal
             GroupInfo formGroup = new GroupInfo();
             formGroup.ShowDialog();
         }
+
+        private void vuelosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserFlights userFlightsInfo = new UserFlights();
+            userFlightsInfo.AuthUser = userAuthenticated;
+            userFlightsInfo.ShowDialog();
+        }
+
+        private void mySectoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

@@ -41,7 +41,6 @@ namespace FormPrincipal
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.guestLink = new System.Windows.Forms.LinkLabel();
             this.helpLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.rememberMe = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,18 +122,11 @@ namespace FormPrincipal
             this.helpLinkLabel.TabStop = true;
             this.helpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.helpLinkLabel_LinkClicked);
             // 
-            // rememberMe
-            // 
-            resources.ApplyResources(this.rememberMe, "rememberMe");
-            this.rememberMe.Name = "rememberMe";
-            this.rememberMe.UseVisualStyleBackColor = true;
-            // 
             // Login
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
             resources.ApplyResources(this, "$this");
-            this.Controls.Add(this.rememberMe);
             this.Controls.Add(this.helpLinkLabel);
             this.Controls.Add(this.guestLink);
             this.Controls.Add(this.linkLabel1);
@@ -167,6 +159,5 @@ namespace FormPrincipal
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel guestLink;
         private System.Windows.Forms.LinkLabel helpLinkLabel;
-        private System.Windows.Forms.CheckBox rememberMe;
     }
 }

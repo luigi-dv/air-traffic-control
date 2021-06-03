@@ -39,7 +39,8 @@ namespace FlightsLib
             return airlane;
         }
 
-        //Auth
+        /********************* AUTH SECTION *************************
+        ************************************************************************************************/
         public DataTable GetAllUsers()
         {
             DataTable users = new DataTable();
@@ -68,12 +69,47 @@ namespace FlightsLib
 
             return user;
         }
+        public int checkID(int userId)
+        {
+            string query = "SELECT COUNT(*) FROM users WHERE id = '" + userId + "'";
+            SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
+            int value = comm.ExecuteNonQuery();
+            return value;
+        }
+
         public void SetUser(User userToSet)
         {
-            string query = "INSERT INTO users VALUES('"+userToSet.Username+ "',"+userToSet.Email+ "',"+userToSet.Password+"',"+userToSet.ConfirmationCode+ "',"+userToSet.Verified+ "',"+userToSet.Token+"')";
+           
+            string query = "INSERT INTO users VALUES('" + userToSet.IdUser+"','"+userToSet.Username+ "','"+userToSet.Email+ "','"+userToSet.Password+"','"+userToSet.ConfirmationCode+ "','"+userToSet.Verified+ "','"+userToSet.Token+"')";
             SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
             comm.ExecuteNonQuery();
         }
+
+        public void SaveUserFlightData(int userID, FlightsList flights)
+        {
+            for(int i=0; i < flights.Number; i++)
+            {
+                DateTime today = DateTime.Today;
+                string query = "INSERT INTO dataUserFlight VALUES('" + userID + "','" + today + "','" + flights.Flights[i].FlightID + "','" + flights.Flights[i].Company + "','" + flights.Flights[i].PositionX + "','" + flights.Flights[i].PositionY + "','" + flights.Flights[i].OriginX + "','" + flights.Flights[i].OriginY + "','" + flights.Flights[i].DestinationX + "','" + flights.Flights[i].DestinationY + "','" + flights.Flights[i].Velocity + "')";
+                SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
+                comm.ExecuteNonQuery();
+            }
+
+        }
+        public DataTable ShowUserDataFlight(int userID)
+        {
+            string query = "SELECT date,flightID,flightCompany,flightPositionX,flightPositionY,flightOriginX,flightOriginY,flightDestinationX,flightDestinationY,flightVelocity FROM dataUserFlight WHERE id = '" + userID + "'";
+            DataTable table = new DataTable();
+            SQLiteDataAdapter adp = new SQLiteDataAdapter(query, this.cnx);
+            adp.Fill(table);
+            return table;
+        }
+        
+
+        /********************* Email Section *************************
+                  **   Getting the email client from our data base for a better security if you wanna add more execute the sqlite command 
+                  **   Insert your email client data in the emailClient table
+                 ************************************************************************************************/
 
         //Email username to protect psw and username
         public Email GetEmailClient(string username)

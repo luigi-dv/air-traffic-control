@@ -84,20 +84,6 @@ namespace FormPrincipal
             //Check if the info is correct
             if(check == 0)
             {
-                
-                //Getting the user
-                if (this.rememberMe.Checked == true)
-                {
-                    Properties.Settings.Default.Username = userNameEmail;
-                    Properties.Settings.Default.Password = psw;
-                    Properties.Settings.Default.Save();
-                }
-                else
-                {
-                    Properties.Settings.Default.Username = "";
-                    Properties.Settings.Default.Password = "";
-                    Properties.Settings.Default.Save();
-                }
                 //Showing Main Form 
                 MainForm main = new MainForm();
                 //User authenticated pass to MainForm

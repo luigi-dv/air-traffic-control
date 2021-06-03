@@ -18,7 +18,7 @@ namespace FormPrincipal
         User newUser = new User();
         Email email = new Email();
 
-        private readonly Auth userAuthenticated = new Auth();
+        private Auth userAuthenticated = new Auth();
         public Register()
         {
             InitializeComponent();
@@ -87,46 +87,41 @@ namespace FormPrincipal
                 {
                     //Generates a confirmation code to send via email
                     newUser.ConfirmationCode = GenerateConfirmationCode();
-                    try
+                   
+                    //Email values to send the email using - 0.3.Helper: Send email via c#
+                    MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
+                    MailAddress to = new MailAddress(newUser.Email, newUser.Username);
+                    SendEmail("Confirme su Registro", from, to);
+                    //Open Form Confirmation
+                    this.Text = "Confirme su registro";
+                    Confirmation confirmationForm = new Confirmation();
+                    //Send the confirmation code to the confirmationForm;
+                    confirmationForm.UserToConfirm = newUser;
+                    confirmationForm.ShowDialog();
+                    //Dialog is closed the user value is imported and 
+                    newUser.Verified = confirmationForm.UserToConfirm.Verified;
+                    //Hacemos un check de el usuario 
+                    if(newUser.Verified==true)
                     {
-                        //Email values to send the email using - 0.3.Helper: Send email via c#
-                        MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
-                        MailAddress to = new MailAddress(newUser.Email, newUser.Username);
-                        SendEmail("Confirme su Registro", from, to);
-                        //Open Form Confirmation
-                        this.Text = "Confirme su registro";
-                        Confirmation confirmationForm = new Confirmation();
-                        //Send the confirmation code to the confirmationForm;
-                        confirmationForm.UserToConfirm = newUser;
-                        confirmationForm.ShowDialog();
-                        //Dialog is closed the user value is imported and 
-                        newUser.Verified = confirmationForm.UserToConfirm.Verified;
-                        //Hacemos un check de el usuario 
-                        if(newUser.Verified==true)
-                        {
-                            //Adding the user to de database
-                            newUser.SetUser(newUser);
-                            this.Close();
-                            MainForm mainForm = new MainForm();
-                            mainForm.Show();
-
-                        }
-                        else
-                        {
-                            this.errorAlertLabel.Visible = true;
-                            this.errorAlertPanel.Visible = true;
-                        }
+                        //Adding the user to de database
+                        newUser.SetUser(newUser);
+                        this.Close();
+                        MainForm mainForm = new MainForm();
+                        //New user as an user authenticated
+                        mainForm.UserAuthenticated = userAuthenticated.SetNewUserAuth(newUser);
+                        //Set Authenticated true 
+                        mainForm.UserAuthenticated.Authenticated = true;
+                        mainForm.Show();
 
                     }
-                    catch
+                    else
                     {
-                        MessageBox.Show("No ha sido posible enviar el email de confirmación. Por favor intentelo de nuevo o continue como invitado si sigue experimentando el mismo problema.",
-                                      "Error al enviar el código de confirmación",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }   
+                        this.errorAlertLabel.Visible = true;
+                        this.errorAlertPanel.Visible = true;
+                    }
 
-                   
                 }
+                
                 else
                 {
                     MessageBox.Show("Las contraseña no coincide. Introduzca la constraseña correctamente en ambas entradas.",
@@ -188,8 +183,16 @@ namespace FormPrincipal
             msgMail.Subject = _subject;
             msgMail.Body = Text;
             msgMail.IsBodyHtml = true;
-            
-            mailClient.Send(msgMail);
+            try
+            {
+                mailClient.Send(msgMail);
+            }
+            catch
+            {
+                MessageBox.Show("No ha sido posible enviar el email de confirmación. Por favor intentelo de nuevo o continue como invitado si sigue experimentando el mismo problema.",
+                                     "Error al enviar el código de confirmación",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             msgMail.Dispose();
         }
     }

@@ -34,17 +34,20 @@ namespace FormPrincipal
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logInMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.loadFlightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarSectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListaDeVuelosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.verMisDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.myVuelosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mySectoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -70,7 +73,11 @@ namespace FormPrincipal
             this.label2 = new System.Windows.Forms.Label();
             this.sesionBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.funcionalidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.aerolineasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.reiniciarSimulaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +97,7 @@ namespace FormPrincipal
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logInMenu,
-            this.toolStripSeparator2,
+            this.toolStripSeparator5,
             this.loadFlightsToolStripMenuItem,
             this.cargarSectorToolStripMenuItem,
             this.toolStripSeparator,
@@ -108,11 +115,6 @@ namespace FormPrincipal
             this.logInMenu.Size = new System.Drawing.Size(190, 22);
             this.logInMenu.Text = "Iniciar Sesión";
             this.logInMenu.Click += new System.EventHandler(this.logInMenu_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
             // 
             // loadFlightsToolStripMenuItem
             // 
@@ -135,6 +137,16 @@ namespace FormPrincipal
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(187, 6);
             // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
+            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.saveToolStripMenuItem.Text = "&Guardar";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -150,7 +162,11 @@ namespace FormPrincipal
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ListaDeVuelosToolStripMenuItem});
+            this.ListaDeVuelosToolStripMenuItem,
+            this.aerolineasToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.reiniciarSimulaciónToolStripMenuItem,
+            this.verMisDatosToolStripMenuItem});
             this.toolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
@@ -159,16 +175,45 @@ namespace FormPrincipal
             // ListaDeVuelosToolStripMenuItem
             // 
             this.ListaDeVuelosToolStripMenuItem.Name = "ListaDeVuelosToolStripMenuItem";
-            this.ListaDeVuelosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ListaDeVuelosToolStripMenuItem.Text = "Lista de Vuelos";
+            this.ListaDeVuelosToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.ListaDeVuelosToolStripMenuItem.Text = "Lista de Vuelos Activos";
             this.ListaDeVuelosToolStripMenuItem.Click += new System.EventHandler(this.ListaDeVuelosToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(191, 6);
+            // 
+            // verMisDatosToolStripMenuItem
+            // 
+            this.verMisDatosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.myVuelosToolStripMenuItem,
+            this.mySectoresToolStripMenuItem});
+            this.verMisDatosToolStripMenuItem.Name = "verMisDatosToolStripMenuItem";
+            this.verMisDatosToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.verMisDatosToolStripMenuItem.Text = "Ver Simulaciones antiguas";
+            // 
+            // myVuelosToolStripMenuItem
+            // 
+            this.myVuelosToolStripMenuItem.Name = "myVuelosToolStripMenuItem";
+            this.myVuelosToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.myVuelosToolStripMenuItem.Text = "Vuelos";
+            this.myVuelosToolStripMenuItem.Click += new System.EventHandler(this.vuelosToolStripMenuItem_Click);
+            // 
+            // mySectoresToolStripMenuItem
+            // 
+            this.mySectoresToolStripMenuItem.Name = "mySectoresToolStripMenuItem";
+            this.mySectoresToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.mySectoresToolStripMenuItem.Text = "Sectores";
+            this.mySectoresToolStripMenuItem.Click += new System.EventHandler(this.mySectoresToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gitHubToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.funcionalidadesToolStripMenuItem});
             this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
@@ -177,19 +222,14 @@ namespace FormPrincipal
             // gitHubToolStripMenuItem
             // 
             this.gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
-            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.gitHubToolStripMenuItem.Text = "Repositorio Github";
             this.gitHubToolStripMenuItem.Click += new System.EventHandler(this.GitHubToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.aboutToolStripMenuItem.Text = "&Acerca del grupo";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -227,11 +267,11 @@ namespace FormPrincipal
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(662, 295);
+            this.label3.Location = new System.Drawing.Point(658, 295);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(170, 20);
+            this.label3.Size = new System.Drawing.Size(174, 20);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Información del sector:";
+            this.label3.Text = "Último Sector Cargado:";
             // 
             // sectorIDLabel
             // 
@@ -418,15 +458,34 @@ namespace FormPrincipal
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
-            // saveToolStripMenuItem
+            // funcionalidadesToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.saveToolStripMenuItem.Text = "&Guardar";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
+            this.funcionalidadesToolStripMenuItem.Name = "funcionalidadesToolStripMenuItem";
+            this.funcionalidadesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.funcionalidadesToolStripMenuItem.Text = "Funcionalidades";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
+            // aerolineasToolStripMenuItem
+            // 
+            this.aerolineasToolStripMenuItem.Name = "aerolineasToolStripMenuItem";
+            this.aerolineasToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.aerolineasToolStripMenuItem.Text = "Aerolineas";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
+            // 
+            // reiniciarSimulaciónToolStripMenuItem
+            // 
+            this.reiniciarSimulaciónToolStripMenuItem.Name = "reiniciarSimulaciónToolStripMenuItem";
+            this.reiniciarSimulaciónToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.reiniciarSimulaciónToolStripMenuItem.Text = "Reiniciar Simulación";
+            this.reiniciarSimulaciónToolStripMenuItem.Click += new System.EventHandler(this.reiniciarSimulaciónToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -460,7 +519,8 @@ namespace FormPrincipal
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Simulador de vuelo - G6";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing_1);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -481,7 +541,6 @@ namespace FormPrincipal
         private System.Windows.Forms.ToolStripMenuItem ListaDeVuelosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gitHubToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Panel panel1;
@@ -507,8 +566,16 @@ namespace FormPrincipal
         private System.Windows.Forms.Label occupationTitleLabel;
         private System.Windows.Forms.Label occupationNumLabel;
         private System.Windows.Forms.ToolStripMenuItem logInMenu;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button sesionBtn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem verMisDatosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem myVuelosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mySectoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem funcionalidadesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem aerolineasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reiniciarSimulaciónToolStripMenuItem;
     }
 }

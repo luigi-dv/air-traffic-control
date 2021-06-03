@@ -72,6 +72,12 @@
     <Compile Include="Confirmation.Designer.cs">
       <DependentUpon>Confirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserFlights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserFlights.Designer.cs">
+      <DependentUpon>UserFlights.cs</DependentUpon>
+    </Compile>
     <Compile Include="GroupInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Confirmation.resx">
       <DependentUpon>Confirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserFlights.resx">
+      <DependentUpon>UserFlights.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GroupInfo.resx">
       <DependentUpon>GroupInfo.cs</DependentUpon>

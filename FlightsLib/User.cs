@@ -16,6 +16,27 @@ namespace FlightsLib
 
         readonly DbCnx db = new DbCnx();
 
+        public User()
+        {
+            //Find if another Id match in the table
+            bool newId = false;
+            int idToSet = 0;
+            //While the result of the db query is not 0, the program creates
+            //another id and repeat the operation
+            db.Start();
+            while (newId == false)
+            {
+                idToSet = SetID();
+                //Db check if id exists in table users
+                int result = db.checkID(idToSet);
+                if (result == 0)
+                {
+                    newId = true;
+                }
+            }
+            db.End();
+            idUser = idToSet ;
+        }
         public int IdUser
         {
             get { return idUser; }
@@ -63,6 +84,12 @@ namespace FlightsLib
                .Select(token => token[random.Next(token.Length)]).ToArray());
 
             return resultToken.ToString();
+        }
+        public int SetID()
+        {
+            Random rnd = new Random();
+            int id = rnd.Next(999999);
+            return id;
         }
         public void SetUser(User userToSet)
         {
