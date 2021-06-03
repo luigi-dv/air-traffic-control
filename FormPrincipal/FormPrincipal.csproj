@@ -72,6 +72,24 @@
     <Compile Include="Confirmation.Designer.cs">
       <DependentUpon>Confirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Airlines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Airlines.Designer.cs">
+      <DependentUpon>Airlines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Airline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Airline.Designer.cs">
+      <DependentUpon>Airline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddAirline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAirline.Designer.cs">
+      <DependentUpon>AddAirline.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserFlights.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,8 +134,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Airline.resx">
+      <DependentUpon>Airline.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Confirmation.resx">
       <DependentUpon>Confirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Airlines.resx">
+      <DependentUpon>Airlines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAirline.resx">
+      <DependentUpon>AddAirline.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserFlights.resx">
       <DependentUpon>UserFlights.cs</DependentUpon>

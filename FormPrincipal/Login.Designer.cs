@@ -36,11 +36,11 @@ namespace FormPrincipal
             this.pswLoginInput = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.loginLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.checkBoxShowPsw = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.guestLink = new System.Windows.Forms.LinkLabel();
             this.helpLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,13 +87,6 @@ namespace FormPrincipal
             this.loginLabel.ForeColor = System.Drawing.Color.Black;
             this.loginLabel.Name = "loginLabel";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            // 
             // checkBoxShowPsw
             // 
             resources.ApplyResources(this.checkBoxShowPsw, "checkBoxShowPsw");
@@ -121,6 +114,13 @@ namespace FormPrincipal
             this.helpLinkLabel.Name = "helpLinkLabel";
             this.helpLinkLabel.TabStop = true;
             this.helpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.helpLinkLabel_LinkClicked);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
             // 
             // Login
             // 

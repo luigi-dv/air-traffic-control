@@ -776,6 +776,10 @@ namespace FormPrincipal
 
         }
 
-        
+        private void aerolineasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Airlines airlines = new Airlines();
+            airlines.ShowDialog();
+        }
     }
 }

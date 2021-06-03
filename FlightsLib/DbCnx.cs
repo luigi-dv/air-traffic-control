@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.SQLite;
 namespace FlightsLib
 {
-    class DbCnx
+    public class DbCnx
     {
         private SQLiteConnection cnx;
 
@@ -24,19 +24,46 @@ namespace FlightsLib
 
         public DataTable GetAllAirlines()
         {
-            DataTable airlanes = new DataTable();
-            string sql = "SELECT * FROM airlanes";
+            DataTable airlines = new DataTable();
+            string sql = "SELECT rowid, * FROM airlines";
             SQLiteDataAdapter adp = new SQLiteDataAdapter(sql, cnx);
-            adp.Fill(airlanes);
-            return airlanes;
+            adp.Fill(airlines);
+            return airlines;
         }
-        public DataTable GetAirlane(string id)
+
+        public int GetAirlane(int rowid)
         {
-            DataTable airlane = new DataTable();
-            string sql = "SELECT * FROM airlanes WHERE id=" + id;
-            SQLiteDataAdapter adp = new SQLiteDataAdapter(sql, cnx);
-            adp.Fill(airlane);
-            return airlane;
+            string query = "SELECT COUNT(*) FROM airlines WHERE rowid=" + rowid+ "";
+            SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
+            int RowCount = Convert.ToInt32(comm.ExecuteScalar());
+            return RowCount;
+        }
+        public int GetAirlaneByID(string id)
+        {
+            string query = "SELECT COUNT(*) FROM airlines WHERE id = '" + id + "'";
+            SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
+            int RowCount = Convert.ToInt32(comm.ExecuteScalar());
+            return RowCount;
+        }
+
+        public void DeleteAirline(int rowid)
+        {
+            string query = "DELETE FROM airlines WHERE rowid=" + rowid + "";
+            SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
+            comm.ExecuteNonQuery();
+        }
+
+        public void InsertAirline(string id, string name, string country, string prefixPhone, string phone, string email, string direction, string website)
+        {
+            string query = "INSERT INTO airlines VALUES ('" + id + "','" + name + "','" + country + "'," + prefixPhone + "," + phone + ",'" + email + "','" + direction + "','" + website+"')";
+            SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
+            comm.ExecuteNonQuery();
+        }
+        public void UpdateAirline(int rowid,string id, string name, string country, string prefixPhone , string phone, string email, string direction, string website)
+        {
+            string query = "UPDATE airlines SET id='"+id+"', name='" + name + "', country='" + country + "', prefixPhone=" +prefixPhone+ ",phone="+phone+ ", email='" + email + "', direction='" + direction+ "', website='" + website+ "' WHERE rowid=" + rowid + ""; 
+            SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
+            comm.ExecuteNonQuery();
         }
 
         /********************* AUTH SECTION *************************

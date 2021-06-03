@@ -34,6 +34,7 @@ namespace FormPrincipal
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logInMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.loadFlightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarSectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -42,13 +43,17 @@ namespace FormPrincipal
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListaDeVuelosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aerolineasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.reiniciarSimulaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verMisDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myVuelosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mySectoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.funcionalidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -73,11 +78,6 @@ namespace FormPrincipal
             this.label2 = new System.Windows.Forms.Label();
             this.sesionBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.funcionalidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.aerolineasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.reiniciarSimulaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,6 +115,11 @@ namespace FormPrincipal
             this.logInMenu.Size = new System.Drawing.Size(190, 22);
             this.logInMenu.Text = "Iniciar Sesión";
             this.logInMenu.Click += new System.EventHandler(this.logInMenu_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
             // 
             // loadFlightsToolStripMenuItem
             // 
@@ -175,14 +180,28 @@ namespace FormPrincipal
             // ListaDeVuelosToolStripMenuItem
             // 
             this.ListaDeVuelosToolStripMenuItem.Name = "ListaDeVuelosToolStripMenuItem";
-            this.ListaDeVuelosToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.ListaDeVuelosToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.ListaDeVuelosToolStripMenuItem.Text = "Lista de Vuelos Activos";
             this.ListaDeVuelosToolStripMenuItem.Click += new System.EventHandler(this.ListaDeVuelosToolStripMenuItem_Click);
+            // 
+            // aerolineasToolStripMenuItem
+            // 
+            this.aerolineasToolStripMenuItem.Name = "aerolineasToolStripMenuItem";
+            this.aerolineasToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.aerolineasToolStripMenuItem.Text = "Aerolineas";
+            this.aerolineasToolStripMenuItem.Click += new System.EventHandler(this.aerolineasToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(191, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(208, 6);
+            // 
+            // reiniciarSimulaciónToolStripMenuItem
+            // 
+            this.reiniciarSimulaciónToolStripMenuItem.Name = "reiniciarSimulaciónToolStripMenuItem";
+            this.reiniciarSimulaciónToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.reiniciarSimulaciónToolStripMenuItem.Text = "Reiniciar Simulación";
+            this.reiniciarSimulaciónToolStripMenuItem.Click += new System.EventHandler(this.reiniciarSimulaciónToolStripMenuItem_Click);
             // 
             // verMisDatosToolStripMenuItem
             // 
@@ -232,6 +251,17 @@ namespace FormPrincipal
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.aboutToolStripMenuItem.Text = "&Acerca del grupo";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(170, 6);
+            // 
+            // funcionalidadesToolStripMenuItem
+            // 
+            this.funcionalidadesToolStripMenuItem.Name = "funcionalidadesToolStripMenuItem";
+            this.funcionalidadesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.funcionalidadesToolStripMenuItem.Text = "Funcionalidades";
             // 
             // openFileDialog1
             // 
@@ -457,35 +487,6 @@ namespace FormPrincipal
             this.panel1.Size = new System.Drawing.Size(567, 565);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
-            // 
-            // funcionalidadesToolStripMenuItem
-            // 
-            this.funcionalidadesToolStripMenuItem.Name = "funcionalidadesToolStripMenuItem";
-            this.funcionalidadesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.funcionalidadesToolStripMenuItem.Text = "Funcionalidades";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
-            // 
-            // aerolineasToolStripMenuItem
-            // 
-            this.aerolineasToolStripMenuItem.Name = "aerolineasToolStripMenuItem";
-            this.aerolineasToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.aerolineasToolStripMenuItem.Text = "Aerolineas";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
-            // 
-            // reiniciarSimulaciónToolStripMenuItem
-            // 
-            this.reiniciarSimulaciónToolStripMenuItem.Name = "reiniciarSimulaciónToolStripMenuItem";
-            this.reiniciarSimulaciónToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.reiniciarSimulaciónToolStripMenuItem.Text = "Reiniciar Simulación";
-            this.reiniciarSimulaciónToolStripMenuItem.Click += new System.EventHandler(this.reiniciarSimulaciónToolStripMenuItem_Click);
             // 
             // MainForm
             // 

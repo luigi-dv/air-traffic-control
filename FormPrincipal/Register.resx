@@ -354,7 +354,7 @@
     <value>61, 17</value>
   </data>
   <data name="checkBoxShowPsw.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>4</value>
   </data>
   <data name="checkBoxShowPsw.Text" xml:space="preserve">
     <value>Mostrar</value>
@@ -378,7 +378,7 @@
     <value>181, 20</value>
   </data>
   <data name="pswRegisterInput.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;pswRegisterInput.Name" xml:space="preserve">
     <value>pswRegisterInput</value>
@@ -459,7 +459,7 @@
     <value>181, 20</value>
   </data>
   <data name="userNameRegisterInput.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;userNameRegisterInput.Name" xml:space="preserve">
     <value>userNameRegisterInput</value>
@@ -480,7 +480,7 @@
     <value>181, 20</value>
   </data>
   <data name="pswConfirmRegisterInput.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;pswConfirmRegisterInput.Name" xml:space="preserve">
     <value>pswConfirmRegisterInput</value>
@@ -561,7 +561,7 @@
     <value>181, 20</value>
   </data>
   <data name="emailRegisterInput.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;emailRegisterInput.Name" xml:space="preserve">
     <value>emailRegisterInput</value>
@@ -585,7 +585,7 @@
     <value>107, 13</value>
   </data>
   <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>7</value>
   </data>
   <data name="linkLabel1.Text" xml:space="preserve">
     <value>Ya tengo una cuenta</value>
@@ -612,7 +612,7 @@
     <value>104, 13</value>
   </data>
   <data name="guestLink.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>6</value>
   </data>
   <data name="guestLink.Text" xml:space="preserve">
     <value>Entrar como invitado</value>
@@ -642,7 +642,7 @@
     <value>37, 13</value>
   </data>
   <data name="helpLinkLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>8</value>
   </data>
   <data name="helpLinkLabel.Text" xml:space="preserve">
     <value>Ayuda</value>
