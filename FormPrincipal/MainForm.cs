@@ -36,7 +36,7 @@ namespace FormPrincipal
         Stack<FlightsList> FlightStack = new Stack<FlightsList>();
 
         //Auxiliar flightlist for the stack
-        private FlightsList FlightAux = new FlightsList();
+        
 
         //The sector
         private Sector mySector = new Sector();
@@ -168,7 +168,6 @@ namespace FormPrincipal
             {
                 string filename = openFileDialog1.FileName;
                 int result = myFlightsList.LoadFlightsFile(filename);
-                FlightStack.Push(myFlightsList);
                 if (result != 0)
                 {
                     if (result == -1)
@@ -377,12 +376,19 @@ namespace FormPrincipal
                 string cycleTime = cycleTimeInput.Text;
                 int time = Convert.ToInt32(cycleTime);
                 int flightsInDestination = 0;
+                FlightsList tempFlightsList = new FlightsList();
+                tempFlightsList = myFlightsList;
+                
+
+                //Saves simulation to the stack
+
+                FlightStack.Push(tempFlightsList);
+                FlightStack.Clear();
                 //Simulates a Cycle and updates position in Picturebox
                 myFlightsList.FlightsSimulation(time);
                 //0.5.Helper: Function to print the sector occupation
 
-                //Saves simulation to the stack
-                FlightStack.Push(myFlightsList);
+             
                 PrintOcuppation();
                 panel1.Invalidate();
                 for (int i = 0; i < myFlightsList.Number; i++)
@@ -412,7 +418,10 @@ namespace FormPrincipal
         {
             //Change Sector Color
             int StackNum = FlightStack.Count;
+             FlightsList FlightAux = new FlightsList();
+            double X, Y;
             panel1.Invalidate();
+            
             //Checks if the stack is empty and shows a messagebox informing
             if(StackNum < 1)
             {
@@ -424,8 +433,13 @@ namespace FormPrincipal
                 
                 for (int i = 0; i < myFlightsList.Number; i++)
                 {
-                    myFlightsList.Flights[i].PositionX = FlightAux.Flights[i].PositionX;
-                    myFlightsList.Flights[i].PositionY = FlightAux.Flights[i].PositionX;
+                    X = FlightAux.Flights[i].PositionX;
+
+                    myFlightsList.Flights[i].PositionX = X;
+
+                    Y = FlightAux.Flights[i].PositionY;
+
+                    myFlightsList.Flights[i].PositionY = Y;
 
                     aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
 
@@ -481,18 +495,20 @@ namespace FormPrincipal
 
         private void timer_tick(object sender, EventArgs e)
         {
-    
+        
             string cycleTime = cycleTimeInput.Text;
             int.TryParse(cycleTime, out int time);
+            FlightsList tempFlightsList = new FlightsList();
+            tempFlightsList = myFlightsList;
+            //Saves simulation to the stack
+
+            FlightStack.Push(tempFlightsList);
 
             //int time = Convert.ToInt32(cycleTime);
             int flightsInDestination = 0;
 
             //Simulates a Cycle and updates position in Picturebox
-            myFlightsList.FlightsSimulation(time);
-
-            //Saves flight to the stack
-            FlightStack.Push(myFlightsList);
+            myFlightsList.FlightsSimulation(time);          
 
             // i es el contador para los ciclos de la simulacion
             for (int j = 0; j < myFlightsList.Number; j++)
@@ -520,6 +536,7 @@ namespace FormPrincipal
                 myFlightsList = originalFlightList;
                 //Clean Flights
                 panel1.Controls.Clear();
+                FlightStack.Clear();
                 //0.5.Helper: Function to print the sector occupation
                 this.totalFlightsLabel.Text = myFlightsList.Number.ToString();
                 PrintOcuppation();
