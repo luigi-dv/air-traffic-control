@@ -376,6 +376,7 @@ namespace FormPrincipal
                 string cycleTime = cycleTimeInput.Text;
                 int time = Convert.ToInt32(cycleTime);
                 int flightsInDestination = 0;
+                //Creates a copy of myFlightList but every change overwrites it -_-
                 FlightsList tempFlightsList = new FlightsList();
                 tempFlightsList = myFlightsList;
                 
@@ -498,6 +499,7 @@ namespace FormPrincipal
         
             string cycleTime = cycleTimeInput.Text;
             int.TryParse(cycleTime, out int time);
+            //Creates a copy of myFlightList but every change overwrites it -_-
             FlightsList tempFlightsList = new FlightsList();
             tempFlightsList = myFlightsList;
             //Saves simulation to the stack
