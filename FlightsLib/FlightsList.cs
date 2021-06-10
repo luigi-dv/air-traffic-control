@@ -41,7 +41,18 @@ namespace FlightsLib
             }
             
         }
-        
+        //Copia la lista de vuelos y la devuelve (evita que al cambiar la copia o el origen se sobreescriba la otra)
+        public FlightsList Copy()
+        {
+            FlightsList fl = new FlightsList();
+            fl.Number = this.Number;
+            int i;
+            for(i=0;i<number;i++)
+            {
+                fl.Flights[i] = this.Flights[i].CopyFlightList();
+            }
+            return (fl);
+        }
 
         //Carga el archivo que contiene los datos de los vuelos
         public  int LoadFlightsFile(string fileUserRecived)

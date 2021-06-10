@@ -73,6 +73,23 @@ namespace FlightsLib
                                  this.positionY
                                  );
         }
+        //Copia el vuelo y lo devuelve (evita que al cambiar la copia o el origen se sobreescriba la otra)
+        public Flight CopyFlightList()
+        {
+            Flight fl = new Flight();
+            fl.flightID = this.flightID;
+            fl.company = this.company;
+            fl.destinationX = this.destinationX;
+            fl.destinationY = this.destinationY;
+            fl.positionX = this.PositionX;
+            fl.positionY = this.positionY;
+            fl.originX = this.originX;
+            fl.OriginY = this.originY;
+            fl.velocity = this.velocity;
+            return (fl);
+
+            
+        }
 
         //Simula cada vuelo con el tiempo que recibe por parametro
         //Informa al usuario cuando un avion ya llego a su destino.

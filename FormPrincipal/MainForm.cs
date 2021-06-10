@@ -376,15 +376,15 @@ namespace FormPrincipal
                 string cycleTime = cycleTimeInput.Text;
                 int time = Convert.ToInt32(cycleTime);
                 int flightsInDestination = 0;
-                //Creates a copy of myFlightList but every change overwrites it -_-
+                //Creates a copy of myFlightList 
                 FlightsList tempFlightsList = new FlightsList();
-                tempFlightsList = myFlightsList;
+                tempFlightsList = myFlightsList.Copy();
                 
 
                 //Saves simulation to the stack
 
                 FlightStack.Push(tempFlightsList);
-                FlightStack.Clear();
+                
                 //Simulates a Cycle and updates position in Picturebox
                 myFlightsList.FlightsSimulation(time);
                 //0.5.Helper: Function to print the sector occupation
@@ -499,9 +499,9 @@ namespace FormPrincipal
         
             string cycleTime = cycleTimeInput.Text;
             int.TryParse(cycleTime, out int time);
-            //Creates a copy of myFlightList but every change overwrites it -_-
+            //Creates a copy of myFlightList
             FlightsList tempFlightsList = new FlightsList();
-            tempFlightsList = myFlightsList;
+            tempFlightsList = myFlightsList.Copy();
             //Saves simulation to the stack
 
             FlightStack.Push(tempFlightsList);
