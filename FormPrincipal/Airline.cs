@@ -74,7 +74,6 @@ namespace FormPrincipal
         {
             db.Start();
             int airlineValue = db.GetAirlane(this.rowid);
-            MessageBox.Show(Convert.ToString(airlineValue));
             if (airlineValue == 0)
             {
                 //There is not any airline matching the id consider save 

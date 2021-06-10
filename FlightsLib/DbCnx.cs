@@ -55,7 +55,7 @@ namespace FlightsLib
 
         public void InsertAirline(string id, string name, string country, string prefixPhone, string phone, string email, string direction, string website)
         {
-            string query = "INSERT INTO airlines VALUES ('" + id + "','" + name + "','" + country + "'," + prefixPhone + "," + phone + ",'" + email + "','" + direction + "','" + website+"')";
+            string query = "INSERT INTO airlines VALUES ('" + id + "','" + name + "','" + country + "','" + prefixPhone + "','" + phone + "','" + email + "','" + direction + "','" + website+"')";
             SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
             comm.ExecuteNonQuery();
         }
