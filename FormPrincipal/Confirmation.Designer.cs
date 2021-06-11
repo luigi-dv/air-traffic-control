@@ -90,7 +90,7 @@ namespace FormPrincipal
             // 
             this.emailConfirmationSend.AutoSize = true;
             this.emailConfirmationSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailConfirmationSend.Location = new System.Drawing.Point(67, 338);
+            this.emailConfirmationSend.Location = new System.Drawing.Point(20, 338);
             this.emailConfirmationSend.Name = "emailConfirmationSend";
             this.emailConfirmationSend.Size = new System.Drawing.Size(39, 13);
             this.emailConfirmationSend.TabIndex = 23;
