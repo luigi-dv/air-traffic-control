@@ -91,6 +91,9 @@ En caso contrario proceda a descargar el repositiorio e insertela en el origen m
  *Si todo lo anterior no funciona porfavor pongase en contacto con nosotros encontrará nuestra información [aquí](#Authors)
  
  
+ *Si todo lo anterior no funciona porfavor pongase en contacto con nosotros encontrará nuestra información aquí[link](#Authors)
+ 
+ 
  
  
 ## Contributing
