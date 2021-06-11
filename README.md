@@ -2,10 +2,10 @@
 
 Simulador de vuelo  del grupo G6 
 
-Integrantes: 
-* Edgar Albiol
-* Andrea Chong
-* Luigelo Davila
+## Authors: 
+* Edgar Albiol:   edgar.albiol@estudiantat.upc.edu 
+* Andrea Chong:   andrea.victoria.chong@estudiantat.upc.edu 
+* Luigelo Davila: luigelo.miguel.davila@estudiantat.upc.edu
 
 
 ## Installation
@@ -51,6 +51,9 @@ C:\Users\user\Directory\ProjectG6\Program_Folder\bin\debug\Resources
 ## Errors
  En caso de presentar errores en el programa asegurese de que la carpeta "Resources" existe. 
  En caso contrario proceda a descargar el repositiorio e insertela en el origen manualmente.  
+ 
+ *Si todo lo anterior no funciona porfavor pongase en contacto con nosotros encontrará nuestra información aquí[link](#Authors)
+ 
  
  
  
