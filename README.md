@@ -55,7 +55,7 @@ C:\Users\user\Directory\ProjectG6\Program_Folder\bin\debug\Resources
 - Register: 
     - El programa registra un usuario recoge el email, username, password. 
     - Hay una opción para que el usuario pueda ver la contraseña que ha introducido y una confirmación de contraseña para que     el usuario no introduzca valores incorrectos.
-    - Al registrarse se envia un código de confirmación al email del usuario para confirmar el registro.
+    - Al registrarse se envía un código de confirmación al email del usuario para confirmar el registro.
     - Una vez registrado se redirige al formulario principal del programa y se muestra su username.
 - Login:
     - El programa pide al usuario introducir sus datos y se comprueba si son validos. 
@@ -69,7 +69,7 @@ C:\Users\user\Directory\ProjectG6\Program_Folder\bin\debug\Resources
 
 Usted puede introducir los servidores de correos y clientes que desee de la siguiente manera.
 
-En Register.cs en las primeras lineas de código (15-25)
+En Register.cs en las primeras líneas de código (15-25)
 ```bash
 private const string EMAIL = "YOUR EMAIL";
 private const string SERVER = "YOUR SMTP SERVER";
@@ -85,13 +85,12 @@ INSERT INTO emailClients VALUES (id, "username", "psw")
  
 
 ## Errors
-En caso de presentar errores en el programa asegurese de que la carpeta "Resources" existe. 
-En caso contrario proceda a descargar el repositiorio e insertela en el origen manualmente.  
- 
- *Si todo lo anterior no funciona porfavor pongase en contacto con nosotros encontrará nuestra información [aquí](#Authors)
- 
- 
- 
+
+En caso de presentar errores en el programa asegúrese de que la carpeta "Resources" existe. 
+En caso contrario proceda a descargar el repositorio e insértela en el origen manualmente.
+
+*Si todo lo anterior no funciona por favor póngase en contacto con nosotros encontrará nuestra información [aquí](#Authors)
+
  
  
 ## Contributing
