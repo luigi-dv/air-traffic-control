@@ -15,7 +15,7 @@ namespace FormPrincipal
 {
     public partial class Register : Form
     {
-        private const string EMAIL = "testing@ldlvoper.com";
+        private const string EMAIL = "testing@ldvloper.com";
         private const string SERVER = "smtp.ionos.es";
         private const int PORT = 587;
 
@@ -164,11 +164,11 @@ namespace FormPrincipal
             try
             {
                 //Call to 0.4.Helper
-                VisitLink("https://github.com/LuigeloDV/ProjectG6/blob/master/README.md");
+                VisitLink("https://github.com/LuigeloDV/ProjectG6#readme");
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha podido abrir el repositorio remoto.");
+                MessageBox.Show("No se ha podido abrir el cuadro de ayuda.");
             }
         }
 
