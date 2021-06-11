@@ -96,12 +96,11 @@ En caso contrario proceda a descargar el repositorio e insértela en el origen m
 ## Contributing
 Los "pull requests" son bienvenidas. Para cambios importantes, abra un problema primero para discutir qué le 
 gustaría cambiar.
+Asegúrese de actualizar las pruebas según corresponda.
 
 ## Media
 https://user-images.githubusercontent.com/75263395/121630530-9d142d00-ca7d-11eb-8b79-4e06b65ac11b.mp4
 
 
-
-Asegúrese de actualizar las pruebas según corresponda.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
