@@ -189,6 +189,7 @@ namespace FormPrincipal
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.registerLabel);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Register";
             this.Load += new System.EventHandler(this.Register_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

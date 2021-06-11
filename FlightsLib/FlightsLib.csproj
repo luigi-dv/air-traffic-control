@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Auth.cs" />
     <Compile Include="Airlane.cs" />
+    <Compile Include="SectorsList.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="DbCnx.cs" />
     <Compile Include="User.cs" />

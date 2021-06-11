@@ -138,6 +138,7 @@ namespace FormPrincipal
             this.Controls.Add(this.label2);
             this.Controls.Add(this.userNameLoginLabel);
             this.Controls.Add(this.userNameLoginInput);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Login";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

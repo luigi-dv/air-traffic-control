@@ -85,6 +85,7 @@ namespace FormPrincipal
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.airlinesDGV);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Airlines";
             this.Text = "Aerolineas";

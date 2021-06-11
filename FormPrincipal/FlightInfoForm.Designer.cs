@@ -46,6 +46,8 @@ namespace FormPrincipal
             this.label9 = new System.Windows.Forms.Label();
             this.flightPositionLabel = new System.Windows.Forms.Label();
             this.flightDestinationLabel = new System.Windows.Forms.Label();
+            this.flightCompanyEmailLabel = new System.Windows.Forms.Label();
+            this.flightCompanyPhoneLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.flightPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -118,13 +120,13 @@ namespace FormPrincipal
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(32, 282);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 20);
+            this.label3.Size = new System.Drawing.Size(169, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Compañia";
+            this.label3.Text = "Información Compañia";
             // 
             // flightProgress
             // 
-            this.flightProgress.Location = new System.Drawing.Point(36, 468);
+            this.flightProgress.Location = new System.Drawing.Point(36, 503);
             this.flightProgress.Name = "flightProgress";
             this.flightProgress.Size = new System.Drawing.Size(238, 23);
             this.flightProgress.TabIndex = 7;
@@ -133,7 +135,7 @@ namespace FormPrincipal
             // 
             this.flightCompanyLabel.AutoSize = true;
             this.flightCompanyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flightCompanyLabel.Location = new System.Drawing.Point(32, 302);
+            this.flightCompanyLabel.Location = new System.Drawing.Point(33, 309);
             this.flightCompanyLabel.Name = "flightCompanyLabel";
             this.flightCompanyLabel.Size = new System.Drawing.Size(73, 16);
             this.flightCompanyLabel.TabIndex = 8;
@@ -143,7 +145,7 @@ namespace FormPrincipal
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(32, 429);
+            this.label5.Location = new System.Drawing.Point(32, 464);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 9;
@@ -153,7 +155,7 @@ namespace FormPrincipal
             // 
             this.flightOriginLabel.AutoSize = true;
             this.flightOriginLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flightOriginLabel.Location = new System.Drawing.Point(36, 449);
+            this.flightOriginLabel.Location = new System.Drawing.Point(36, 484);
             this.flightOriginLabel.Name = "flightOriginLabel";
             this.flightOriginLabel.Size = new System.Drawing.Size(32, 16);
             this.flightOriginLabel.TabIndex = 10;
@@ -163,7 +165,7 @@ namespace FormPrincipal
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(210, 429);
+            this.label7.Location = new System.Drawing.Point(210, 464);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 20);
             this.label7.TabIndex = 11;
@@ -173,7 +175,7 @@ namespace FormPrincipal
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(32, 329);
+            this.label8.Location = new System.Drawing.Point(32, 372);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 20);
             this.label8.TabIndex = 12;
@@ -182,7 +184,7 @@ namespace FormPrincipal
             // label9
             // 
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label9.Location = new System.Drawing.Point(35, 383);
+            this.label9.Location = new System.Drawing.Point(35, 435);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(230, 2);
             this.label9.TabIndex = 13;
@@ -191,7 +193,7 @@ namespace FormPrincipal
             // 
             this.flightPositionLabel.AutoSize = true;
             this.flightPositionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flightPositionLabel.Location = new System.Drawing.Point(36, 353);
+            this.flightPositionLabel.Location = new System.Drawing.Point(36, 396);
             this.flightPositionLabel.Name = "flightPositionLabel";
             this.flightPositionLabel.Size = new System.Drawing.Size(37, 16);
             this.flightPositionLabel.TabIndex = 14;
@@ -201,11 +203,31 @@ namespace FormPrincipal
             // 
             this.flightDestinationLabel.AutoSize = true;
             this.flightDestinationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flightDestinationLabel.Location = new System.Drawing.Point(211, 449);
+            this.flightDestinationLabel.Location = new System.Drawing.Point(211, 484);
             this.flightDestinationLabel.Name = "flightDestinationLabel";
             this.flightDestinationLabel.Size = new System.Drawing.Size(32, 16);
             this.flightDestinationLabel.TabIndex = 15;
             this.flightDestinationLabel.Text = "(x,y)";
+            // 
+            // flightCompanyEmailLabel
+            // 
+            this.flightCompanyEmailLabel.AutoSize = true;
+            this.flightCompanyEmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flightCompanyEmailLabel.Location = new System.Drawing.Point(35, 336);
+            this.flightCompanyEmailLabel.Name = "flightCompanyEmailLabel";
+            this.flightCompanyEmailLabel.Size = new System.Drawing.Size(47, 16);
+            this.flightCompanyEmailLabel.TabIndex = 16;
+            this.flightCompanyEmailLabel.Text = "Email";
+            // 
+            // flightCompanyPhoneLabel
+            // 
+            this.flightCompanyPhoneLabel.AutoSize = true;
+            this.flightCompanyPhoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flightCompanyPhoneLabel.Location = new System.Drawing.Point(172, 309);
+            this.flightCompanyPhoneLabel.Name = "flightCompanyPhoneLabel";
+            this.flightCompanyPhoneLabel.Size = new System.Drawing.Size(52, 16);
+            this.flightCompanyPhoneLabel.TabIndex = 17;
+            this.flightCompanyPhoneLabel.Text = "Phone";
             // 
             // FlightInfoForm
             // 
@@ -213,6 +235,8 @@ namespace FormPrincipal
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(308, 595);
+            this.Controls.Add(this.flightCompanyPhoneLabel);
+            this.Controls.Add(this.flightCompanyEmailLabel);
             this.Controls.Add(this.flightDestinationLabel);
             this.Controls.Add(this.flightPositionLabel);
             this.Controls.Add(this.label9);
@@ -228,6 +252,7 @@ namespace FormPrincipal
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.flightPictureBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FlightInfoForm";
             this.Load += new System.EventHandler(this.Form3_Load);
@@ -257,5 +282,7 @@ namespace FormPrincipal
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label flightPositionLabel;
         private System.Windows.Forms.Label flightDestinationLabel;
+        private System.Windows.Forms.Label flightCompanyEmailLabel;
+        private System.Windows.Forms.Label flightCompanyPhoneLabel;
     }
 }

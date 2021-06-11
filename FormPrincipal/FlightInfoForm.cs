@@ -20,11 +20,17 @@ namespace FormPrincipal
         const string FLIGHTIMAGESWA = "Resources\\Images\\flightPictureSwiss.png";
         const string FLIGHTIMAGEDEFAULT = "Resources\\Images\\flightPicture.png";
 
+        DbCnx db = new DbCnx();
         public FlightInfoForm()
         {
             InitializeComponent();
         }
 
+        // Receiving the data from the mainForm
+        public void SetInfo(Flight flight)
+        {
+            this.flightInfo = flight;
+        }
         private void Form3_Load(object sender, EventArgs e)
         {
              Text = flightInfo.FlightID + "- Información del vuelo";
@@ -35,6 +41,7 @@ namespace FormPrincipal
             string imageFileFR = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, FLIGHTIMAGEFR);
             string imageFileLX = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, FLIGHTIMAGESWA);
             string imageFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, FLIGHTIMAGEDEFAULT);
+
 
             try
             {
@@ -58,11 +65,12 @@ namespace FormPrincipal
             }
             //Flight ID Label
             this.flightID2Label.Text = flightInfo.FlightID;
-            //Flight Company label
-            this.flightCompanyLabel.Text = flightInfo.Company; 
+            //Flight Info label
+            this.flightCompanyLabel.Text = flightInfo.Company;
+            this.flightCompanyEmailLabel.Text = AirlaneData()[0];
+            this.flightCompanyPhoneLabel.Text = AirlaneData()[1];
             //Flight Position label
-            this.flightPositionLabel.Text = "("+flightInfo.PositionX + "," +flightInfo.PositionY+")"; 
-
+            this.flightPositionLabel.Text = "("+flightInfo.PositionX + "," +flightInfo.PositionY+")";        
             //Flight Origin label
             this.flightOriginLabel.Text = "(" + flightInfo.OriginX + "," + flightInfo.OriginY + ")";
              //Flight Destination label
@@ -94,11 +102,7 @@ namespace FormPrincipal
             }
            
         }
-        // Allows setting the value of color from Form1
-        public void SetInfo(Flight flight)
-        {
-            this.flightInfo = flight;
-        }
+        
 
         private void SetProgress()
         {
@@ -123,7 +127,14 @@ namespace FormPrincipal
             flightProgress.Step = 1;
             flightProgress.Value = position;
         }
-       
+        
+        private string[] AirlaneData()
+        {
+            db.Start();
+            string[] data = db.GetAirlineByName(this.flightInfo.Company);
+            db.End();
+            return data;
+        }
 
     }
 }

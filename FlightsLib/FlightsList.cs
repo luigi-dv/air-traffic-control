@@ -9,7 +9,14 @@ namespace FlightsLib
 {
     public class FlightsList
     {
-        public Flight[] Flights = new Flight[10];
+        private Flight[] myFlightsVector= new Flight[100];
+
+        public Flight[] Flights
+        {
+            get { return myFlightsVector; }
+            set { myFlightsVector = value; }
+        }
+
         //Se atribuye recoge de vuelos para poder efectuar la busqueda correctamente
         private int number;
         public int Number

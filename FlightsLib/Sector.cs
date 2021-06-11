@@ -83,17 +83,12 @@ namespace FlightsLib
             {
                 return -2;
             }
-            catch
-            {
-                return -2;
-            }
         }
 
         //Muestra el trafico aereo que hay en el sector
         public int GetTraffic(FlightsList flightsList)
         {
 
-         
             int insideSectorCount = 0;
 
             float positionMarginSectorX = (float)this.PositionX + this.Width;

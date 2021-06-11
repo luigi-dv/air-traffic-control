@@ -46,6 +46,22 @@ namespace FlightsLib
             return RowCount;
         }
 
+        public string[] GetAirlineByName(string name)
+        {
+            DataTable tableUser = new DataTable();
+            string sql = "SELECT email, prefixPhone, phone FROM airlines WHERE name='" + name + "'";
+            SQLiteDataAdapter adp = new SQLiteDataAdapter(sql, cnx);
+            adp.Fill(tableUser);
+            string[] company = new string[2];
+            foreach (DataRow row in tableUser.Rows)
+            {
+                company[0] = row["email"].ToString();
+                company[1] = "+" + row["prefixPhone"].ToString() + " " + row["phone"].ToString();
+              
+            }
+            return company;
+        }
+
         public void DeleteAirline(int rowid)
         {
             string query = "DELETE FROM airlines WHERE rowid=" + rowid + "";

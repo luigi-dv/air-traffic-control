@@ -90,6 +90,12 @@
     <Compile Include="AddAirline.Designer.cs">
       <DependentUpon>AddAirline.cs</DependentUpon>
     </Compile>
+    <Compile Include="SectorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SectorInfo.Designer.cs">
+      <DependentUpon>SectorInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserFlights.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddAirline.resx">
       <DependentUpon>AddAirline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SectorInfo.resx">
+      <DependentUpon>SectorInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserFlights.resx">
       <DependentUpon>UserFlights.cs</DependentUpon>

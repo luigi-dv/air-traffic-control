@@ -32,18 +32,19 @@ namespace FormPrincipal
         private FlightsList myFlightsList = new FlightsList();
         private FlightsList originalFlightList = new FlightsList();
 
+        //The sector list
+        private SectorsList mySectorList = new SectorsList();
+
         //Stack with all the previous cycles
         Stack<FlightsList> FlightStack = new Stack<FlightsList>();
 
-        //Auxiliar flightlist for the stack
-        
 
         //The sector
-        private Sector mySector = new Sector();
+        private FlightsLib.Sector mySector = new FlightsLib.Sector();
+        private PictureBox[] sectorVector = new PictureBox[MAX];
 
         //A single flight
         private Flight myFlight = new Flight();
-
         private PictureBox[] aircraftVector = new PictureBox[MAX];
 
         
@@ -66,8 +67,7 @@ namespace FormPrincipal
                 this.verMisDatosToolStripMenuItem.Visible = false;
                 this.sesionBtn.Text = "Iniciar Sesión";
                 this.sesionBtn.BackColor = Color.Green;
-                
-                
+
             }
             else
             {
@@ -202,8 +202,8 @@ namespace FormPrincipal
 
                     //Display Flights Total Number into the Right side panel
                     this.totalFlightsLabel.Text = Convert.ToString(myFlightsList.Number);
-                    //Call 0.5.Helper: Function to print the sector occupation
-                    PrintOcuppation();
+                    //Call 0.7.Helper: Function to print the sector occupation in to DGV
+                    loadSectorInfo();
                     //Call 0.7.Helper: Print flights
                     PrintFlights();
                 }
@@ -253,7 +253,7 @@ namespace FormPrincipal
             {
                 string filename = openFileDialog2.FileName;
 
-                int result = mySector.LoadSectorFile(filename);
+                int result = mySectorList.LoadSectorsFile(filename);
                 if (result != 0)
                 {
                     if (result == -1)
@@ -279,9 +279,9 @@ namespace FormPrincipal
                 }
                 else
                 {
-                    this.sectorIDLabel.Text = Convert.ToString(mySector.SectorID);
-                    //0.5.Helper: Function to print the sector occupation
-                    PrintOcuppation();
+                    //this.sectorIDLabel.Text = Convert.ToString(mySectorList.Sector[mySectorList.Number].SectorID);
+                    //0.7.Helper: Function to print the sector occupation in to DGV
+                    loadSectorInfo();
                     panel1.Invalidate();
                 }
 
@@ -291,37 +291,41 @@ namespace FormPrincipal
         //2.2.Visualizar el sector en el espacio aéreo.
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
-            //Xo,Yo (Left top corner)
-            Point x0y0 = new Point(Convert.ToInt32(mySector.PositionX), Convert.ToInt32(mySector.PositionY));
-            //Xo,Yf (Left bottom corner)
-            Point x0yF = new Point(Convert.ToInt32(mySector.PositionX), Convert.ToInt32(mySector.PositionY + mySector.Height));
-            //Xf,Yf (Right bottom corner)
-            Point xFyF = new Point(Convert.ToInt32(mySector.PositionX + mySector.Width), Convert.ToInt32(mySector.PositionY + mySector.Height));
-            //Xo,Yo (Right top corner)
-            Point xFy0 = new Point(Convert.ToInt32(mySector.PositionX + mySector.Width), Convert.ToInt32(mySector.PositionY));
-
-            System.Drawing.Graphics graphics = e.Graphics;
-            // Points that define the rectangle
-            Point[] polygonPoints = new Point[4];
-            polygonPoints[0] = x0y0;
-            polygonPoints[1] = x0yF;
-            polygonPoints[2] = xFyF;
-            polygonPoints[3] = xFy0;
-
-            int ocupacion = mySector.GetTraffic(myFlightsList);
-            if (mySector.Capacity <= ocupacion)
+            for(int i =0; i < mySectorList.Number; i++) 
             {
-                //Call to 0.3.Helper
-                graphics.DrawPolygon(Painting("Red"), polygonPoints);
-                Painting("Red").Dispose();
+                //Xo,Yo (Left top corner)
+                Point x0y0 = new Point(Convert.ToInt32(mySectorList.Sector[i].PositionX), Convert.ToInt32(mySectorList.Sector[i].PositionY));
+                //Xo,Yf (Left bottom corner)
+                Point x0yF = new Point(Convert.ToInt32(mySectorList.Sector[i].PositionX), Convert.ToInt32(mySectorList.Sector[i].PositionY + mySectorList.Sector[i].Height));
+                //Xf,Yf (Right bottom corner)
+                Point xFyF = new Point(Convert.ToInt32(mySectorList.Sector[i].PositionX + mySectorList.Sector[i].Width), Convert.ToInt32(mySectorList.Sector[i].PositionY + mySectorList.Sector[i].Height));
+                //Xo,Yo (Right top corner)
+                Point xFy0 = new Point(Convert.ToInt32(mySectorList.Sector[i].PositionX + mySectorList.Sector[i].Width), Convert.ToInt32(mySectorList.Sector[i].PositionY));
 
+                System.Drawing.Graphics graphics = e.Graphics;
+                // Points that define the rectangle
+                Point[] polygonPoints = new Point[4];
+                polygonPoints[0] = x0y0;
+                polygonPoints[1] = x0yF;
+                polygonPoints[2] = xFyF;
+                polygonPoints[3] = xFy0;
+
+                int ocupacion = mySectorList.Sector[i].GetTraffic(myFlightsList);
+                if (mySectorList.Sector[i].Capacity <= ocupacion)
+                {
+                    //Call to 0.3.Helper
+                    graphics.DrawPolygon(Painting("Red"), polygonPoints);
+                    Painting("Red").Dispose();
+
+                }
+                else
+                {
+                    //Call to 0.3.Helper
+                    graphics.DrawPolygon(Painting("Green"), polygonPoints);
+                    Painting("Green").Dispose();
+                }
             }
-            else
-            {
-                //Call to 0.3.Helper
-                graphics.DrawPolygon(Painting("Green"), polygonPoints);
-                Painting("Green").Dispose();
-            }
+            
         }
 
 
@@ -329,6 +333,7 @@ namespace FormPrincipal
         /************************************************************ Interaction Section *****************************************************************
          *  3.Mostrar en otro formulario los datos del vuelo sobre el que ha clicado el usuario
          *  4.Listar en otro formulario los datos de todos los vuelos que hay en el espacio aéreo.
+         *  5.Mostrar en otro formulario los id de los sectores;
         ****************************************************************************************************************************************************/
         //3.Mostrar en otro formulario los datos del vuelo sobre el que ha clicado el usuario:
         //Receive the AircraftVector(defined as an PictureBox array) event and make a call to display the FlightInfoForm for show de Flight requested data
@@ -359,6 +364,22 @@ namespace FormPrincipal
             flightsListInfo.ShowDialog();
         }
 
+        private void sectorsDGV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SectorInfo sectorInfo = new SectorInfo();
+            sectorInfo.SectorID = this.sectorsDGV.CurrentRow.Cells[0].Value.ToString();
+            sectorInfo.Ocupation = this.sectorsDGV.CurrentRow.Cells[1].Value.ToString();
+            sectorInfo.Capacity = this.sectorsDGV.CurrentRow.Cells[2].Value.ToString();
+            sectorInfo.Origin = this.sectorsDGV.CurrentRow.Cells[3].Value.ToString();
+            sectorInfo.Final = this.sectorsDGV.CurrentRow.Cells[4].Value.ToString();
+            sectorInfo.SectorWidth = this.sectorsDGV.CurrentRow.Cells[5].Value.ToString();
+            sectorInfo.SectorHeight = this.sectorsDGV.CurrentRow.Cells[6].Value.ToString();
+
+            sectorInfo.ShowDialog();
+
+
+        }
+
         /*************************************** Simulation Section ****************************************************
          *  5. Introducir el tiempo de ciclo de simulación (en minutos) y avanzar la simulación ciclo a ciclo.
          *  6. Reiniciar la simulación.
@@ -387,10 +408,8 @@ namespace FormPrincipal
                 
                 //Simulates a Cycle and updates position in Picturebox
                 myFlightsList.FlightsSimulation(time);
-                //0.5.Helper: Function to print the sector occupation
-
-             
-                PrintOcuppation();
+                //0.7.Helper: Function to print the sector occupation in to DGV
+                loadSectorInfo();
                 panel1.Invalidate();
                 for (int i = 0; i < myFlightsList.Number; i++)
                 {
@@ -450,47 +469,56 @@ namespace FormPrincipal
             //0.6.Helper: Stop and change button color and text, show is stopped and can start(Green)
             StopSimulation();
             //0.5.Helper: Function to print the sector occupation
-            PrintOcuppation();
+            loadSectorInfo();
         }
 
 
         private void StartSimulation_Click(object sender, EventArgs e)
         {
-          
-            if (timer1.Enabled)
+            if (myFlightsList.Number <= 0)
             {
-                timer1.Stop();
-                //0.6.Helper: Stop and change button color and text, show is stopped and can start(Green)
-                StopSimulation();
+                MessageBox.Show("No se puede iniciar la simulación porque no hay vuelos que simular.", "No hay vuelos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                StartSimulation.Text = "Stop";
-                StartSimulation.BackColor = Color.Red;
-                string cycleTime = cycleTimeInput.Text;
-                string cycleNum = cycleNumInput.Text;
-
-                if (!string.IsNullOrWhiteSpace(cycleTime) && // Not empty
-                       int.TryParse(cycleTime, out int time))
+                if (timer1.Enabled)
                 {
-                    if (!string.IsNullOrWhiteSpace(cycleNum) && // Not empty
-                    int.TryParse(cycleNum, out int num))
-                    {
-                        timer1.Interval = 1000;
-                        timer1.Enabled = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Asegurece de insertar un número de simulaciones y que este sea de valor entero.", "Número de simulaciones nulo",
-                                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    timer1.Stop();
+                    //0.6.Helper: Stop and change button color and text, show is stopped and can start(Green)
+                    StopSimulation();
                 }
                 else
                 {
-                    MessageBox.Show("Asegurece de insertar un tiempo de simulación y que este sea de valor entero.", "Tiempo de simulación nulo",
-                                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }  
+                    StartSimulation.Text = "Stop";
+                    StartSimulation.BackColor = Color.Red;
+                    string cycleTime = cycleTimeInput.Text;
+                    string cycleNum = cycleNumInput.Text;
+
+                    if (!string.IsNullOrWhiteSpace(cycleTime) && // Not empty
+                           int.TryParse(cycleTime, out int time))
+                    {
+                        if (!string.IsNullOrWhiteSpace(cycleNum) && // Not empty
+                        int.TryParse(cycleNum, out int num))
+                        {
+
+                            timer1.Interval = 1000;
+                            timer1.Enabled = true;
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Asegurece de insertar un número de simulaciones y que este sea de valor entero.", "Número de simulaciones nulo",
+                                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Asegurece de insertar un tiempo de simulación y que este sea de valor entero.", "Tiempo de simulación nulo",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
+            
         }
 
 
@@ -516,8 +544,8 @@ namespace FormPrincipal
             for (int j = 0; j < myFlightsList.Number; j++)
             {
                 aircraftVector[j].Location = new Point((int)myFlightsList.Flights[j].PositionX, (int)myFlightsList.Flights[j].PositionY);
-                //0.5.Helper: Function to print the sector occupation
-                PrintOcuppation();
+                //0.7.Helper: Function to print the sector occupation in DGV
+                loadSectorInfo();
                 //Change Sector Color
                 panel1.Invalidate();
 
@@ -526,6 +554,13 @@ namespace FormPrincipal
                     flightsInDestination++;
                 }
             }
+            if((myFlightsList.Number > 0) && (flightsInDestination == myFlightsList.Number))
+            {
+                timer1.Stop();
+                MessageBox.Show("Todos los vuelos han llegado a su destino.");
+                StopSimulation();
+            }
+            
   
         }
         
@@ -539,9 +574,10 @@ namespace FormPrincipal
                 //Clean Flights
                 panel1.Controls.Clear();
                 FlightStack.Clear();
-                //0.5.Helper: Function to print the sector occupation
+                //Fill the texbox with active flight number
                 this.totalFlightsLabel.Text = myFlightsList.Number.ToString();
-                PrintOcuppation();
+                //0.7.Helper: Function to print the sector occupation in to DGV
+                loadSectorInfo();
             }
         }
 
@@ -582,6 +618,8 @@ namespace FormPrincipal
             //Colour to draw the rectangle
             if (color == "Red")
                 myPen = new Pen(Color.Red);
+
+            myPen.Width = 3.0F;
             return myPen;
 
         }
@@ -595,16 +633,16 @@ namespace FormPrincipal
         }
 
         //0.5.Helper: Function to print the sector occupation
-        private void PrintOcuppation()
+        /*private void PrintOcuppation(int number)
         {
-            this.occupationNumLabel.Text = Convert.ToString(mySector.GetTraffic(myFlightsList));
+            this.occupationNumLabel.Text = Convert.ToString(mySectorList.Sector[number].GetTraffic(myFlightsList));
         }
-
+        */
         //0.6.Helper: Stop and change button color and text
         private void StopSimulation()
         {
             timer1.Stop();
-            StartSimulation.BackColor = Color.Green;
+            StartSimulation.BackColor = Color.LightGreen;
             StartSimulation.Text = "Start";
         }
         //0.7.Helper: Print Flights
@@ -619,6 +657,7 @@ namespace FormPrincipal
                 {
                     aircraftVector[i] = new PictureBox();
                     aircraftVector[i].ClientSize = new Size(20, 20);
+                    aircraftVector[i].BackColor = Color.Transparent;
                     aircraftVector[i].Location = new Point((int)myFlightsList.Flights[i].PositionX, (int)myFlightsList.Flights[i].PositionY);
                     aircraftVector[i].SizeMode = PictureBoxSizeMode.StretchImage;
                     aircraftVector[i].Tag = myFlightsList.Flights[i];
@@ -640,6 +679,61 @@ namespace FormPrincipal
             }
         }
 
+        //0.8.Helper: Load Sectors Info on DataGridView
+        private void loadSectorInfo() 
+        {
+            if(mySectorList.Number > 0)
+            {
+                try
+                {
+                    sectorsDGV.ColumnCount = 7;
+                    sectorsDGV.Columns[0].HeaderText = "ID";
+                    sectorsDGV.Columns[1].HeaderText = "Ocupación Actual";
+                    sectorsDGV.Columns[2].HeaderText = "Capacidad";
+                    sectorsDGV.Columns[3].HeaderText = "Posicion Origen";
+                    sectorsDGV.Columns[4].HeaderText = "Posicion Final";
+                    sectorsDGV.Columns[5].HeaderText = "Ancho";
+                    sectorsDGV.Columns[6].HeaderText = "Alto";
+                    sectorsDGV.RowCount = mySectorList.Number;
+                    sectorsDGV.ColumnHeadersVisible = true;
+                    sectorsDGV.RowHeadersVisible = false;
+                    sectorsDGV.ForeColor = Color.Black;
+                    sectorsDGV.RowsDefaultCellStyle.BackColor = Color.Bisque;
+                    sectorsDGV.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+                    sectorsDGV.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+                    sectorsDGV.DefaultCellStyle.SelectionBackColor = Color.Red;
+                    sectorsDGV.DefaultCellStyle.SelectionForeColor = Color.Yellow;
+                    sectorsDGV.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    sectorsDGV.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    sectorsDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    sectorsDGV.AllowUserToResizeColumns = false;
+                    sectorsDGV.ReadOnly = true;
+
+                    for (int i = 0; i < mySectorList.Number; i++)
+                    {
+                        sectorsDGV.Rows[i].Cells[0].Value = mySectorList.Sector[i].SectorID;
+                        sectorsDGV.Rows[i].Cells[1].Value = mySectorList.Sector[i].GetTraffic(myFlightsList);
+                        sectorsDGV.Rows[i].Cells[2].Value = mySectorList.Sector[i].Capacity;
+                        sectorsDGV.Rows[i].Cells[3].Value = "(" + mySectorList.Sector[i].PositionX + "," + mySectorList.Sector[i].PositionY + ")";
+                        sectorsDGV.Rows[i].Cells[4].Value = "(" + (mySectorList.Sector[i].PositionX + mySectorList.Sector[i].Width) + "," + (mySectorList.Sector[i].PositionY + mySectorList.Sector[i].Height) + ")";
+                        sectorsDGV.Rows[i].Cells[5].Value = mySectorList.Sector[i].Width;
+                        sectorsDGV.Rows[i].Cells[6].Value = mySectorList.Sector[i].Height;
+
+                    }
+
+                }
+                catch
+                {
+                    MessageBox.Show("Error mostrando la lista de sectores. " +
+                                    "Si desea ejecutar correctamente el programa y todas sus caracteristicas cargue una lista de sectores válida para mostrarla correctamente",
+                                    "Error con la lista de sectores.",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                }
+            }
+            
+
+        }
         /*************************************** Extras Section ***************************************************
         * Extra code for increase the user experiencie.
        ************************************************************************************************************/
@@ -771,18 +865,8 @@ namespace FormPrincipal
             
         }
 
-        private void cycleTimeInput_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-       
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GroupInfo formGroup = new GroupInfo();
-            formGroup.ShowDialog();
-        }
-
+        //Carga todos los vuelos sumulados del usuario
         private void vuelosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserFlights userFlightsInfo = new UserFlights();
@@ -790,15 +874,37 @@ namespace FormPrincipal
             userFlightsInfo.ShowDialog();
         }
 
-        private void mySectoresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //Muestra el formulario donde se encuentran las aerolineas
         private void aerolineasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Airlines airlines = new Airlines();
             airlines.ShowDialog();
+        }
+
+        private void cycleTimeInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //More Section ToolStrip
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GroupInfo formGroup = new GroupInfo();
+            formGroup.ShowDialog();
+        }
+
+       
+        private void funcionalidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Call to 0.4.Helper
+                VisitLink("https://github.com/LuigeloDV/ProjectG6#functionalities");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se ha podido dirigir al link con la información de funcionalidades.");
+            }
         }
     }
 }

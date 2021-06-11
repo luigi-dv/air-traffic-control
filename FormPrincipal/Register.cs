@@ -15,6 +15,10 @@ namespace FormPrincipal
 {
     public partial class Register : Form
     {
+        private const string EMAIL = "testing@ldlvoper.com";
+        private const string SERVER = "smtp.ionos.es";
+        private const int PORT = 587;
+
         User newUser = new User();
         Email email = new Email();
 
@@ -95,7 +99,7 @@ namespace FormPrincipal
                             newUser.ConfirmationCode = GenerateConfirmationCode();
 
                             //Email values to send the email using - 0.3.Helper: Send email via c#
-                            MailAddress from = new MailAddress("testing@ldvloper.com", "Project G6");
+                            MailAddress from = new MailAddress(EMAIL, "Project G6");
                             MailAddress to = new MailAddress(newUser.Email, newUser.Username);
                             SendEmail("Confirme su Registro", from, to);
                             //Open Form Confirmation
@@ -186,9 +190,9 @@ namespace FormPrincipal
         protected void SendEmail(string _subject, MailAddress _from, MailAddress _to, List<MailAddress> _bcc = null)
         {
             
-            SmtpClient mailClient = new SmtpClient("smtp.ionos.es", 587);
-            //La Constaseña se encuentra segura en la tabla emailClients
-            email = email.GetEmailAuth("testing@ldvloper.com");
+            SmtpClient mailClient = new SmtpClient(SERVER, PORT);
+            //La Constraseña se encuentra segura en la tabla emailClients
+            email = email.GetEmailAuth(EMAIL);
             NetworkCredential cred = new NetworkCredential(email.Username, email.Password);
             MailMessage msgMail;
             
