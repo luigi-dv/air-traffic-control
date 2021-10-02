@@ -49,7 +49,7 @@ namespace FlightsLib
                             PositionY = float.Parse(splits[3]),
                             Width = float.Parse(splits[4]),
                             Height = float.Parse(splits[5])
-                    };
+                        };
                         this.Sector[number] = u;
                         result = 0;
                     }

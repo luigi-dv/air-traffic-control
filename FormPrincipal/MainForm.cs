@@ -400,7 +400,6 @@ namespace FormPrincipal
                 //Creates a copy of myFlightList 
                 FlightsList tempFlightsList = new FlightsList();
                 tempFlightsList = myFlightsList.Copy();
-                
 
                 //Saves simulation to the stack
 
@@ -503,16 +502,23 @@ namespace FormPrincipal
 
                             timer1.Interval = 1000;
                             timer1.Enabled = true;
+                            timer1.Tick += new EventHandler(timer_tick);
 
                         }
                         else
                         {
+                            timer1.Stop();
+                            //0.6.Helper: Stop and change button color and text, show is stopped and can start(Green)
+                            StopSimulation();
                             MessageBox.Show("Asegurece de insertar un número de simulaciones y que este sea de valor entero.", "Número de simulaciones nulo",
                                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
+                        timer1.Stop();
+                        //0.6.Helper: Stop and change button color and text, show is stopped and can start(Green)
+                        StopSimulation();
                         MessageBox.Show("Asegurece de insertar un tiempo de simulación y que este sea de valor entero.", "Tiempo de simulación nulo",
                                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -524,9 +530,11 @@ namespace FormPrincipal
 
         private void timer_tick(object sender, EventArgs e)
         {
-        
+            double secs = 0;
             string cycleTime = cycleTimeInput.Text;
             int.TryParse(cycleTime, out int time);
+            string cycleNum = cycleNumInput.Text;
+            double.TryParse(cycleNum, out double duration);
             //Creates a copy of myFlightList
             FlightsList tempFlightsList = new FlightsList();
             tempFlightsList = myFlightsList.Copy();
@@ -538,30 +546,50 @@ namespace FormPrincipal
             int flightsInDestination = 0;
 
             //Simulates a Cycle and updates position in Picturebox
-            myFlightsList.FlightsSimulation(time);          
+            myFlightsList.FlightsSimulation(time);
 
-            // i es el contador para los ciclos de la simulacion
-            for (int j = 0; j < myFlightsList.Number; j++)
+          
+            if ((duration * 60) != secs)
             {
-                aircraftVector[j].Location = new Point((int)myFlightsList.Flights[j].PositionX, (int)myFlightsList.Flights[j].PositionY);
-                //0.7.Helper: Function to print the sector occupation in DGV
-                loadSectorInfo();
-                //Change Sector Color
-                panel1.Invalidate();
-
-                if (myFlightsList.Flights[j].Simulator(time) == -1)
+                // i es el contador para los ciclos de la simulacion
+                for (int j = 0; j < myFlightsList.Number; j++)
                 {
-                    flightsInDestination++;
+
+                    if (myFlightsList.Flights[j].Simulator(time) == -1)
+                    {
+                        flightsInDestination++;
+                    }
+
+                    aircraftVector[j].Location = new Point((int)myFlightsList.Flights[j].PositionX, (int)myFlightsList.Flights[j].PositionY);
+                    //0.7.Helper: Function to print the sector occupation in DGV
+                    loadSectorInfo();
+                    //Change Sector Color
+                    panel1.Invalidate();
+
+                    secs++;
                 }
             }
-            if((myFlightsList.Number > 0) && (flightsInDestination == myFlightsList.Number))
+            else
+            {
+                if ((duration * 60) == secs)
+                {
+                    timer1.Stop();
+                    StopSimulation();
+                }
+
+            }
+            if ((myFlightsList.Number > 0) && (flightsInDestination == myFlightsList.Number))
             {
                 timer1.Stop();
                 MessageBox.Show("Todos los vuelos han llegado a su destino.");
                 StopSimulation();
             }
-            
-  
+
+
+
+
+
+
         }
         
         //Restart simulation
@@ -905,6 +933,11 @@ namespace FormPrincipal
             {
                 MessageBox.Show("No se ha podido dirigir al link con la información de funcionalidades.");
             }
+        }
+
+        private void cycleNumLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

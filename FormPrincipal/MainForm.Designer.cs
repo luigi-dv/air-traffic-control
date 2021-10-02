@@ -233,26 +233,26 @@ namespace FormPrincipal
             // gitHubToolStripMenuItem
             // 
             this.gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
-            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.gitHubToolStripMenuItem.Text = "Repositorio Github";
             this.gitHubToolStripMenuItem.Click += new System.EventHandler(this.GitHubToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.aboutToolStripMenuItem.Text = "&Acerca del grupo";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(170, 6);
             // 
             // funcionalidadesToolStripMenuItem
             // 
             this.funcionalidadesToolStripMenuItem.Name = "funcionalidadesToolStripMenuItem";
-            this.funcionalidadesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.funcionalidadesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.funcionalidadesToolStripMenuItem.Text = "Funcionalidades";
             this.funcionalidadesToolStripMenuItem.Click += new System.EventHandler(this.funcionalidadesToolStripMenuItem_Click);
             // 
@@ -303,9 +303,10 @@ namespace FormPrincipal
             this.cycleNumLabel.ForeColor = System.Drawing.Color.Black;
             this.cycleNumLabel.Location = new System.Drawing.Point(662, 454);
             this.cycleNumLabel.Name = "cycleNumLabel";
-            this.cycleNumLabel.Size = new System.Drawing.Size(137, 20);
+            this.cycleNumLabel.Size = new System.Drawing.Size(143, 20);
             this.cycleNumLabel.TabIndex = 7;
-            this.cycleNumLabel.Text = "Número de Ciclos:";
+            this.cycleNumLabel.Text = "Tiempo simulación:";
+            this.cycleNumLabel.Click += new System.EventHandler(this.cycleNumLabel_Click);
             // 
             // cycleTimeInput
             // 

@@ -86,9 +86,7 @@ namespace FlightsLib
             fl.originX = this.originX;
             fl.OriginY = this.originY;
             fl.velocity = this.velocity;
-            return (fl);
-
-            
+            return (fl);          
         }
 
         //Simula cada vuelo con el tiempo que recibe por parametro
@@ -103,23 +101,40 @@ namespace FlightsLib
 
             if((this.positionX < this.destinationX) || (this.positionY < this.destinationY))
             {
-                distance = inputUserCicle * this.velocity;
+                distance = inputUserCicle * (this.velocity / 60);
 
 
                 hipotenusa = Math.Sqrt(
-                                        ((this.destinationX - this.positionX) * (this.destinationX - this.positionX)) +
-                                        ((this.destinationY - this.positionY) * (this.destinationY - this.positionY))
+                                        ( (this.destinationX - this.positionX) * (this.destinationX - this.positionX) ) +
+                                        ( (this.destinationY - this.positionY) * (this.destinationY - this.positionY) )
                                         );
 
                 cos = ((this.destinationX - this.positionX) / hipotenusa);
                 sin = ((this.destinationY - this.positionY) / hipotenusa);
 
+               
+                    double temporalX = Math.Round((this.positionX + (distance * cos)), MidpointRounding.AwayFromZero);
+                    double temporalY = Math.Round((this.positionY + (distance * sin)), MidpointRounding.AwayFromZero);
 
-                this.positionX = Math.Round((this.positionX + distance * cos), MidpointRounding.ToEven);
+                    if (temporalX > this.destinationX)
+                    {
+                        this.positionX = this.destinationX;
+                    }
 
+                    if (temporalY > this.destinationY)
+                    {
+                        this.positionY = this.destinationY;
+                    }
 
-
-                this.positionY = Math.Round((this.positionY + distance * sin), MidpointRounding.ToEven);
+                else
+                {
+                    this.positionX = temporalX;
+                    this.positionY = temporalY;
+                }
+               
+               
+                //this.positionX = Math.Round((this.positionX + ((inputUserCicle * (this.velocity / 60)) * ((this.destinationX - this.positionX) / hipotenusa))), MidpointRounding.ToEven);
+                //this.positionY = Math.Round((this.positionY + ((inputUserCicle * (this.velocity / 60)) * ((this.destinationY - this.positionY) / hipotenusa))), MidpointRounding.ToEven);
 
                 return 0;
             }

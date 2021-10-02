@@ -84,13 +84,13 @@ namespace FlightsLib
                         {
                             FlightID = splits[0],
                             Company = splits[1],
-                            PositionX = float.Parse(splits[2]),
-                            PositionY = float.Parse(splits[3]),
-                            OriginX = float.Parse(splits[4]),
-                            OriginY = float.Parse(splits[5]),
-                            DestinationX = float.Parse(splits[6]),
-                            DestinationY = float.Parse(splits[7]),
-                            Velocity = float.Parse(splits[8])
+                            PositionX = Convert.ToDouble(splits[2]),
+                            PositionY = Convert.ToDouble(splits[3]),
+                            OriginX = Convert.ToDouble(splits[4]),
+                            OriginY = Convert.ToDouble(splits[5]),
+                            DestinationX = Convert.ToDouble(splits[6]),
+                            DestinationY = Convert.ToDouble(splits[7]),
+                            Velocity = Convert.ToDouble(splits[8])
                         };
                         this.Flights[number] = u;
                         result = 0;
