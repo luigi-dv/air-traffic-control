@@ -31,14 +31,14 @@ namespace FlightsLib
             return airlines;
         }
 
-        public int GetAirlane(int rowid)
+        public int GetAirline(int rowid)
         {
             string query = "SELECT COUNT(*) FROM airlines WHERE rowid=" + rowid+ "";
             SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
             int RowCount = Convert.ToInt32(comm.ExecuteScalar());
             return RowCount;
         }
-        public int GetAirlaneByID(string id)
+        public int GetAirlineByID(string id)
         {
             string query = "SELECT COUNT(*) FROM airlines WHERE id = '" + id + "'";
             SQLiteCommand comm = new SQLiteCommand(query, this.cnx);
