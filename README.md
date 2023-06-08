@@ -2,11 +2,6 @@
 
 Simulador de vuelo  del grupo G6 
 
-## Authors: 
-* Edgar Albiol:   edgar.albiol@estudiantat.upc.edu 
-* Andrea Chong:   andrea.victoria.chong@estudiantat.upc.edu 
-* Luigelo Davila: luigelo.miguel.davila@estudiantat.upc.edu
-
 
 ## Installation
 
